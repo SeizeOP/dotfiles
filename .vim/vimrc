@@ -1,0 +1,91 @@
+"  _   _ ____   _______________________________
+" | | | |  _ \  | Henry Davies (HD)           |
+" | |_| | | | | | HenryDaviesO@proton.me      |
+" |  _  | |_| | | https://github.com/@SeizeOP |
+" |_| |_|____/  |_____________________________|
+
+"#=# ABOUT #=========================================#
+"# Personal ~/.vimrc configuration file	             #
+"# File Location: ~/.vimrc			     			 #
+"#===================================================#
+
+" Set viminfo location
+set viminfo+=n~/.vim/viminfo
+" Enable type file detection. Vim will be able to try to detect the type of file in use.
+filetype on
+" Enable plugins and load plugin for the detected file type.
+filetype plugin on
+" Load an indent file for the detected file type.
+filetype indent on
+set autoindent
+set smartindent
+" Turn syntax highlighting on.
+syntax on
+" Add numbers to each line on the left-hand side.
+set number " Show current line number
+set relativenumber " Show relative line nubers
+" Highlight cursor line underneath the cursor horizontally.
+set cursorline
+" Highlight cursor line underneath the cursor vertically.
+set cursorcolumn
+" Set shift width to 4 spaces.
+set shiftwidth=4
+" Set tab width to 4 columns.
+set tabstop=4
+" While searching though a file incrementally highlight matching characters as you type.
+set incsearch
+" Ignore capital letters during search.
+set ignorecase
+" Override the ignorecase option if searching for capital letters.
+" This will allow you to search specifically for capital letters.
+set smartcase
+" Show partial command you type in the last line of the screen.
+set showcmd
+" Show the mode you are on the last line.
+set showmode
+" Show matching words during a search.
+set showmatch
+" Use highlighting when doing a search.
+set hlsearch
+" Set the commands to save in history default number is 20.
+set history=1000
+set wildmenu
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+" There are certain files that we would never want to edit with Vim.
+" Wildmenu will ignore files with these extensions.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+" change colorscheme
+colorscheme dracula
+
+" Start NERDTree when Vim is opened and put the cursor back in the other window.
+autocmd VimEnter * NERDTree
+" Open the existing NERDTree on each new tab.
+autocmd BufWinEnter * silent NERDTreeMirror
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+" Show hidden files
+let NERDTreeShowHidden=1
+" Vim Plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin('~/.vim/plugged')
+" Neotree
+Plug 'preservevim/NERDTree'
+" Orgmode
+Plug 'SpaceVim/org-mode'
+call plug#end()
+
+" Keymaps
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" make background transparent
+hi Normal guibg=NONE ctermbg=NONE

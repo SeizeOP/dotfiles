@@ -1,0 +1,17 @@
+#+title: VIM Config
+#+description: This is an org-mode documnet intended to make my VIM configuration more legible.
+#+author: SeizeOP
+#+options: toc:2:
+
+* TABLE OF CONTENTS :TOC:
+- [[#about-this-config][About This Config]]
+- [[#personal-config][Personal Config]]
+- [[#depreciated-configs][Depreciated Configs]]
+
+* About This Config
+* Personal Config
+#+begin_src conf :tangle vimrc-test
+ set viminfo+=n~/.vim/viminfo
+#+end_src
+
+* Depreciated Configs
