@@ -1,0 +1,126 @@
+#+title: NWG Wrapper Config
+#+author: SeizeOP
+#+options: toc:2
+
+* TABLE OF CONTENTS :TOC:
+- [[#personal-config][Personal Config]]
+  - [[#scripts][Scripts]]
+  - [[#markup][Markup]]
+  - [[#css][CSS]]
+
+* Personal Config
+** Scripts
+
+*NWG Wrapper*
+#+begin_src sh :tangle nwg-wrapper.sh
+#!bin/sh
+nwg-wrapper -t bindings.pango -c bindings.css -l 1 -p right -mr 15
+#+end_src
+
+*Weather Module*
+#+begin_src sh :tangle date-wttr.sh
+#!/usr/bin/bash
+
+time=$(LC_ALL=C TZ='America/New_York' date +'%A, %d. %B')
+wttr=$(curl https://wttr.in/?format=1)
+echo '<span size="35000" foreground="#bd93f9">'$time'</span><span size="30000" foreground="#ccc">'
+echo $wttr'</span>'
+
+#+end_src
+
+** Markup
+
+*Pango Markup for Sway Cheat Sheet Module*
+#+begin_src markdown :tangle bindings.pango
+<span face="monospace">
+<span size="xx-large" foreground="#BD93F9" face="serif">Sway WM Keybindings</span>
+<span foreground="#eeeeee">
+<span size="x-large" foreground="#FF87D7" face="serif">App Binds</span>
+Emacs			<span foreground="#F1FA8C" face="serif">Mod+E</span>
+Kitty			<span foreground="#F1FA8C" face="serif">Mod+Enter</span>
+PCmanFM			<span foreground="#F1FA8C" face="serif">Mod+M</span>
+Qutebrowser		<span foreground="#F1FA8C" face="serif">Mod+B</span>
+Wofi			<span foreground="#F1FA8C" face="serif">Mod+D</span>
+
+<span size="x-large" foreground="#FF87D7" face="serif">System Binds</span>
+Power menu		<span foreground="#F1FA8C" face="serif">Mod+P</span>
+Reload sway		<span foreground="#F1FA8C" face="serif">Mod+Ctrl+R</span>
+Close Window		<span foreground="#F1FA8C" face="serif">Mod+Shift+Q</span>
+Kill task		<span foreground="#F1FA8C" face="serif">Ctrl+C</span>
+
+<span size="large" foreground="#FF87D7" face="serif">Layout Stuff</span>
+Switch workspace	<span foreground="#F1FA8C" face="serif">Mod+Number (0-9)</span>
+Move to workspace	<span foreground="#F1FA8C" face="serif">Mod+Shift+HJKL</span>
+
+Layout Split		<span foreground="#F1FA8C" face="serif">Mod+S</span>
+Layout Stacking		<span foreground="#F1FA8C" face="serif">Mod+C</span>
+Layout Tabbed		<span foreground="#F1FA8C" face="serif">Mod+T</span>
+
+Move focus		<span foreground="#F1FA8C" face="serif">Mod+HJKL</span>
+Move container		<span foreground="#F1FA8C" face="serif">Mod+Shift+HJKL</span>
+Toggle floating		<span foreground="#F1FA8C" face="serif">Mod+Shift+Space</span>
+Fullscreen		<span foreground="#F1FA8C" face="serif">Mod+F</span>
+Move to scratchpad	<span foreground="#F1FA8C" face="serif">Mod+Shift+Minus (-)</span>
+Show scratchpad		<span foreground="#F1FA8C" face="serif">Mod+Minus (-)</span>
+
+Type With ASCII 	<span foreground="#F1FA8C" face="serif">Ctrl+Shift+U</span>
+
+</span>
+</span>
+#+end_src
+
+** CSS
+
+*Global Style CSS file*
+#+begin_src css :tangle style.css
+window {
+        background-color: rgba (0, 0, 0, 0.0);
+}
+
+#box-outer {
+        /* Define attributes of the box surrounding icons here */
+        background-color: rgba (255, 255, 255, 0.0)
+}
+
+#box-inner {
+        background-color: rgba (23, 53, 63, 0.5);
+        border-radius: 5px;
+	border-style: dotted;
+	border-width: 1px;
+	border-color: rgba (156, 142, 122, 0.7);
+	padding: 10px
+}
+#+end_src
+
+*CSS Styling for Sway Cheat Sheet Module*
+#+begin_src css :tangle bindings.css
+window {
+        background-color: rgba (0, 0, 0, 0.0);
+}
+
+#box-outer {
+        /* Define attributes of the box surrounding icons here */
+        background-color: rgba (255, 255, 255, 0.0)
+}
+
+#box-inner {
+        background-color: rgba (40, 42, 54, 0.5);
+	padding: 0 20px 0 20px
+}
+#+end_src
+
+*CSS Styling for Weather Module*
+#+begin_src css :tangle date-wttr.css
+window {
+        background-color: rgba (0, 0, 0, 0.0);
+}
+
+#box-outer {
+        /* Define attributes of the box surrounding icons here */
+        background-color: rgba (255, 255, 255, 0.0)
+}
+
+#box-inner {
+        background-color: rgba (0, 0, 0, 0.0)
+}
+#+end_src
