@@ -1,0 +1,354 @@
+#+title: Hyprland Waybar Config
+#+author: SeizeOP
+#+description: An org-mode document indented to make my Waybar configuration for the Hyprland Window Manager more legible.
+#+options: toc
+* TABLE OF CONTENTS :TOC:
+- [[#configuration][Configuration]]
+  - [[#define-top-bar-module-layout][Define Top Bar Module Layout]]
+  - [[#modules][Modules]]
+  - [[#depreciated-configs][Depreciated Configs]]
+- [[#css-styling][CSS Styling]]
+  - [[#global-styling][Global Styling]]
+  - [[#module-styling][Module Styling]]
+  - [[#depreciated-styles][Depreciated Styles]]
+
+* Configuration
+** Define Top Bar Module Layout
+#+begin_src java :tangle config-hypr
+  {
+    "position": "top",
+	"all-outputs": true,
+	"name": "top",
+	"height": 44,
+	"spacing": 20,
+	"modules-left": ["clock", "hyprland/workspaces", "custom/media"],
+	"modules-center": ["hyprland/window", "sway/scratchpad"],
+	"modules-right": ["backlight", "pulseaudio", "network", "battery"],
+#+end_src
+** Modules
+*** *Hyprland Workspaces*
+#+begin_src java :tangle config-hypr
+	"hyprland/workspaces": {
+		"disable-scroll": false,
+           "format": "{name} {icon}",
+           "format-icons": {
+              "1": "",
+              "2": "",
+              "3": "",
+              "4": "󰙯",
+              "5": "󰓓",
+              "6": "󰕃",
+              "7": "󰍹",
+          "urgent": "",
+              "focused": "",
+              "default": ""
+ 	}
+  },
+#+end_src
+
+*** *Hyprland Window*
+#+begin_src java :tangle config-hypr
+  "hyprland/window": {
+         "max-length": 50
+     },
+#+end_src
+
+*** *Pulse Audio*
+#+begin_src java :tangle config-hypr
+     "pulseaudio": {
+           "scroll-step": 1, // %, can be a float
+          "format": "{volume}% {icon} {format_source}",
+          "format-bluetooth": "{volume}% {icon} {format_source}",
+          "format-bluetooth-muted": " {icon} {format_source}",
+          "format-muted": " {format_source}",
+          "format-source": "{volume}% ",
+          "format-source-muted": "",
+          "format-icons": {
+              "headphone": "",
+              "hands-free": "",
+              "headset": "",
+              "phone": "",
+              "portable": "",
+              "car": "",
+              "default": ["", "", ""]
+          },
+          "on-click": "pavucontrol"
+	},
+#+end_src
+
+*** Network
+#+begin_src java :tangle config-hypr
+ "network": {
+         // "interface": "wlp2*", // (Optional) To force the use of this interface
+     "format-wifi": "({signalStrength}%) ", //{essid}
+          "format-ethernet": "{ipaddr}/{cidr} ",
+          "tooltip-format": "{ifname} via {gwaddr} ",
+          "format-linked": "{ifname} (No IP) ",
+          "format-disconnected": "Disconnected ⚠",
+         // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+          "on-click": "kitty -e nmtui"
+      },
+#+end_src
+
+*** Custom Media
+A Custom module to display and control media using /MPRIS/
+#+begin_src java :tangle config-hypr
+      "custom/media": {
+          "format": "{icon} {}",
+          "escape": true,
+          "return-type": "json",
+          "max-length": 20,
+          "on-click": "playerctl play-pause",
+          "on-click-right": "playerctl stop",
+          "smooth-scrolling-threshold": 10,
+		  "on-scroll-up": "playerctl next",
+          "on-scroll-down": "playerctl previous",
+          "format-icons": {
+              "mpv": " ",
+	      "nuclear":"󰚤 ",
+	      "firefox": "󰈹 ",
+	      "brave": " ",
+              "default": "🎜 "
+          },
+          "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+          //"exec": "$HOME/.config/waybar/mediaplayer.py --player mpv 2> /dev/null" // Filter player based     on name
+      },
+
+#+end_src
+
+*** Clock
+#+begin_src java :tangle config-hypr
+  "clock": {
+           "timezone": "America/New_York",
+          "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+          "format-alt": "{:%Y-%m-%d}"
+      },
+#+end_src
+
+*** Battery
+#+begin_src java :tangle config-hypr
+	  "battery": {
+          "states": {
+               "good": 95,
+              "warning": 30,
+              "critical": 15
+          },
+          "format": "{capacity}% {icon}",
+          "format-charging": "{capacity}% ",
+          "format-plugged": "{capacity}% ",
+          // "format-good": "", // An empty format will hide the module
+          // "format-full": "",
+          "format-icons": ["", "", "", "", ""]
+      },
+    }
+#+end_src
+
+#+begin_src java :tangle config-hypr
+]
+#+end_src
+
+** Depreciated Configs
+* CSS Styling
+** Global Styling
+#+begin_src css :tangle style-hypr.css
+ * { border: none;
+border-radius: 10px;
+padding: 0px;
+margin: 2px;
+/* `otf-font-awesome` is required to be installed for icons */
+font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+font-size: 20px;
+background-color: transparent;
+}
+#+end_src
+
+** Module Styling
+*** Window
+#+begin_src css :tangle style-hypr.css
+#window {
+    color: #ffffff;
+}
+
+window#waybar {
+    color: #50fa7b;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#+end_src
+
+*** Button
+#+begin_src css :tangle style-hypr.css
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    /*box-shadow: inset 0 -3px transparent;*/
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0px;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    /*box-shadow: inset 0 3px #5f5faf;*/
+    color: #5f5faf;
+}
+#+end_src
+
+*** Workspaces
+#+begin_src css :tangle style-hypr.css
+#workspaces {
+    margin: 0 10px;
+    border: 2px solid #50fa7b;
+    background: #282a36;
+}
+
+#workspaces button {
+    padding: 0 0.4em;
+    background-color: transparent;
+    /*background-color: #5f5faf;*/
+    color: #ffffff;
+}
+
+#workspaces button:hover {
+    /*box-shadow: inset 0 3px #ff87d7;*/
+    color: #ff87d7;
+}
+
+#workspaces button.active {
+    color: #50fa7b;
+    /*box-shadow: inset 0 2px #50fa7b;*/
+}
+
+#workspaces button.urgent {
+    color: #ff0000;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+#+end_src
+
+*** Pulse Audio
+#+begin_src css :tangle style-hypr.css
+#pulseaudio {
+    border: 2px solid #74b3d2;
+    background-color: #282a36;
+    color: #74b3d2;
+    padding: 0 0.4em;
+}
+
+#pulseaudio.muted {
+    background-color: #282a36;
+    color: #ff0000;
+    border: 2px solid #ff0000;
+}
+#+end_src
+
+*** Custom Media
+#+begin_src css :tangle style-hypr.css
+#custom-media {
+    background-color: #282A36;
+    color: #5f5faf;
+    border: 2px solid #5f5faf;
+    padding: 0 0.4em;
+}
+#custom-media.active {
+    color: #282A36;
+    background-color: #5f5faf;
+}
+
+#+end_src
+*** Clock
+#+begin_src css :tangle style-hypr.css
+#clock {
+    background-color: #282a36;
+    color: #74b3d2;
+    border: 2px solid #74b3d2;
+    padding: 0 0.4em;
+}
+#+end_src
+
+*** Network
+#+begin_src css :tangle style-hypr.css
+#network {
+    background-color: #282A36;
+    color: #50fa7b;
+    border: 2px solid #50fa7b;
+    padding: 0 0.4em;
+}
+
+#network.disconnected {
+    background-color: #282A36;
+    color: #ff0000;
+    border: 2px solid #ff0000;
+}
+#+end_src
+
+*** Battery
+#+begin_src css :tangle style-hypr.css
+#battery {
+    background-color: #74b3d2;
+    color: #282A36;
+    padding: 0 0.4em;
+}
+
+#battery.charging, #battery.plugged {
+    color: #282A36;
+    background-color: rgba(80, 250, 123, 1.00);
+    box-shadow: inset 0 -3px rgba(80, 250, 123, 1.00);
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #282A36;
+    background-color: rgba(255, 0, 0, 1.00);
+    box-shadow: inset 0 -3px rgba(255, 0, 0, 1.00);
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#+end_src
+
+*** Backlight
+#+begin_src css :tangle style-hypr.css
+#backlight {
+    background-color: #282A36;
+    color: #f1fa8c;
+    border: 2px solid #f1fa8c;
+    padding: 0 0.4em;
+}
+
+#+end_src
+
+** Depreciated Styles
+#+begin_src css
+#mode {
+    background-color: #282A36;
+    border-top: 3px solid #ff87d7;
+    border-bottom: 3px solid #ff87d7;
+}
+#+end_src

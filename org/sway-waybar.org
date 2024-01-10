@@ -1,17 +1,17 @@
-#+title: Waybar Config
+#+title: Sway Waybar Config
 #+author: SeizeOP
-#+description: An org-mode document indented to make my Waybar configuration more legible
+#+description: An org-mode document indented to make my Waybar configuration for the Sway Window Manager more legible.
 #+options: :toc2:
 
 * TABLE OF CONTENTS :TOC:
 - [[#about-this-config][ABOUT THIS CONFIG]]
 - [[#personal-config][PERSONAL CONFIG]]
-  - [[#modules][Modules]]
+  - [[#configuration][Configuration]]
   - [[#css-styling][CSS Styling]]
 
 * ABOUT THIS CONFIG
 * PERSONAL CONFIG
-** Modules
+** Configuration
 *** TOP BAR
 
 #+begin_src java :tangle config
