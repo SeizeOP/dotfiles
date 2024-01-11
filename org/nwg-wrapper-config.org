@@ -10,14 +10,13 @@
 
 * Personal Config
 ** Scripts
-
-*NWG Wrapper*
+*** *NWG Wrapper*
 #+begin_src sh :tangle nwg-wrapper.sh
 #!bin/sh
 nwg-wrapper -t bindings.pango -c bindings.css -l 1 -p right -mr 15
 #+end_src
 
-*Weather Module*
+*** *Weather Module*
 #+begin_src sh :tangle date-wttr.sh
 #!/usr/bin/bash
 
@@ -29,8 +28,7 @@ echo $wttr'</span>'
 #+end_src
 
 ** Markup
-
-*Pango Markup for Sway Cheat Sheet Module*
+*** *Pango Markup for Sway Cheat Sheet Module*
 #+begin_src markdown :tangle bindings.pango
 <span face="monospace">
 <span size="xx-large" foreground="#BD93F9" face="serif">Sway WM Keybindings</span>
@@ -70,8 +68,7 @@ Type With ASCII 	<span foreground="#F1FA8C" face="serif">Ctrl+Shift+U</span>
 #+end_src
 
 ** CSS
-
-*Global Style CSS file*
+*** *Global Style CSS file*
 #+begin_src css :tangle style.css
 window {
         background-color: rgba (0, 0, 0, 0.0);
@@ -92,7 +89,7 @@ window {
 }
 #+end_src
 
-*CSS Styling for Sway Cheat Sheet Module*
+*** *CSS Styling for Sway Cheat Sheet Module*
 #+begin_src css :tangle bindings.css
 window {
         background-color: rgba (0, 0, 0, 0.0);
@@ -109,7 +106,7 @@ window {
 }
 #+end_src
 
-*CSS Styling for Weather Module*
+*** CSS Styling for Weather Module
 #+begin_src css :tangle date-wttr.css
 window {
         background-color: rgba (0, 0, 0, 0.0);

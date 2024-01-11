@@ -1,7 +1,7 @@
 #+title: Sway Waybar Config
 #+author: SeizeOP
 #+description: An org-mode document indented to make my Waybar configuration for the Sway Window Manager more legible.
-#+options: :toc2:
+#+options: :toc
 
 * TABLE OF CONTENTS :TOC:
 - [[#about-this-config][ABOUT THIS CONFIG]]
@@ -13,11 +13,11 @@
 * PERSONAL CONFIG
 ** Configuration
 *** TOP BAR
-
 #+begin_src java :tangle config
 [
 #+end_src
 
+**** Layout
 *Define Top Bar Modules*
 #+begin_src java :tangle config
   {
@@ -31,7 +31,8 @@
 	"modules-right": ["sway/mode", "backlight", "pulseaudio"],
 #+end_src
 
-*Sway Workspaces*
+**** Modules
+***** *Sway Workspaces*
 #+begin_src java :tangle config
 	"sway/workspaces": {
 		"disable-scroll": false,
@@ -50,7 +51,7 @@
   },
 #+end_src
 
-*Sway Scratchpad*
+***** *Sway Scratchpad*
 #+begin_src java :tangle config
      "sway/scratchpad": {
           "format": "{icon} {count}",
@@ -61,14 +62,14 @@
       },
 #+end_src
 
-*Sway Window*
+***** *Sway Window*
 #+begin_src java :tangle config
   "sway/window": {
          "max-length": 100
      },
 #+end_src
 
-*Pulse Audio*
+***** Pulse Audio*
 #+begin_src java :tangle config
      "pulseaudio": {
            "scroll-step": 1, // %, can be a float
@@ -93,6 +94,7 @@
 #+end_src
 
 *** BOTTOM BAR
+**** Layout
 *Define Bottom Bar Modules*
 #+begin_src java :tangle config
 {
@@ -105,12 +107,11 @@
     "modules-left": ["clock", "custom/media"],
     "modules-right": ["tray", "network", "battery"],
 #+end_src
-
-*Custom Media*
+**** Modules
+***** *Custom Media*
 A module to display song/media metadata from MPRIS enabled players.
     - ex: ~cmus, Brave, mpv~
 
-- Have yet to get MPV support to work will look into  this.
 #+begin_src java :tangle config
       "custom/media": {
           "format": "{icon} {}",
@@ -131,7 +132,7 @@ A module to display song/media metadata from MPRIS enabled players.
       },
 #+end_src
 
-*Clock Module*
+***** *Clock Module*
 #+begin_src java :tangle config
   "clock": {
            "timezone": "America/New_York",
@@ -140,7 +141,7 @@ A module to display song/media metadata from MPRIS enabled players.
       },
 #+end_src
 
-*Tray Module*
+***** Tray Module
 #+begin_src java :tangle config
      "tray": {
           "icon-size": 20,
@@ -148,7 +149,7 @@ A module to display song/media metadata from MPRIS enabled players.
       },
 #+end_src
 
-*Battery Module*
+***** *Battery Module*
 #+begin_src java :tangle config
 	  "battery": {
           "states": {
@@ -165,7 +166,7 @@ A module to display song/media metadata from MPRIS enabled players.
       },
 #+end_src
 
-*Network Module*
+***** *Network Module*
 #+begin_src java :tangle config
  "network": {
          // "interface": "wlp2*", // (Optional) To force the use of this interface
