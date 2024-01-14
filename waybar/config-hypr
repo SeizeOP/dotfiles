@@ -1,0 +1,105 @@
+  {
+    "position": "top",
+	"all-outputs": true,
+	"name": "top",
+	"height": 44,
+	"spacing": 20,
+	"modules-left": ["clock", "hyprland/workspaces", "custom/media"],
+	"modules-center": ["hyprland/window", "sway/scratchpad"],
+	"modules-right": ["backlight", "pulseaudio", "network", "battery"],
+
+	"hyprland/workspaces": {
+		"disable-scroll": false,
+           "format": "{name} {icon}",
+           "format-icons": {
+              "1": "",
+              "2": "",
+              "3": "",
+              "4": "󰙯",
+              "5": "󰓓",
+              "6": "󰕃",
+              "7": "󰍹",
+          "urgent": "",
+              "focused": "",
+              "default": ""
+ 	}
+  },
+
+  "hyprland/window": {
+         "max-length": 50
+     },
+
+     "pulseaudio": {
+           "scroll-step": 1, // %, can be a float
+          "format": "{volume}% {icon} {format_source}",
+          "format-bluetooth": "{volume}% {icon} {format_source}",
+          "format-bluetooth-muted": " {icon} {format_source}",
+          "format-muted": " {format_source}",
+          "format-source": "{volume}% ",
+          "format-source-muted": "",
+          "format-icons": {
+              "headphone": "",
+              "hands-free": "",
+              "headset": "",
+              "phone": "",
+              "portable": "",
+              "car": "",
+              "default": ["", "", ""]
+          },
+          "on-click": "pavucontrol"
+	},
+
+ "network": {
+         // "interface": "wlp2*", // (Optional) To force the use of this interface
+     "format-wifi": "({signalStrength}%) ", //{essid}
+          "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+          "tooltip-format": "{ifname} via {gwaddr} ",
+          "format-linked": "{ifname} (No IP) ",
+          "format-disconnected": "Disconnected ⚠",
+         // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+          "on-click": "kitty -e nmtui"
+      },
+
+      "custom/media": {
+          "format": "{icon} {}",
+          "escape": true,
+          "return-type": "json",
+          "max-length": 20,
+          "on-click": "playerctl play-pause",
+          "on-click-right": "playerctl stop",
+          "smooth-scrolling-threshold": 10,
+		  "on-scroll-up": "playerctl next",
+          "on-scroll-down": "playerctl previous",
+          "format-icons": {
+              "mpv": " ",
+	      "nuclear":"󰚤 ",
+	      "firefox": "󰈹 ",
+	      "brave": " ",
+              "default": "🎜 "
+          },
+          "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+          //"exec": "$HOME/.config/waybar/mediaplayer.py --player mpv 2> /dev/null" // Filter player based     on name
+      },
+
+  "clock": {
+           "timezone": "America/New_York",
+          "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+          "format-alt": "{:%Y-%m-%d}"
+      },
+
+	  "battery": {
+          "states": {
+               "good": 95,
+              "warning": 30,
+              "critical": 15
+          },
+          "format": "{capacity}% {icon}",
+          "format-charging": "{capacity}% ",
+          "format-plugged": "{capacity}% ",
+          // "format-good": "", // An empty format will hide the module
+          // "format-full": "",
+          "format-icons": ["", "", "", "", ""]
+      },
+    }
+
+]
