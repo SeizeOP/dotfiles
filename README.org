@@ -1,0 +1,6 @@
+#+author: Henry Davies
+#+title: Dotfiles README
+
+Personal Configuration File (Dotfile) Repository. 
+
+Files in the =org= sub-directory are orgmode literate configs, and do not contain the actual config files for a given program. Rather these orgmode files contain sorce code blocks which are tangled or pushed to the proper config files on demand.

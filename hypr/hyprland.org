@@ -1,0 +1,654 @@
+
+ [[file:./images/hyprland-org.png]]
+
+* TABLE OF CONTNTS :toc:noexport:
+- [[#backgroud][BACKGROUD]]
+  - [[#what-is-hyprland][What is Hyprland?]]
+  - [[#how-do-i-use-hyprland][How do I use Hyprland?]]
+  - [[#reloading-this-config][Reloading this config]]
+- [[#essential-program-configurations][ESSENTIAL PROGRAM CONFIGURATIONS]]
+  - [[#hypr-idle][Hypr-Idle]]
+  - [[#hypr-lock][Hypr-Lock]]
+  - [[#hypr-paper][Hypr-Paper]]
+  - [[#rofi][Rofi]]
+  - [[#swaync][SwayNC]]
+  - [[#waybar][Waybar]]
+- [[#hyprland-configuration][HYPRLAND CONFIGURATION]]
+  - [[#autostarts][Autostarts]]
+  - [[#variables][Variables]]
+  - [[#permisions][Permisions]]
+  - [[#input-configuration][Input Configuration]]
+  - [[#keybindings][Keybindings]]
+  - [[#monitor-configuration][Monitor Configuration]]
+  - [[#decoration][Decoration]]
+  - [[#layout][Layout]]
+
+* BACKGROUD
+** What is Hyprland?
+#+begin_quote 
+Hyprland is an independent tiling Wayland compositor written in C++. Noteworthy features of Hyprland include dynamic tiling, tabbed windows, a clean and readable C++ code-base, and a custom renderer that provides window animations, rounded corners, and Dual-Kawase Blur on transparent windows. General usage and configuration is thoroughly documented at Hyprland wiki. -- https://wiki.archlinux.org/title/Hyprland
+#+end_quote
+
+** How do I use Hyprland?
+*** Screenshots
+#+attr_html: :width 800px :align center
+#+attr_latex: :width 800px :align center
+[[file:./images/2025-03-06-example_hyprshot.png]]
+[[file:./images/2025-03-06-example-runner_hyprshot.png]]
+** Reloading this config
+To ensure that changes made in this file are saved to the [[./hyprland.conf][hyprland config]] we need to do three things: 
+
+1. save this file with =:w=
+2. tangle the contents of the source code blocks in this file to the [[./hyprland.conf][hyprland config]]. To do this we must run the command =org-babel-tangle= with the key combo =C-c C-v t=. this will copy the contents of all specified source code blocks into the [[./hyprland.conf][hyprland.conf]] file.
+3. Finally we must tell hyprland to reload its config file by running the =hyprctl reload= command.
+   
+
+* ESSENTIAL PROGRAM CONFIGURATIONS 
+This section includes links to the configuration files used by /non Hyprland/ packages to create a functionally complete Hyprland Window Manager/Desktop Environment.
+
+** [[~/.config/hypr/hypridle.conf][Hypr-Idle]] 
+** [[~/.config/hypr/hyprlock.conf][Hypr-Lock]]
+** [[~/.config/hypr/hyprpaper.conf][Hypr-Paper]]
+** [[~/.config/rofi/config.rasi][Rofi]]
+** SwayNC
+- [[~/.config/swaync/config.json][Config]]
+- [[~/.config/swaync/style.css][style.css]]
+** [[~/.config/waybar/waybar.org][Waybar]]
+
+* HYPRLAND CONFIGURATION
+** Autostarts
+Autostarts are programs which are executed when Hyprland starts. Bellow are the autostart configurations for my system.
+*** Necessary for proper system functionality
+**** KDE Policy Kit
+#+begin_src conf :tangle hyprland.conf
+exec-once = systemctl --user start plasma-polkit-agent
+#+end_src
+
+**** Waybar and NMapplet
+#+begin_src conf :tangle hyprland.conf
+exec-once = waybar & nm-applet --indicator
+#+end_src
+
+**** *Hypridle*
+#+begin_src conf :tangle hyprland.conf
+exec-once = hypridle
+#+end_src
+
+**** Hyprpaper 
+#+begin_src conf :tangle hyprland.conf
+exec-once = hyprpaper
+#+end_src
+**** *SwayNC*
+#+begin_src conf :tangle hyprland.conf
+exec-once = swaync -c ~/.config/swaync/config.json -s ~/.config/swaync/style.css 
+#+end_src
+
+**** Cliphist
+Start Clipist 
+
+Stores only text data
+#+begin_src conf :tangle hyprland.conf
+exec-once = wl-paste --type text --watch cliphist store 
+#+end_src
+
+Stores only image data
+#+begin_src conf :tangle hyprland.conf
+exec-once = wl-paste --type image --watch cliphist store 
+#+end_src
+
+**** Playerctl
+start playrctl daemon
+#+begin_src conf :tangle hyprland.conf
+exec-once = playerctld
+#+end_src
+
+**** Low Battery Script
+Start a script to notify the user when the battery is low.
+#+begin_src conf :tangle hyprland.conf
+exec-once = ~/.config/hypr/scripts/low_battery.sh
+#+end_src
+
+*** User applications
+**** Emacs
+Start the Emacs Daemon
+#+begin_src conf :tangle hyprland.conf
+exec-once = /usr/bin/emacs --daemon &
+#+end_src
+
+Start the Emacs client upon user login
+#+begin_src conf :tangle hyprland.conf
+exec-once = emacs
+#+end_src
+
+**** Firefox
+#+begin_src conf :tangle hyprland.conf
+exec-once = firefox
+#+end_src
+
+**** NWG-Wrapper
+
+#+begin_src conf :tangle hyprland.conf
+exec-once = nwg-wrapper -t bindings.pango -c style.css -p left -a start -mt 20 -ml 20 -j left
+#+end_src
+** Variables
+
+*Essential* environment variables
+#+begin_src conf :tangle hyprland.conf
+$mainMod = SUPER
+$terminal = kitty
+$menu = rofi -show drun run combi
+#+end_src
+
+/Less/ essential environment variables
+#+begin_src conf :tangle hyprland.conf
+$fileManager = dolphin
+$browser = xdg-open about:profiles
+#+end_src
+
+*** Environment Variables
+
+Some default env vars.
+#+begin_src conf :tangle hyprland.conf
+env = XCURSOR_SIZE,24
+env = QT_QPA_PLATFORMTHEME,qt6ct
+#+end_src
+
+** Permisions
+#+begin_quote
+If you have hyprland-qtutils installed, you can make use of Hyprland’s built-in permission system.
+
+For now, it only has one permission, but it might include more in the future.
+Permissions
+
+Permissions work a bit like Android ones. If an app tries to do something sensitive with the compositor (Hyprland), Hyprland will pop up a notification asking you if you want to let it do that.
+#+end_quote
+
+*** Enable Permisions
+
+#+begin_src conf :tangle hyprland.conf
+ecosystem:enforce_permissions = true
+#+end_src
+
+*** Screencopy Permisions
+#+begin_src conf :tangle hyprland.conf
+permission = /usr/bin/grim, screencopy, allow
+permission = /usr/bin/hyprshot, screencopy, allow
+permission = /usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, ask
+#+end_src
+** Input Configuration
+
+#+begin_src conf :tangle hyprland.conf
+input {
+    kb_layout = us
+    kb_variant =
+    kb_model =
+#+end_src
+
+*Remap =Capslock= to =Escape= and turn =Numlock= on by default*
+#+begin_src conf :tangle hyprland.conf
+    kb_options = caps:ctrl_modifier
+    kb_rules =
+    numlock_by_default = true
+    follow_mouse = 1
+#+end_src
+
+*Touchpad configuration*
+#+begin_src conf :tangle hyprland.conf
+    touchpad {
+        natural_scroll = no
+    }
+
+    sensitivity = 0 # -1.0 to 1.0, 0 means no modification.
+}
+#+end_src
+
+
+*Fixes nvidia issues* 
+- credit: https://bbs.archlinux.org/viewtopic.php?id=303332
+#+begin_src conf :tangle hyprland.conf
+cursor {
+    no_hardware_cursors = true
+}
+#+end_src
+
+
+*** Per-device Input Configuration
+
+See https://wiki.hyprland.org/Configuring/Keywords/#per-device-input-configs for more
+#+begin_src conf :tangle hyprland.conf
+device {    
+    name = elan-trackpoint
+    sensitivity = 1
+}
+#+end_src
+** Keybindings
+*** Critical
+These are keybindings which are critical for proper system functionality
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, Q, exec, $terminal
+bind = $mainMod, C, killactive, 
+bind = $mainMod, E, exec, emacsclient -c
+bind = $mainMod, M, exec, $fileManager
+bind = $mainMod, V, togglefloating, 
+bind = $mainMod, D, exec, $menu
+#+end_src
+
+**** Important
+Keybinding for Hyprlock
+
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod $shiftMod, L, exec, hyprlock
+#+end_src
+
+Keybinding for Wlogout
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod $shiftMod, W, exec, wlogout
+#+end_src
+
+*** Layout
+**** Dwindle
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, P, pseudo, # dwindle
+bind = $mainMod, U, togglesplit, # dwindle
+#+end_src
+
+*** Move Focus
+Move focus with =$mainMod= + arrow keys
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, left, movefocus, l
+bind = $mainMod, right, movefocus, r
+bind = $mainMod, up, movefocus, u 
+bind = $mainMod, down, movefocus, d
+#+end_src
+
+Move focus with =$mainMod= + =HJKL= keys
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, H, movefocus, l
+bind = $mainMod, J, movefocus, r
+bind = $mainMod, K, movefocus, u 
+bind = $mainMod, L, movefocus, d
+#+end_src
+
+*** Workspaces
+**** Switch to Workspace (x)
+
+Switch workspaces with =$mainMod= + =[0-9]=
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, 1, workspace, 1
+bind = $mainMod, 2, workspace, 2
+bind = $mainMod, 3, workspace, 3
+bind = $mainMod, 4, workspace, 4
+bind = $mainMod, 5, workspace, 5
+bind = $mainMod, 6, workspace, 6
+bind = $mainMod, 7, workspace, 7
+bind = $mainMod, 8, workspace, 8
+bind = $mainMod, 9, workspace, 9
+bind = $mainMod, 0, workspace, 10
+#+end_src
+
+Switch to the "special" or "scratchpad" workspace 
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, S, togglespecialworkspace, magic
+#+end_src
+
+**** *Move Windows to Workspace (x)*
+
+Move active window to a workspace with =$mainMod= + =SHIFT= + =[0-9]=
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod SHIFT, 1, movetoworkspace, 1
+bind = $mainMod SHIFT, 2, movetoworkspace, 2
+bind = $mainMod SHIFT, 3, movetoworkspace, 3
+bind = $mainMod SHIFT, 4, movetoworkspace, 4
+bind = $mainMod SHIFT, 5, movetoworkspace, 5
+bind = $mainMod SHIFT, 6, movetoworkspace, 6
+bind = $mainMod SHIFT, 7, movetoworkspace, 7
+bind = $mainMod SHIFT, 8, movetoworkspace, 8
+bind = $mainMod SHIFT, 9, movetoworkspace, 9
+bind = $mainMod SHIFT, 0, movetoworkspace, 10
+#+end_src
+
+Move active window to "special" workspace
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+#+end_src
+**** Scroll Through Workspaces
+
+Scroll through existing workspaces with =$mainMod= + scroll
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, mouse_down, workspace, e+1
+bind = $mainMod, mouse_up, workspace, e-1
+#+end_src
+
+*** Resizing Windows
+
+Toggle window fullscreen
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, F, fullscreen
+#+end_src
+
+Move/resize windows with =$mainMod= + LMB/RMB and dragging
+#+begin_src conf :tangle hyprland.conf
+bindm = $mainMod, mouse:272, movewindow
+bindm = $mainMod, mouse:273, resizewindow
+#+end_src
+
+**** Window Grouping
+
+Toggle window group (sway tabbed mode)
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, G, togglegroup,
+#+end_src
+
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod ESC, G, movewindoworgroup,
+bind = $mainMod ESC, F, lockgroups,
+bind = $mainMod ESC, N, changegroupactive,
+#+end_src
+
+*** =SUPER= + =CTRL= Keybindings
+The below bindings all begin with the =$mainMod= (super) and =CTRL= keys. I intend to move these keybinds to a [[https://wiki.hyprland.org/Configuring/Binds/#submaps][submap]] at some point. Unfortunately, currently <2024-12-03 Tue> the submap configuration does not seem to actually execute the given commands. It also repeatedly broke other essential binds ex: =SUPER+Q=, =SUPER+D=
+
+For this reason I will be leaving these as regular bindings until I have the time to figure out what was breaking the /submap/.
+
+**** Clipboard
+#+begin_src conf :tangle hyprland.conf
+bind=$mainMod CTRL,V,exec,cliphist list | rofi -dmenu | cliphist decode | wl-copy
+bind=$mainMod CTRL,D,exec,cliphist list | rofi -dmenu | cliphist delete
+bind=$mainMod CTRL,E,exec,cliphist list | rofi -dmenu | cliphist wipe 
+#+end_src
+
+**** Color Picker
+#+begin_src conf :tangle hyprland.conf
+bind=$mainMod CTRL,P,exec,hyprpicker -a -f hex
+#+end_src
+
+*** Hyprshot
+similar to the =SUPER= + =CTRL= keybindings the below keybindings all use the =PRINT= key. Currently this is not the first key in all of the binds; however when i get around to implimenting submaps i will make the =PRINT= key the primary key.
+
+#+begin_src conf :tangle hyprland.conf
+ bind =, PRINT, exec, hyprshot -z -m output
+ bind = $mainMod, PRINT, exec, hyprshot -z -m window
+ bind = $shiftMod, PRINT, exec, hyprshot -z -m region
+#+end_src
+
+*** Volume Control
+Use Media keys to control volume settings
+#+begin_src conf :tangle hyprland.conf
+bind =, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bind =, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bind =, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+#+end_src
+
+Set microphone key to toggle microphone mute
+#+begin_src conf :tangle hyprland.conf
+bind =, XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+#+end_src
+*** Brightness Control
+#+begin_src conf :tangle hyprland.conf
+binde = ,XF86MonBrightnessDown, exec, brightnessctl set 10%-
+binde = ,XF86MonBrightnessUp, exec, brightnessctl set 10%+
+#+end_src
+
+*** Default Web Browser Switching
+similar to the =SUPER= + =CTRL= keybindings the below keybindings all use the =CTRL= + =ALT= key combination. When i get around to implimenting submaps i will make the =CTRL= +	=ALT= combo the submap trigger.
+
+#+begin_src conf :tangle hyprland.conf
+	bind = CTRL ALT, B, exec, xdg-settings set default-web-browser brave-browser.desktop
+	bind = CTRL ALT, F, exec, xdg-settings set default-web-browser org.mozilla.firefox.desktop  
+	bind = CTRL ALT, M, exec, xdg-settings set default-web-browser mullvad-browser.desktop
+#+end_src
+
+Execute the default web browser
+#+begin_src conf :tangle hyprland.conf
+	bind = $mainMod, B, exec, $browser
+#+end_src
+*** Screen Capture
+
+*Bind to capture an output*
+#+begin_src conf :tangle hyprland.conf
+bind =, PRINT, exec, hyprshot -m output
+#+end_src
+*Bind to capture a window*
+#+begin_src conf :tangle hyprland.conf
+bind = $mainMod, PRINT, exec, hyprshot -m window
+#+end_src
+*Bind to capture a selected area*
+#+begin_src conf :tangle hyprland.conf
+bind = $shiftMod, PRINT, exec, hyprshot -m region
+#+end_src
+
+** Monitor Configuration
+Set the the defoault monitor preference
+
+See https://wiki.hyprland.org/Configuring/Monitors/
+#+begin_src conf :tangle hyprland.conf
+monitor=,preferred,auto,auto
+#+end_src
+
+Specify configuration for built in Laptop Display
+#+begin_src conf :tangle hyprland.conf
+monitor=eDP-1, 3840x2160@60.0020, 0x0, 2 
+#+end_src
+
+Specify configuration for /HP DislayPort Monitor/
+#+begin_src conf :tangle hyprland.conf
+monitor=DP-5, 1920x1200@59.9500, auto-up, 1
+#+end_src
+
+Specify configuration for /HML HDMI Monitor/
+#+begin_src conf :tangle hyprland.conf
+monitor=HDMI-A-4, 3840x2160@30.00000, auto-right, 1.5, transform, 1
+monitor=HDMI-A-1, 3840x2160@30.00000, auto-right, 1.5, transform, 1
+#+end_src
+
+** Decoration
+*** General
+Enable rounding of window corners
+#+begin_src conf :tangle hyprland.conf
+decoration {
+    # See https://wiki.hyprland.org/Configuring/Variables/ for more
+
+    rounding = 6
+#+end_src
+
+Configure blur and drop shadow. These settings are currently disabled; though i am leaving them in (just commented out) so i can quickly re-enable in future if I desire.    
+#+begin_src conf :tangle hyprland.conf
+    #blur {
+    #    enabled = true
+    #    size = 3
+    #    passes = 1
+    #}
+
+#    drop_shadow = yes
+#    shadow_range = 4
+#    shadow_render_power = 3
+#    col.shadow = rgba(1a1a1aee)
+#+end_src
+
+#+begin_src conf :tangle hyprland.conf
+}
+#+end_src
+
+Group Decorations
+#+begin_src conf :tangle hyprland.conf
+group {
+    groupbar {
+        col.active = rgb(bd93f9) rgb(44475a) 90deg
+        col.inactive = rgba(282a36dd)
+    }
+}
+#+end_src
+
+***** Backup decoration settings 
+this is a copy of the default decoration settings; copied here for reference. they are not copied to the running configuration. 
+
+#+begin_src conf
+decoration {
+#    col.shadow = rgba(1E202966)
+
+    # suggested shadow setting
+    #drop_shadow = yes
+    #shadow_range = 60
+    #shadow_offset = 1 2
+    #shadow_render_power = 3
+    #shadow_scale = 0.97
+}
+#+end_src
+
+**** Dracula Theme
+#+begin_src conf :tangle hyprland.conf
+general {
+    col.active_border = rgb(44475a) rgb(bd93f9) 90deg
+    col.inactive_border = rgba(44475aaa)
+    col.nogroup_border = rgba(282a36dd)
+    col.nogroup_border_active = rgb(bd93f9) rgb(44475a) 90deg
+    no_border_on_floating = false
+    border_size = 2
+#+end_src
+
+non-gradient alternative
+#+begin_src conf 
+col.active_border = rgb(bd93f9)
+col.inactive_border = rgba(44475aaa)
+col.group_border = rgba(282a36dd)
+col.group_border_active = rgb(bd93f9)
+#+end_src
+
+darker alternative
+#+begin_src conf 
+col.active_border = rgb(44475a) # or rgb(6272a4)
+col.inactive_border = rgb(282a36)
+col.group_border = rgb(282a36)
+col.group_border_active = rgb(44475a) # or rgb(6272a4)
+#+end_src
+
+#+begin_src conf :tangle hyprland.conf
+}
+#+end_src
+
+**** Performance Enhancements
+Disable some things to improve performance/improve battery life.
+#+begin_src conf :tangle hyprland.conf
+decoration:shadow:enabled = false
+decoration:blur:enabled = false
+misc:vfr = true
+#+end_src
+
+*** Animations
+Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+#+begin_src conf :tangle hyprland.conf
+animations {
+    enabled = yes
+
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+
+    animation = windows, 1, 7, myBezier
+    animation = windowsOut, 1, 7, default, popin 80%
+    animation = border, 1, 10, default
+    animation = borderangle, 1, 8, default
+    animation = fade, 1, 7, default
+    animation = workspaces, 1, 6, default
+}
+#+end_src
+
+*** Disable Default Wallpaper
+See https://wiki.hyprland.org/Configuring/Variables/ for more
+
+Set to 0 or 1 to disable the anime mascot wallpapers
+#+begin_src conf :tangle hyprland.conf
+misc {
+    force_default_wallpaper = 0
+}
+#+end_src
+** Layout
+*** General
+Set the gap and border variables for hypland
+
+See https://wiki.hyprland.org/Configuring/Variables/ for more
+#+begin_src conf :tangle hyprland.conf
+general {
+
+    gaps_in = 5
+    gaps_out = 10
+    border_size = 2
+    col.active_border = rgba(8be9fdaa) rgba(bd93f9ff) 90deg
+    col.inactive_border = rgba(595959aa)
+
+    layout = dwindle
+#+end_src
+
+Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
+#+begin_src conf :tangle hyprland.conf
+    allow_tearing = false
+}
+#+end_src
+
+**** Define the Dwindle layout
+
+See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
+
+Master switch for pseudotiling. Enabling is bound to =$mainMod + P= in the keybinds section below
+#+begin_src conf :tangle hyprland.conf
+dwindle {
+    pseudotile = yes 
+#+end_src
+
+You probably want this
+#+begin_src conf :tangle hyprland.conf
+    preserve_split = yes 
+}
+#+end_src
+
+**** Master Layout
+See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
+#+begin_src conf :tangle hyprland.conf
+general:layout = master
+  master {
+      new_status = true
+  }
+#+end_src
+
+**** Gestures
+Enable "workspace swipe"; to use the touchpad to move between Hyprland workspaces.
+#+begin_src conf :tangle hyprland.conf
+gestures {
+    workspace_swipe = on
+}
+#+end_src
+*** Window Rules
+**** Examples
+Example windowrule v1
+#+begin_src conf
+windowrule = float, ^(kitty)$
+#+end_src
+Example windowrule v2
+#+begin_src conf
+windowrulev2 = float,class:^(kitty)$,title:^(kitty)$=
+#+end_src
+See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+
+**** V2 Window Rules
+Check if a window is xwayland
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = bordercolor rgb(ff5555),xwayland:1 
+#+end_src
+
+You'll probably like this.
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = suppressevent maximize, class:.* 
+#+end_src
+
+
+* FOOTNOTES :noexport:
+for multi-file configurations, a second file can be "sourced" like so:
+#+begin_src conf
+source = ~/.config/hypr/myColors.conf
+#+end_src
+This example is not synced to my runnning config. 
+
+#+STARTUP: inlineimages
+#+options: num:nil noexport
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+export_file_name: ~/Documents/html/system/hyprland.html
+#+title: HD's Hyprland Config
+#+author: Henry Davies (HD)
