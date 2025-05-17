@@ -366,9 +366,9 @@ bind=$mainMod CTRL,P,exec,hyprpicker -a -f hex
 similar to the =SUPER= + =CTRL= keybindings the below keybindings all use the =PRINT= key. Currently this is not the first key in all of the binds; however when i get around to implimenting submaps i will make the =PRINT= key the primary key.
 
 #+begin_src conf :tangle hyprland.conf
- bind =, PRINT, exec, hyprshot -z -m output
- bind = $mainMod, PRINT, exec, hyprshot -z -m window
- bind = $shiftMod, PRINT, exec, hyprshot -z -m region
+ bind =, PRINT, exec, hyprshot --freeze -m output -t 7500
+ bind = $mainMod, PRINT, exec, hyprshot --freeze -m window -t 7500
+ bind = $shiftMod, PRINT, exec, hyprshot --freeze -m region -t 7500
 #+end_src
 
 *** Volume Control
