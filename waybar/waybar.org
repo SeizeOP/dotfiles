@@ -3,7 +3,6 @@
   - [[#waybar-position][Waybar Position]]
   - [[#module-declaration][Module Declaration]]
   - [[#module-definition][Module Definition]]
-  - [[#scripts][Scripts]]
 - [[#css][CSS]]
   - [[#colorscss][Colors.css]]
   - [[#stylecss][Style.css]]
@@ -119,8 +118,8 @@ Configuration for the "custom/media" module
         },
         "escape": true,
 	"on-click": "playerctl play-pause",	    
-        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
-        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
 #+end_src
 *** Modules Center
@@ -332,7 +331,6 @@ This section includes modules from the default /Waybar/ configuration file which
 }
 #+end_src 
 
-** Scripts
 * CSS
 there are two files used to style waybar using CSS. 
 ** [[~/.config/waybar/colors.css][Colors.css]] 

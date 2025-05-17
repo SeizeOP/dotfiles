@@ -1,0 +1,622 @@
+* TABLE OF CONTENTS :TOC:
+- [[#config][CONFIG]]
+  - [[#waybar-position][Waybar Position]]
+  - [[#module-declaration][Module Declaration]]
+  - [[#module-definition][Module Definition]]
+  - [[#scripts][Scripts]]
+- [[#css][CSS]]
+  - [[#colorscss][Colors.css]]
+  - [[#stylecss][Style.css]]
+- [[#footnotes][FOOTNOTES]]
+
+* CONFIG
+#+begin_src conf :tangle config.jsonc
+// -*- mode: jsonc -*-
+#+end_src
+
+
+#+begin_src conf :tangle config.jsonc
+[
+  {
+#+end_src
+** Waybar Position
+Define the location, width, and hieght of /Waybar/
+#+begin_src conf :tangle config.jsonc
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+#+end_src
+
+** Module Declaration
+This section will name each module I want included on my /Waybar/; along with the location of each module.
+
+*** Modules Left
+Select the modules to show on the left portion of /Waybar/
+#+begin_src conf :tangle config.jsonc
+  "modules-left": [
+         "clock",
+         "tray",
+         "hyprland/workspaces",
+         "custom/media",
+     ],
+#+end_src
+
+*** Modules Center
+Select the modules to show on the center portion of /Waybar/
+#+begin_src conf :tangle config.jsonc
+    "modules-center": [
+        "hyprland/window",
+    ],
+#+end_src
+
+*** Modules Right
+Select the modules to show on the right portion of /Waybar/
+#+begin_src conf :tangle config.jsonc
+    "modules-right": [
+        "idle_inhibitor",
+        "backlight",
+        "pulseaudio",
+        "network",
+        "temperature",
+        "memory",
+        "cpu",
+        "power-profiles-daemon",
+        "battery"
+    ],
+#+end_sr
+** Module Definition
+This section will include the module configuration for each module included in the /Module Declation/ section. 
+
+*** Modules Left 
+Configuration for the clock module 
+#+begin_src conf :tangle config.jsonc
+  "clock": {
+      // "timezone": "America/New_York",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%Y-%m-%d}"
+  },
+#+end_src
+
+Configuration for the tray module 
+#+begin_src conf :tangle config.jsonc
+"tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+#+end_src
+
+Configuration for the "hyprland/workspaces" module
+#+begin_src conf :tangle config.jsonc
+"hyprland/workspaces": {
+         "disable-scroll": false,
+         "all-outputs": true,
+         "warp-on-scroll": false,
+         "format": "{name}: {icon}",
+         "format-icons": {
+             "1": "",
+             "2": "",
+             "3": "",
+             "4": "",
+             "5": "",
+             "urgent": "",
+             "focused": "",
+             "default": ""
+         }
+     },
+#+end_src
+
+Configuration for the "custom/media" module
+#+begin_src conf :tangle config.jsonc
+"custom/media": {
+        "format": "{0} {1}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜",
+        },
+        "escape": true,
+	"on-click": "playerctl play-pause",	    
+        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+#+end_src
+*** Modules Center
+Configuration for the "hyprland/window" module
+
+
+*** Modules Right
+**** I/O
+Configuration for the idle_inhibitor module
+#+begin_src conf :tangle config.jsonc
+"idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+#+end_src
+
+Configuration for the backlight module
+#+begin_src conf :tangle config.jsonc
+"backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["🌑", "🌘", "🌗", "🌖", "🌕"]
+    },
+#+end_src
+
+Configuration for the pulseaudio module
+#+begin_src conf :tangle config.jsonc
+"pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+#+end_src
+
+Configuration for the network module
+#+begin_src conf :tangle config.jsonc
+"network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+	"on-click": "nmtui-connect"
+    },
+#+end_src
+
+**** Monitoring
+Configuration for the temperature module
+#+begin_src conf :tangle config.jsonc
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+#+end_src
+
+Configuration for the memory module
+#+begin_src conf :tangle config.jsonc
+"memory": {
+        "format": "{}% "
+    },
+#+end_src
+
+Configuration for the cpu module
+#+begin_src conf :tangle config.jsonc
+ "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+#+end_src
+
+Configuration for the power profiles daemon module
+#+begin_src conf :tangle config.jsonc
+"power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+#+end_src
+
+Configuration for the battery module
+#+begin_src conf :tangle config.jsonc
+"battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "battery#bat2": {
+        "bat": "BAT2"
+    }
+#+end_src
+
+#+begin_src conf :tangle config.jsonc
+  }
+]
+#+end_src
+*** Un-used Modules
+This section includes modules from the default /Waybar/ configuration file which I do not use. These modules are placed here for reference only, and are not used in my running configuration.
+
+#+begin_src conf 
+  "keyboard-state": {
+           "numlock": true,
+           "capslock": true,
+           "format": "{name} {icon}",
+           "format-icons": {
+               "locked": "",
+               "unlocked": ""
+           }
+       },
+#+end_src
+
+#+begin_src conf 
+       "sway/mode": {
+           "format": "<span style=\"italic\">{}</span>"
+       },
+#+end_src
+
+#+begin_src conf 
+       "sway/scratchpad": {
+           "format": "{icon} {count}",
+           "show-empty": false,
+           "format-icons": ["", ""],
+           "tooltip": true,
+           "tooltip-format": "{app}: {title}"
+       },
+#+end_src
+
+#+begin_src conf            
+  "mpd": {
+         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
+          "format-disconnected": "Disconnected ",
+          "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+          "unknown-tag": "N/A",
+          "interval": 5,
+          "consume-icons": {
+                           "on": " "
+          },
+          "random-icons": {
+                  "off": "<span color=\"#f53c3c\"></span> ",
+                  "on": " "
+          },
+          "repeat-icons": {
+                  "on": " "
+          },
+          "single-icons": {
+                  "on": "1 "
+          },
+          "state-icons": {
+                  "paused": "",
+                  "playing": ""
+          },
+          "tooltip-format": "MPD (connected)",
+          "tooltip-format-disconnected": "MPD (disconnected)"
+  },
+
+#+end_src 
+    
+#+begin_src conf            
+"custom/power": {
+        "format" : "⏻ ",
+		"tooltip": false,
+		"menu": "on-click",
+		"menu-file": "$HOME/.config/waybar/power_menu.xml", // Menu file in resources folder
+		"menu-actions": {
+			"shutdown": "shutdown",
+			"reboot": "reboot",
+			"suspend": "systemctl suspend",
+			"hibernate": "systemctl hibernate"
+		}
+    }
+}
+#+end_src 
+
+** Scripts
+* CSS
+there are two files used to style waybar using CSS. 
+** [[~/.config/waybar/colors.css][Colors.css]] 
+This file defines all the colors I will use to style /Waybar/
+** [[~/.config/waybar/style.css][Style.css]]
+This file uses the colors from [[~/.config/waybar/colors.css][colors.css]] to style the modules of /Waybar/ to whatever look I want. 
+
+Before I can style anything in the [[~/.config/waybar/style.css][style.css]] file; I need to imprt the pre-difined colors from [[~/.config/waybar/colors.css][colors.css]]  
+#+begin_src css :tangle style-test.css
+@import url("./colors.css");
+#+end_src
+
+*** Global Styling
+Set the font, and font size globally
+#+begin_src css :tangle style-test.css
+ * {
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 13px;
+}
+#+end_src
+
+**** Window Styling
+#+begin_src css :tangle style-test.css
+window#waybar {
+    background-color: @background-darker;
+    border-bottom: 3px solid @background;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+#+end_src
+
+**** Button Styling
+#+begin_src css :tangle style-test.css
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px @pink;
+}
+#+end_src
+*** Module Styling
+**** Modules Left
+Clock module styling
+#+begin_src css :tangle style-test.css
+#clock {
+    background-color: @background;
+    color: @green;
+}
+#+end_src
+
+Tray module styling
+#+begin_src css :tangle style-test.css
+#tray {
+    background-color: @background;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
+}
+#+end_src
+
+"hyprland/workspaces" module styling
+#+begin_src css :tangle style-test.css
+#workspaces {
+    margin: 0 4px;
+    color: @foreground;
+}
+
+#workspaces button.active {
+    background-color: @background;
+    color: @forground;
+    box-shadow: inset 0 -3px @purple;
+} 
+#workspaces button:hover {
+    background: @selection;
+    color: @forground;
+    box-shadow: inset 0 -3px @yellow
+}
+
+#workspaces button.focused {
+    background-color: @purple;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+
+#workspaces button.urgent {
+    background-color: @red;
+}
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+#+end_src
+
+"custom/media" module styling
+#+begin_src css :tangle style-test.css
+#custom-media {
+    background-color: @background-darker;
+    color: #fff0f5;
+    min-width: 50px;
+    border-bottom: 3px solid @purple;
+    padding: 1px 3px;
+}
+
+#custom-media.custom-spotify {
+    background-color: @background;
+    color: @green;
+    padding: 1px 3px;
+}
+
+#custom-media.custom-vlc {
+    color: #ffa000;
+    padding: 1px 3px;
+}
+
+#custom-media.custom-mpv {
+    color: @purple;
+    padding: 1px 3px;
+}
+#+end_src
+
+**** Modules Center
+
+"hyprland/window" module styling
+**** Modules Right
+***** I/O
+idle_inhibitor module styling
+#+begin_src css :tangle style-test.css
+#idle_inhibitor {
+    background-color: @selection;
+}
+
+#idle_inhibitor.activated {
+    background-color: @foreground;
+    color: @selection;
+}
+#+end_src
+
+backlight module styling
+#+begin_src css :tangle style-test.css
+#backlight {
+    color: @yellow;
+    background-color: @background-darker;
+    padding: 1px 3px;
+}
+
+#backlight:hover {
+    color: @background-darker;
+    background-color: @yellow;
+    padding: 1px 3px;
+}
+#+end_src
+
+pulseaudio module styling
+#+begin_src css :tangle style-test.css
+#pulseaudio {
+    background-color: @comment;
+    color: @background;
+    padding: 1px 3px;
+}
+#+end_src
+
+#+begin_src css :tangle style-test.css
+#pulseaudio.muted {
+    background-color: @red;
+    color: @background-darker;
+    padding: 1px 3px;
+}
+#+end_src
+
+#+begin_src css :tangle style-test.css
+#pulseaudio:hover {
+    background-color: @yellow;
+}
+#+end_src
+
+network module styling
+#+begin_src css :tangle style-test.css
+  #network {
+      background-color: @purple;
+      color: @background-darker; 
+      padding: 1px 3px;
+  }
+#+end_src
+
+Change the background color of the network module to a more noticable #ff5555 (@red), when disconnected from a network. 
+#+begin_src css :tangle style-test.css
+  #network.disconnected {
+      background-color: @red;
+      padding: 1px 3px;
+  }
+#+end_src
+
+Change the background color of the network module to a more noticable #f1fa8c (@yellow), when hovering over the network module. 
+#+begin_src css :tangle style-test.css
+  #network:hover {
+      background-color: @yellow;
+      padding: 1px 3px;
+  }
+#+end_src
+
+***** Monitoring
+temperature module styling
+#+begin_src css :tangle style-test.css
+#temperature {
+    color: @orange;
+    background-color: @background-darker;
+    padding: 1px 3px;
+}
+#temperature:hover {
+    background-color: @orange;
+    color: @background-darker;
+    padding: 1px 3px;
+}
+
+#temperature.critical {
+    color: @red;
+    background-color: @background-darker;
+    padding: 1px 3px;
+}
+
+#temperature.critical:hover {
+    background-color: @red;
+    color: @background-darker;
+}
+#+end_src
+
+battery module styling
+#+begin_src css :tangle style-test.css
+#battery {
+    background-color: @cyan;
+    color: @background-darker;
+}
+
+#battery.charging, #battery.plugged {
+    color: @background-darker;
+    background-color: @green;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#+end_src
+* FOOTNOTES
+#+startup: inlineimages
+#+title: Waybar Configuration
+#+author:Henry Davies (HD)
+#+Startup: showeverything inlineimages
+#+Options: num:nil noexport
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+export_file_name: ~/Documents/html/system/waybar.html
+
