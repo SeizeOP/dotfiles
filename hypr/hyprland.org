@@ -173,6 +173,7 @@ ecosystem:enforce_permissions = true
 #+begin_src conf :tangle hyprland.conf
 permission = /usr/bin/grim, screencopy, allow
 permission = /usr/bin/hyprshot, screencopy, allow
+permission = /usr/bin/hyprpicker, screencopy, allow
 permission = /usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, ask
 #+end_src
 ** Input Configuration
