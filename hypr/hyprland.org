@@ -242,7 +242,7 @@ bind = $mainMod $shiftMod, L, exec, hyprlock
 
 Keybinding for Wlogout
 #+begin_src conf :tangle hyprland.conf
-bind = $mainMod $shiftMod, W, exec, wlogout
+bind = $mainMod TAB, W, exec, wlogout
 #+end_src
 
 *** Layout
