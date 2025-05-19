@@ -176,6 +176,13 @@ permission = /usr/bin/hyprshot, screencopy, allow
 permission = /usr/bin/hyprpicker, screencopy, allow
 permission = /usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, ask
 #+end_src
+
+*** Plugin Permisions
+Deny =hyprctl= from loading 3rd party plugins. If a plugin needs to be loaded change this to =ask=, or =allow=.
+#+begin_src conf :tangle hyprland.conf
+permission = /usr/bin/hyprctl, plugin, deny
+#+end_src
+
 ** Input Configuration
 
 #+begin_src conf :tangle hyprland.conf
