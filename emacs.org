@@ -322,7 +322,7 @@ Auto-Complete (a.k.a =auto-complete.el=, =auto-complete-mode=) is an extension t
 use company for code competion
 #+begin_src emacs-lisp
   (use-package company
-  :config
+    :config
   (global-company-mode 1))
 #+end_src
 
@@ -546,22 +546,23 @@ Defining the various fonts that emacs will use
 ** Setting the font face
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
-  :font "JetBrains Mono"
-  :height 110
-  :weight 'medium)
+                      :font "JetBrains Mono"
+                      :height 110
+                      :weight 'medium)
   (set-face-attribute 'variable-pitch nil
-  :font "DejaVu Sans"
-  :height 120
-  :weight 'medium)
+                      :font "DejaVu Sans"
+                      :height 120
+                      :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
-  :font "JetBrains Mono"
-  :height 110
-  :weight 'medium)
+                      :font "JetBrains Mono"
+                      :height 110
+                      :weight 'medium)
   (set-face-attribute 'font-lock-comment-face nil
-  :slant 'italic)
+                      :slant 'italic)
   (set-face-attribute 'font-lock-keyword-face nil
-  :slant 'italic)
-  (add-to-list 'default-frame-alist '(font . "JetBrains Mono-11"))
+                      :slant 'italic)
+  (add-to-list 'default-frame-alist 
+               '(font . "JetBrains Mono-11"))
   (setq-default line-spacing 0.12)
 #+end_src
 ** Zooming In/Out
@@ -601,12 +602,12 @@ credit: https://zzamboni.org/post/beautifying-org-mode-in-emacs/
 
 ** Disable Line Numbers for Selected Modes
 #+begin_src emacs-lisp
-   (dolist (mode '(term-mode-hook
-                    vterm-mode-hook
-                    shell-mode-hook
-                   treemacs-mode-hook
-                    eshell-mode-hook))
-      (add-hook mode (lambda() (display-line-numbers-mode 0))))
+  (dolist (mode '(term-mode-hook
+                   vterm-mode-hook
+                   shell-mode-hook
+                  treemacs-mode-hook
+                   eshell-mode-hook))
+     (add-hook mode (lambda() (display-line-numbers-mode 0))))
 #+end_src
 
 * IVY (COUNSEL)
@@ -697,7 +698,7 @@ bind the 'TAB' key to 'org-cycle'. This allows us to use the 'TAB' key in org-mo
 
 *credit:* [[https://emacs.stackexchange.com/questions/28222/how-to-make-tab-work-in-org-mode-when-combined-with-evil-mode][Emacs StackExchange]]
 #+begin_src emacs-lisp
-;;(evil-define-key 'normal evil-org-mode-map "<tab>" #'org-cycle)
+(evil-define-key 'normal evil-org-mode-map "<tab>" #'org-cycle)
 #+end_src
 
 ** Org-inline-pdf
@@ -809,8 +810,8 @@ Eshell
 Eshell is an Emacs 'shell' that is written in Elisp.
 
 Make all eshell appear in a popup buffer. The /elisp/ below is a combination of the bellow sources to create a popup buffer to my liking. 
-- *Reddit*: https://www.reddit.com/r/emacs/comments/lrgah8/popup_terminaleshell_in_emacs/ 
-- *StackExchange*: https://emacs.stackexchange.com/questions/13579/how-to-open-shell-or-eshell-in-a-new-window-or-frame
+- Creddit: [[https://old.reddit.com/r/emacs/comments/lrgah8/popup_terminaleshell_in_emacs/][Reddit]], [[https://emacs.stackexchange.com/questions/13579/how-to-open-shell-or-eshell-in-a-new-window-or-frame][Emacs Stackexchange]]
+
 #+begin_src emacs-lisp
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-in-side-window (side . bottom))))
 #+end_src
