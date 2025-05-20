@@ -810,8 +810,7 @@ Eshell
 Eshell is an Emacs 'shell' that is written in Elisp.
 
 Make all eshell appear in a popup buffer. The /elisp/ below is a combination of the bellow sources to create a popup buffer to my liking. 
-- Creddit: [[https://old.reddit.com/r/emacs/comments/lrgah8/popup_terminaleshell_in_emacs/][Reddit]], [[https://emacs.stackexchange.com/questions/13579/how-to-open-shell-or-eshell-in-a-new-window-or-frame][Emacs Stackexchange]]
-
+- Creddit: [[https://old.reddit.com/r/emacs/comments/lrgah8/popup_terminaleshell_in_emacs/][Reddit]], *StackExchange*: [[https://emacs.stackexchange.com/questions/13579/how-to-open-shell-or-eshell-in-a-new-window-or-frame][Emacs Stackexchange]]
 #+begin_src emacs-lisp
 (setq display-buffer-alist '(("\\`\\*e?shell" display-buffer-in-side-window (side . bottom))))
 #+end_src
