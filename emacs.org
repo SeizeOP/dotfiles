@@ -8,6 +8,10 @@
 - [[#auto-compete][AUTO-COMPETE]]
   - [[#compnay][Compnay]]
 - [[#buffer-move][BUFFER MOVE]]
+  - [[#buf-move-up][buf-move-up]]
+  - [[#buf-move-down][buf-move-down]]
+  - [[#buf-move-left][buf-move-left]]
+  - [[#buf-move-right][buf-move-right]]
 - [[#doom-modeline][DOOM MODELINE]]
 - [[#emms][Emms]]
 - [[#elfeed][ELFEED]]
@@ -322,86 +326,128 @@ use company for code competion
 #+end_src
 
 * BUFFER MOVE
-Creating some functions to allow us to easily move windows (splits) around. The following block of code was taken from buffer-move.el found on EmacsWiki:
-https://www.emacswiki.org/emacs/buffer-move.el
+Creating some functions to allow us to easily move windows (splits) around. The following block of code was taken from buffer-move.el found on EmacsWiki: https://www.emacswiki.org/emacs/buffer-move.el
+
 #+begin_src emacs-lisp
 (require 'windmove)
 #+end_src
+** buf-move-up
 
+Swap the current buffer and the buffer above the split. 
+If there is no split, ie now window above the current one, an
+error is signaled.
 #+begin_src emacs-lisp
 ;;;###autoload
 (defun buf-move-up ()
-  "Swap the current buffer and the buffer above the split.
-If there is no split, ie now window above the current one, an
-error is signaled."
-;;  "Switches between the current buffer, and the buffer above the
-;;  split, if possible."
+#+end_src
+
+Switches between the current buffer, and the buffer above the split, if possible.
+#+begin_src emacs-lisp
   (interactive)
   (let* ((other-win (windmove-find-other-window 'up))
 	 (buf-this-buf (window-buffer (selected-window))))
     (if (null other-win)
         (error "No window above this one")
-      ;; swap top with this one
+#+end_src
+
+swap top with this one
+#+begin_src emacs-lisp
       (set-window-buffer (selected-window) (window-buffer other-win))
-      ;; move this one to top
+#+end_src
+
+move this one to top
+#+begin_src emacs-lisp
       (set-window-buffer other-win buf-this-buf)
       (select-window other-win))))
 #+end_src
 
+** buf-move-down
+
+Swap the current buffer and the buffer under the split.
+If there is no split, ie no window under the current one, an
+error is signaled.
 #+begin_src emacs-lisp
 ;;;###autoload
 (defun buf-move-down ()
-"Swap the current buffer and the buffer under the split.
-If there is no split, ie now window under the current one, an
-error is signaled."
+#+end_src
+
+Switches between the current buffer, and the buffer below the split, if possible.
+#+begin_src emacs-lisp
   (interactive)
   (let* ((other-win (windmove-find-other-window 'down))
 	 (buf-this-buf (window-buffer (selected-window))))
     (if (or (null other-win) 
             (string-match "^ \\*Minibuf" (buffer-name (window-buffer other-win))))
         (error "No window under this one")
-      ;; swap top with this one
+#+end_src
+
+swap top with this one
+#+begin_src emacs-lisp
       (set-window-buffer (selected-window) (window-buffer other-win))
-      ;; move this one to top
+#+end_src
+
+move this one to top
+#+begin_src emacs-lisp
       (set-window-buffer other-win buf-this-buf)
       (select-window other-win))))
 #+end_src
 
+** buf-move-left
+
+Swap the current buffer and the buffer on the left of the split.
+If there is no split, ie no window on the left of the current
+one, an error is signaled.
 #+begin_src emacs-lisp
 ;;;###autoload
 (defun buf-move-left ()
-"Swap the current buffer and the buffer on the left of the split.
-If there is no split, ie now window on the left of the current
-one, an error is signaled."
+#+end_src
+
+Switches between the current buffer, and the buffer left of the split, if possible.
+#+begin_src emacs-lisp
   (interactive)
   (let* ((other-win (windmove-find-other-window 'left))
 	 (buf-this-buf (window-buffer (selected-window))))
     (if (null other-win)
         (error "No left split")
-      ;; swap top with this one
+#+end_src
+
+swap top with this one
+#+begin_src emacs-lisp
       (set-window-buffer (selected-window) (window-buffer other-win))
-      ;; move this one to top
+#+end_src
+
+move this one to top
+#+begin_src emacs-lisp
       (set-window-buffer other-win buf-this-buf)
       (select-window other-win))))
 #+end_src
 
+** buf-move-right
+
+Swap the current buffer and the buffer on the right of the split.
+If there is no split, ie no window on the right of the current
+one, an error is signaled.
 #+begin_src emacs-lisp
 ;;;###autoload
 (defun buf-move-right ()
-"Swap the current buffer and the buffer on the right of the split.
-If there is no split, ie now window on the right of the current
-one, an error is signaled."
+#+end_src
+
+Switches between the current buffer, and the buffer right of the split, if possible.
+#+begin_src emacs-lisp
   (interactive)
   (let* ((other-win (windmove-find-other-window 'right))
 	 (buf-this-buf (window-buffer (selected-window))))
     (if (null other-win)
         (error "No right split")
-      ;; swap top with this one
+#+end_src
+swap top with this one
+#+begin_src emacs-lisp
       (set-window-buffer (selected-window) (window-buffer other-win))
-      ;; move this one to top
+#+end_src
+move this one to top
+#+begin_src emacs-lisp
       (set-window-buffer other-win buf-this-buf)
       (select-window other-win))))
-
 #+end_src
 
 * DOOM MODELINE
@@ -674,6 +720,7 @@ enble =org-inline-pdf= mode at emacs launch
   :pin melpa
   :ensure t)
 #+end_src
+
 ** Org-roam
 Org-roam is a plain-text knowledge management system. It brings some of [[https://roamresearch.com/][Roam's]] more powerful features into the Org-mode ecosystem.
 
