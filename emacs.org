@@ -260,7 +260,8 @@ Elfeed-tube commands
 #+begin_src emacs-lisp
   (hd/leader-keys
     "t" '(:ignore t :wk "Toggle")
-    "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
+    "t l" '(org-toggle-link-display :wk "Toggle Orgmode link display")
+    "t L" '(display-line-numbers-mode :wk "Toggle line numbers")
     "t t" '(visual-line-mode :wk "Toggle visual line mode")
     "t v" '(vterm-toggle :wk "Toggle vterm")
     "t m" '(treemacs :wk "Toggle treemacs")
@@ -837,10 +838,10 @@ Make all eshell appear in a popup buffer. The /elisp/ below is a combination of 
 
 ** Vterm
 #+begin_src emacs-lisp
-  (use-package vterm
-  :config
-  (setq shell-file-name "/bin/bash"
-        vterm-max-scrollback 5000))
+    (use-package vterm
+    :config
+    (setq shell-file-name "/bin/bash"
+          vterm-max-scrollback 5000))
 #+end_src
 
 *** Vterm-Toggle
