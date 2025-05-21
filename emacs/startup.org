@@ -24,7 +24,7 @@
 * COMMON FILES
 ** Hyprland Configs
 |---+----------------+-------------------------------------------------------------------------|
-| =1= | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/hypr/hyprland.org"))][hyprland.org]] | This is the *main user configuration* file for Hyprland                   |
+| =1= | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/hypr/hyprland.org"))][hyprland.org]]   | This is the *main user configuration* file for Hyprland                   |
 | =2= | [[elisp:(find-file (concat (getenv "HOME") "/.config/hypr/hyprlock.conf"))][hyprlock.conf]]  | User configuration file for =Hyprlock=; a screenlocker for Hyprland       |
 | =3= | [[elisp:(find-file (concat (getenv "HOME") "/.config/hypr/hypridle.conf"))][hypridle.conf]]  | This is the user configuration file for =Hypridle=                        |
 | =4= | [[elisp:(find-file (concat (getenv "HOME") "/.config/hypr/hyprpaper.conf"))][hyprpaper.conf]] | User configuration file for =Hyprpaper=; a wallpaper utility for Hyprland |
