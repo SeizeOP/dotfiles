@@ -230,7 +230,7 @@ Elfeed-tube commands
 #+begin_src emacs-lisp
   (hd/leader-keys
     "." '(find-file :wk "Find file")
-    "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs.org")) :wk "Edit emacs config")
+    "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs/emacs.org")) :wk "Edit emacs config")
     "f r" '(counsel-recentf :wk "Find recent files")
 #+end_src
 
@@ -606,7 +606,8 @@ credit: https://zzamboni.org/post/beautifying-org-mode-in-emacs/
                    vterm-mode-hook
                    shell-mode-hook
                   treemacs-mode-hook
-                   eshell-mode-hook))
+                   eshell-mode-hook
+                   org-side-tree-mode-hook))
      (add-hook mode (lambda() (display-line-numbers-mode 0))))
 #+end_src
 
