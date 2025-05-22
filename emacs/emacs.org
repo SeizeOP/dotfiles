@@ -27,6 +27,7 @@
   - [[#disable-menubar-toolbars-and-scrollbars][Disable Menubar, Toolbars and Scrollbars]]
   - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
   - [[#disable-line-numbers-for-selected-modes][Disable Line Numbers for Selected Modes]]
+  - [[#disable-symlink-to-git-directory-popup-dialog][Disable Symlink to Git directory popup dialog]]
 - [[#ivy-counsel][IVY (COUNSEL)]]
 - [[#multiple-cursors][Multiple Cursors]]
 - [[#org-mode][ORG MODE]]
@@ -611,6 +612,10 @@ credit: https://zzamboni.org/post/beautifying-org-mode-in-emacs/
      (add-hook mode (lambda() (display-line-numbers-mode 0))))
 #+end_src
 
+** Disable Symlink to Git directory popup dialog
+#+begin_src emacs-lisp
+(setq vc-follow-symlinks t)
+#+end_src
 * IVY (COUNSEL)
 - Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
 #+begin_src emacs-lisp
