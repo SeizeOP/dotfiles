@@ -15,7 +15,7 @@
 
 * EMACS CONFIG FILES  [[file:./images/emacs-start-page-urgent.png]] 
 |---+--------------------------+--------------------------------------------------------|
-| =1= | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/emacs.org"))][config.org]]               | This is the main user configuration file for Emacs.    |
+| =1= | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/emacs/emacs.org"))][config.org]]               | This is the main user configuration file for Emacs.    |
 | =2= | [[elisp:(find-file (concat (getenv "HOME") "/.config/emacs/init.el"))][init.el]]                  | Emacs initializtion file.                              |
 | =3= | [[elisp:(find-file (concat (getenv "HOME") "/.config/emacs/themes/seize-the-night-theme.el"))][seize-the-night-theme.el]] | Custom theme for Emacs.                                |
 | =4= | [[elisp:(find-file (concat (getenv "HOME") "/.config/emacs/elfeed.org"))][elfeed.org]]               | Orgmode configuration file for Emacs Elfeed RSS reader |

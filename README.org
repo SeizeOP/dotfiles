@@ -3,4 +3,4 @@
 
 Personal Configuration File (Dotfile) Repository. 
 
-Files which end in the =org= file extension are orgmode literate configs, and do not contain the actual config files for a given program. Rather these orgmode files contain sorce code blocks which are tangled or pushed to the proper config files on demand. 
+Files which end in the =org= file extension are orgmode literate configs, and do not contain the actual config files for a given program. Rather these orgmode files contain source code blocks which are tangled or pushed to the proper config files on demand. 
