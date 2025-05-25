@@ -249,7 +249,7 @@ Elfeed-tube commands
     "h r r" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :wk "Reload emacs config"))
 #+end_src
 
-*** Orgmode
+*** Open
 #+begin_src emacs-lisp
   (hd/leader-keys
     "o" '(:ignore t :wk "Open")
@@ -261,8 +261,10 @@ Elfeed-tube commands
 #+begin_src emacs-lisp
   (hd/leader-keys
     "t" '(:ignore t :wk "Toggle")
+    "t i" '(org-toggle-inline-images :wk "Toggle Orgmode inline images")
     "t l" '(org-toggle-link-display :wk "Toggle Orgmode link display")
     "t L" '(display-line-numbers-mode :wk "Toggle line numbers")
+    "t r" '(read-only-mode :wk "Toggle Read Only mode")
     "t t" '(visual-line-mode :wk "Toggle visual line mode")
     "t v" '(vterm-toggle :wk "Toggle vterm")
     "t m" '(treemacs :wk "Toggle treemacs")
