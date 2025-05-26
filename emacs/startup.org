@@ -1,5 +1,5 @@
 
-  [[file:./images/emacs-start-page.png]]
+                  [[file:./images/emacs-start-page.png]]
 
 * IMPORTANT KEYBINDINGS [[file:./images/emacs-start-page-urgent.png]] 
 |-----------+---------------------+------------------------------------|

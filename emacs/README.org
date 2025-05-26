@@ -35,6 +35,7 @@
   - [[#enable-image-scaling-in-orgmode][Enable image scaling in orgmode]]
   - [[#enable-table-of-contents][Enable Table of Contents]]
   - [[#enabling-org-bullets][Enabling Org Bullets]]
+  - [[#org-appear][Org-appear]]
   - [[#org-inline-pdf][Org-inline-pdf]]
   - [[#org-mpv-notes][org-mpv-notes]]
   - [[#org-roam][Org-roam]]
@@ -707,6 +708,13 @@ bind the 'TAB' key to 'org-cycle'. This allows us to use the 'TAB' key in org-mo
 *credit:* [[https://emacs.stackexchange.com/questions/28222/how-to-make-tab-work-in-org-mode-when-combined-with-evil-mode][Emacs StackExchange]]
 #+begin_src emacs-lisp
 (evil-define-key 'normal evil-org-mode-map "<tab>" #'org-cycle)
+#+end_src
+
+** Org-appear 
+The =org-appear= package provides the ability to toggle the visibility of hidden orgmode /emphasis/ markers for easier edditing.
+#+begin_src emacs-lisp
+(use-package org-appear) 
+(add-hook 'org-mode-hook 'org-appear-mode)
 #+end_src
 
 ** Org-inline-pdf
