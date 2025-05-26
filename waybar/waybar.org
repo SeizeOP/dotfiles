@@ -1,4 +1,5 @@
 * TABLE OF CONTENTS :TOC:
+- [[#about][About]]
 - [[#config][CONFIG]]
   - [[#waybar-position][Waybar Position]]
   - [[#module-declaration][Module Declaration]]
@@ -8,6 +9,10 @@
   - [[#stylecss][Style.css]]
 - [[#footnotes][FOOTNOTES]]
 
+* About 
+#+attr_html: :width 800px :align center
+Personal Dracula theme for /Waybar/.  
+[[file:./images/bar-demo.png]]
 * CONFIG
 #+begin_src conf :tangle config.jsonc
 // -*- mode: jsonc -*-
