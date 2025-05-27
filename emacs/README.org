@@ -186,7 +186,7 @@ Set =SPC= as the global leader key, and make the global leader key available in 
   (hd/leader-keys
     "b" '(:ignore t :wk "buffer")
     "b b" '(switch-to-buffer :wk "Switch buffer")
-    "b k" '(kill-this-buffer :wk "Kill this buffer")
+    "b k" '(kill-current-buffer :wk "Kill this buffer")
     "b i" '(ibuffer :wk "Ibuffer")
     "b n" '(next-buffer :wk "Next buffer")
     "b p" '(previous-buffer :wk "Previous buffer")
@@ -490,6 +490,7 @@ Enable Doom Modeline
 #+end_src
 ** Elfeed-goodies
 #+begin_src emacs-lisp
+(package-install 'elfeed-goodies)
 (require 'elfeed)
 (require 'elfeed-goodies)
 
@@ -499,6 +500,7 @@ Enable Doom Modeline
 ** Elfeed-org
 Load elfeed-org
 #+begin_src emacs-lisp
+(package-install 'elfeed-org)
 (require 'elfeed-org)
 #+end_src
 
