@@ -250,6 +250,14 @@ Elfeed-tube commands
     "h r r" '((lambda () (interactive) (load-file "~/.config/emacs/init.el")) :wk "Reload emacs config"))
 #+end_src
 
+*** Menus
+**** Org Export Dispatch
+Create a key binding for a simple orgmode export menu, like what is used in /DOOM Emacs/. 
+
+#+begin_src emacs-lisp
+  (hd/leader-keys
+    "m e" '(org-export-dispatch :wk "Export dispatcher for orgmode."))
+#+end_src
 *** Open
 #+begin_src emacs-lisp
   (hd/leader-keys
