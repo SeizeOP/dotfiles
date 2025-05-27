@@ -745,10 +745,10 @@ enble =org-inline-pdf= mode at emacs launch
 Org-roam is a plain-text knowledge management system. It brings some of [[https://roamresearch.com/][Roam's]] more powerful features into the Org-mode ecosystem.
 
 #+begin_src emacs-lisp
-  (use-package org-roam
+  (use-package org-roam 
     :ensure t
     :custom
-    (org-roam-directory "~/Documents/org/org-roam")
+    (org-roam-directory (file-truename "~/org/org-roam"))
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
            ("C-c n i" . org-roam-node-insert)
@@ -762,6 +762,12 @@ Org-roam is a plain-text knowledge management system. It brings some of [[https:
     (org-roam-setup))
 #+end_src
 
+**** llama 
+#+begin_src emacs-lisp
+  (use-package llama
+    :ensure
+    (:host github :repo "yasuhirokimura/llama" :branch "main" :files ("*.el" "out")))
+#+end_src
 *** Org-roam UI
 a better interface for Org-roam Graphs.
 #+begin_src emacs-lisp
