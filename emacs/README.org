@@ -763,11 +763,13 @@ Org-roam is a plain-text knowledge management system. It brings some of [[https:
 #+end_src
 
 **** llama 
+llama is a dependency of org-roam, and must have the repository manually specified.
 #+begin_src emacs-lisp
   (use-package llama
     :ensure
     (:host github :repo "yasuhirokimura/llama" :branch "main" :files ("*.el" "out")))
 #+end_src
+
 *** Org-roam UI
 a better interface for Org-roam Graphs.
 #+begin_src emacs-lisp
