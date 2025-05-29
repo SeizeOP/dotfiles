@@ -1,4 +1,4 @@
-* TABLE OF CONTENTS :TOC:
+* TABLE OF CONTENTS :TOC:noexport:
 - [[#about][About]]
 - [[#config][CONFIG]]
   - [[#waybar-position][Waybar Position]]
@@ -14,18 +14,18 @@
 Personal Dracula theme for /Waybar/.  
 [[file:./images/bar-demo.png]]
 * CONFIG
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 // -*- mode: jsonc -*-
 #+end_src
 
 
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 [
   {
 #+end_src
 ** Waybar Position
 Define the location, width, and hieght of /Waybar/
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
@@ -38,7 +38,7 @@ This section will name each module I want included on my /Waybar/; along with th
 
 *** Modules Left
 Select the modules to show on the left portion of /Waybar/
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
   "modules-left": [
          "clock",
          "tray",
@@ -49,7 +49,7 @@ Select the modules to show on the left portion of /Waybar/
 
 *** Modules Center
 Select the modules to show on the center portion of /Waybar/
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
     "modules-center": [
         "hyprland/window",
     ],
@@ -57,7 +57,7 @@ Select the modules to show on the center portion of /Waybar/
 
 *** Modules Right
 Select the modules to show on the right portion of /Waybar/
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
     "modules-right": [
         "idle_inhibitor",
         "backlight",
@@ -69,13 +69,14 @@ Select the modules to show on the right portion of /Waybar/
         "power-profiles-daemon",
         "battery"
     ],
-#+end_sr
+#+end_src
+
 ** Module Definition
 This section will include the module configuration for each module included in the /Module Declation/ section. 
 
 *** Modules Left 
 Configuration for the clock module 
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
   "clock": {
       // "timezone": "America/New_York",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -84,7 +85,7 @@ Configuration for the clock module
 #+end_src
 
 Configuration for the tray module 
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "tray": {
         // "icon-size": 21,
         "spacing": 10
@@ -92,7 +93,7 @@ Configuration for the tray module
 #+end_src
 
 Configuration for the "hyprland/workspaces" module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "hyprland/workspaces": {
          "disable-scroll": false,
          "all-outputs": true,
@@ -112,7 +113,7 @@ Configuration for the "hyprland/workspaces" module
 #+end_src
 
 Configuration for the "custom/media" module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "custom/media": {
         "format": "{0} {1}",
         "return-type": "json",
@@ -134,7 +135,7 @@ Configuration for the "hyprland/window" module
 *** Modules Right
 **** I/O
 Configuration for the idle_inhibitor module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -145,7 +146,7 @@ Configuration for the idle_inhibitor module
 #+end_src
 
 Configuration for the backlight module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
@@ -154,7 +155,7 @@ Configuration for the backlight module
 #+end_src
 
 Configuration for the pulseaudio module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
@@ -177,7 +178,7 @@ Configuration for the pulseaudio module
 #+end_src
 
 Configuration for the network module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
@@ -192,7 +193,7 @@ Configuration for the network module
 
 **** Monitoring
 Configuration for the temperature module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
     "temperature": {
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
@@ -204,14 +205,14 @@ Configuration for the temperature module
 #+end_src
 
 Configuration for the memory module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "memory": {
         "format": "{}% "
     },
 #+end_src
 
 Configuration for the cpu module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
  "cpu": {
         "format": "{usage}% ",
         "tooltip": false
@@ -219,7 +220,7 @@ Configuration for the cpu module
 #+end_src
 
 Configuration for the power profiles daemon module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "power-profiles-daemon": {
       "format": "{icon}",
       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -234,7 +235,7 @@ Configuration for the power profiles daemon module
 #+end_src
 
 Configuration for the battery module
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "battery": {
         "states": {
             // "good": 95,
@@ -255,14 +256,14 @@ Configuration for the battery module
     }
 #+end_src
 
-#+begin_src conf :tangle config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
   }
 ]
 #+end_src
 *** Un-used Modules
 This section includes modules from the default /Waybar/ configuration file which I do not use. These modules are placed here for reference only, and are not used in my running configuration.
 
-#+begin_src conf 
+#+begin_src jsonc 
   "keyboard-state": {
            "numlock": true,
            "capslock": true,
@@ -274,13 +275,13 @@ This section includes modules from the default /Waybar/ configuration file which
        },
 #+end_src
 
-#+begin_src conf 
+#+begin_src jsonc 
        "sway/mode": {
            "format": "<span style=\"italic\">{}</span>"
        },
 #+end_src
 
-#+begin_src conf 
+#+begin_src jsonc 
        "sway/scratchpad": {
            "format": "{icon} {count}",
            "show-empty": false,
@@ -290,7 +291,7 @@ This section includes modules from the default /Waybar/ configuration file which
        },
 #+end_src
 
-#+begin_src conf            
+#+begin_src jsonc            
   "mpd": {
          "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
           "format-disconnected": "Disconnected ",
@@ -320,7 +321,7 @@ This section includes modules from the default /Waybar/ configuration file which
 
 #+end_src 
     
-#+begin_src conf            
+#+begin_src jsonc            
 "custom/power": {
         "format" : "⏻ ",
 		"tooltip": false,
@@ -350,7 +351,7 @@ Before I can style anything in the [[~/.config/waybar/style.css][style.css]] fil
 
 *** Global Styling
 Set the font, and font size globally
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.csss
  * {
     font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
     font-size: 13px;
@@ -358,7 +359,7 @@ Set the font, and font size globally
 #+end_src
 
 **** Window Styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.csss
 window#waybar {
     background-color: @background-darker;
     border-bottom: 3px solid @background;
@@ -373,7 +374,7 @@ window#waybar.hidden {
 #+end_src
 
 **** Button Styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 button {
     /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
@@ -391,7 +392,7 @@ button:hover {
 *** Module Styling
 **** Modules Left
 Clock module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #clock {
     background-color: @background;
     color: @green;
@@ -399,7 +400,7 @@ Clock module styling
 #+end_src
 
 Tray module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #tray {
     background-color: @background;
 }
@@ -415,7 +416,7 @@ Tray module styling
 #+end_src
 
 "hyprland/workspaces" module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #workspaces {
     margin: 0 4px;
     color: @foreground;
@@ -453,7 +454,7 @@ Tray module styling
 #+end_src
 
 "custom/media" module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #custom-media {
     background-color: @background-darker;
     color: #fff0f5;
@@ -485,7 +486,7 @@ Tray module styling
 **** Modules Right
 ***** I/O
 idle_inhibitor module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #idle_inhibitor {
     background-color: @selection;
 }
@@ -497,7 +498,7 @@ idle_inhibitor module styling
 #+end_src
 
 backlight module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #backlight {
     color: @yellow;
     background-color: @background-darker;
@@ -512,7 +513,7 @@ backlight module styling
 #+end_src
 
 pulseaudio module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #pulseaudio {
     background-color: @comment;
     color: @background;
@@ -520,7 +521,7 @@ pulseaudio module styling
 }
 #+end_src
 
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #pulseaudio.muted {
     background-color: @red;
     color: @background-darker;
@@ -528,14 +529,14 @@ pulseaudio module styling
 }
 #+end_src
 
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #pulseaudio:hover {
     background-color: @yellow;
 }
 #+end_src
 
 network module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
   #network {
       background-color: @purple;
       color: @background-darker; 
@@ -544,7 +545,7 @@ network module styling
 #+end_src
 
 Change the background color of the network module to a more noticable #ff5555 (@red), when disconnected from a network. 
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
   #network.disconnected {
       background-color: @red;
       padding: 1px 3px;
@@ -552,7 +553,7 @@ Change the background color of the network module to a more noticable #ff5555 (@
 #+end_src
 
 Change the background color of the network module to a more noticable #f1fa8c (@yellow), when hovering over the network module. 
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
   #network:hover {
       background-color: @yellow;
       padding: 1px 3px;
@@ -561,7 +562,7 @@ Change the background color of the network module to a more noticable #f1fa8c (@
 
 ***** Monitoring
 temperature module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #temperature {
     color: @orange;
     background-color: @background-darker;
@@ -586,7 +587,7 @@ temperature module styling
 #+end_src
 
 battery module styling
-#+begin_src css :tangle style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
 #battery {
     background-color: @cyan;
     color: @background-darker;
@@ -619,7 +620,8 @@ battery module styling
 #+title: Waybar Configuration
 #+author:Henry Davies (HD)
 #+Startup: showeverything inlineimages
-#+Options: num:nil noexport
+#+Options: num:nil
+#+exclude_tags: noexport
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+export_file_name: ~/Documents/html/system/waybar.html
 

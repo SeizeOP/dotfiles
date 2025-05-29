@@ -68,7 +68,6 @@ exec-once = systemctl --user start plasma-polkit-agent
 #+begin_src conf :tangle hyprland.conf
 exec-once = waybar & nm-applet --indicator
 #+end_src
-
 **** *Hypridle*
 #+begin_src conf :tangle hyprland.conf
 exec-once = hypridle
