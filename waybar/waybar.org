@@ -94,22 +94,23 @@ Configuration for the tray module
 
 Configuration for the "hyprland/workspaces" module
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
-"hyprland/workspaces": {
-         "disable-scroll": false,
-         "all-outputs": true,
-         "warp-on-scroll": false,
-         "format": "{name}: {icon}",
-         "format-icons": {
-             "1": "",
-             "2": "",
-             "3": "",
-             "4": "",
-             "5": "",
-             "urgent": "",
-             "focused": "",
-             "default": ""
-         }
-     },
+  "hyprland/workspaces": {
+           "disable-scroll": false,
+           "all-outputs": true,
+           "warp-on-scroll": false,
+           "format": "{name}: {icon}",
+           "format-icons": {
+               "1": "",
+               "2": "",
+               "3": "",
+               "4": "",
+               "5": "",
+               "6": "",
+               "urgent": "",
+               "focused": "",
+               "default": ""
+           }
+       },
 #+end_src
 
 Configuration for the "custom/media" module
@@ -339,12 +340,12 @@ This section includes modules from the default /Waybar/ configuration file which
 
 * CSS
 there are two files used to style waybar using CSS. 
-** [[~/.config/waybar/colors.css][Colors.css]] 
+** [[./colors.css][Colors.css]] 
 This file defines all the colors I will use to style /Waybar/
-** [[~/.config/waybar/style.css][Style.css]]
-This file uses the colors from [[~/.config/waybar/colors.css][colors.css]] to style the modules of /Waybar/ to whatever look I want. 
+** [[./style.css][Style.css]]
+This file uses the colors from [[./colors.css][colors.css]] to style the modules of /Waybar/ to whatever look I want. 
 
-Before I can style anything in the [[~/.config/waybar/style.css][style.css]] file; I need to imprt the pre-difined colors from [[~/.config/waybar/colors.css][colors.css]]  
+Before I can style anything in the [[./style.css][style.css]] file; I need to imprt the pre-difined colors from [[./colors.css][colors.css]]  
 #+begin_src css :tangle style-test.css
 @import url("./colors.css");
 #+end_src

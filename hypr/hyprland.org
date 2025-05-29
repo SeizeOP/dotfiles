@@ -53,7 +53,7 @@ This section includes links to the configuration files used by /non Hyprland/ pa
 ** SwayNC
 - [[~/.config/swaync/config.json][Config]]
 - [[~/.config/swaync/style.css][style.css]]
-** [[~/.config/waybar/waybar.org][Waybar]]
+** [[../waybar/waybar.org][Waybar]]
 
 * HYPRLAND CONFIGURATION
 ** Autostarts
