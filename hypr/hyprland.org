@@ -233,12 +233,13 @@ device {
 *** Critical
 These are keybindings which are critical for proper system functionality
 #+begin_src conf :tangle hyprland.conf
-bind = $mainMod, Q, exec, $terminal
-bind = $mainMod, C, killactive, 
-bind = $mainMod, E, exec, emacsclient -c
-bind = $mainMod, M, exec, $fileManager
-bind = $mainMod, V, togglefloating, 
-bind = $mainMod, D, exec, $menu
+  bind = $mainMod, Q, exec, $terminal
+  bind = $mainMod, C, killactive, 
+  bind = $mainMod, E, exec, emacsclient -c
+  bind = $mainMod, M, exec, $fileManager
+  bind = $mainMod, V, togglefloating, 
+  bind = $mainMod, D, exec, $menu
+  bind = $mainMod $shiftMod, C, exec, launch-waybar && launch-nwg-wrapper 
 #+end_src
 
 **** Important
@@ -655,6 +656,7 @@ source = ~/.config/hypr/myColors.conf
 This example is not synced to my runnning config. 
 
 #+STARTUP: inlineimages
+#+auto_tangle: t
 #+options: num:nil noexport
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+export_file_name: ~/Documents/html/system/hyprland.html

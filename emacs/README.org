@@ -32,6 +32,7 @@
 - [[#ivy-counsel][IVY (COUNSEL)]]
 - [[#multiple-cursors][Multiple Cursors]]
 - [[#org-mode][ORG MODE]]
+  - [[#auto-tangle][Auto Tangle]]
   - [[#disable-electric-indent][Disable Electric Indent]]
   - [[#enable-image-scaling-in-orgmode][Enable image scaling in orgmode]]
   - [[#enable-table-of-contents][Enable Table of Contents]]
@@ -697,9 +698,20 @@ Initialize the =multiple-cursors= package, and define keybindings
          ("C-M->" . mc/mark-all-like-this-dwim)))
 #+end_src
 * ORG MODE
+** Auto Tangle 
+A simple package to automate the process of tangling orgmode source code blocks to thier respective output files. 
+
+Install =org-auto-tangle=
+#+begin_src emacs-lisp
+  (use-package org-auto-tangle
+    ;;:load-path "site-lisp/org-auto-tangle/"    ;; this line is necessary only if you cloned the repo in your site-lisp directory 
+    :defer t
+    :hook (org-mode . org-auto-tangle-mode))
+#+end_src
+to enable =org-auto-tangle= in a buffer use the =#+auto_tangle: t= option flag. 
+
 ** Disable Electric Indent
 Org mode source blocks have some really weird and annoying default indentation behavior. I think this has to do with electric-indent-mode, which is turned on by default in Emacs. So let's turn it OFF!
-
 
 #+begin_src emacs-lisp
 (electric-indent-mode -1)
