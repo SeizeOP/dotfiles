@@ -10,6 +10,7 @@
   - [[#hypr-idle][Hypr-Idle]]
   - [[#hypr-lock][Hypr-Lock]]
   - [[#hypr-paper][Hypr-Paper]]
+  - [[#nwg-wrapper][NWG Wrapper]]
   - [[#rofi][Rofi]]
   - [[#swaync][SwayNC]]
   - [[#waybar][Waybar]]
@@ -49,6 +50,7 @@ This section includes links to the configuration files used by /non Hyprland/ pa
 ** [[~/.config/hypr/hypridle.conf][Hypr-Idle]] 
 ** [[~/.config/hypr/hyprlock.conf][Hypr-Lock]]
 ** [[~/.config/hypr/hyprpaper.conf][Hypr-Paper]]
+** [[../nwg-wrapper/][NWG Wrapper]]
 ** [[~/.config/rofi/config.rasi][Rofi]]
 ** SwayNC
 - [[~/.config/swaync/config.json][Config]]
