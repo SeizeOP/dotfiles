@@ -14,8 +14,8 @@
   - [[#swaync][SwayNC]]
   - [[#waybar][Waybar]]
 - [[#hyprland-configuration][HYPRLAND CONFIGURATION]]
-  - [[#autostarts][Autostarts]]
   - [[#variables][Variables]]
+  - [[#autostarts][Autostarts]]
   - [[#permisions][Permisions]]
   - [[#input-configuration][Input Configuration]]
   - [[#keybindings][Keybindings]]
@@ -56,6 +56,29 @@ This section includes links to the configuration files used by /non Hyprland/ pa
 ** [[../waybar/waybar.org][Waybar]]
 
 * HYPRLAND CONFIGURATION
+** Variables
+
+*Essential* environment variables
+#+begin_src conf :tangle hyprland.conf
+  $mainMod = SUPER
+  $terminal = kitty
+  $menu = rofi -show drun run combi
+#+end_src
+
+/Less/ essential environment variables
+#+begin_src conf :tangle hyprland.conf
+$fileManager = dolphin
+$browser = xdg-open about:profiles
+#+end_src
+
+*** Environment Variables
+
+Some default env vars.
+#+begin_src conf :tangle hyprland.conf
+env = XCURSOR_SIZE,24
+env = QT_QPA_PLATFORMTHEME,qt6ct
+#+end_src
+
 ** Autostarts
 Autostarts are programs which are executed when Hyprland starts. Bellow are the autostart configurations for my system.
 *** Necessary for proper system functionality
@@ -66,7 +89,8 @@ exec-once = systemctl --user start plasma-polkit-agent
 
 **** Waybar and NMapplet
 #+begin_src conf :tangle hyprland.conf
-exec-once = waybar & nm-applet --indicator
+exec-once = waybar 
+exec-once = nm-applet --indicator 
 #+end_src
 **** *Hypridle*
 #+begin_src conf :tangle hyprland.conf
@@ -129,29 +153,6 @@ exec-once = firefox
 #+begin_src conf :tangle hyprland.conf
 exec-once = nwg-wrapper -t bindings.pango -c style.css -p left -a start -mt 20 -ml 20 -j left
 #+end_src
-** Variables
-
-*Essential* environment variables
-#+begin_src conf :tangle hyprland.conf
-$mainMod = SUPER
-$terminal = kitty
-$menu = rofi -show drun run combi
-#+end_src
-
-/Less/ essential environment variables
-#+begin_src conf :tangle hyprland.conf
-$fileManager = dolphin
-$browser = xdg-open about:profiles
-#+end_src
-
-*** Environment Variables
-
-Some default env vars.
-#+begin_src conf :tangle hyprland.conf
-env = XCURSOR_SIZE,24
-env = QT_QPA_PLATFORMTHEME,qt6ct
-#+end_src
-
 ** Permisions
 #+begin_quote
 If you have hyprland-qtutils installed, you can make use of Hyprland’s built-in permission system.
