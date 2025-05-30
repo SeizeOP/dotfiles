@@ -1,0 +1,29 @@
+<span face="monospace">
+<span size="x-large" foreground="#50fa7b" face="serif">Cheat sheet</span>
+<span foreground="#eeeeee">
+<span size="x-large" foreground="#50fa7b" face="serif">Hyprland</span>
+Web browser		<span foreground="#6699cc" face="serif">Mod+B</span>
+Terminal emulator	<span foreground="#6699cc" face="serif">Mod+Q</span>
+Kill task		<span foreground="#ff5555" face="serif">Mod+C</span>
+Toggle floating		<span foreground="#6699cc" face="serif">Mod+V</span>
+Move item to scratchpad	<span foreground="#6699cc" face="serif">Mod+Shift+S</span>
+Show scratchpad		<span foreground="#6699cc" face="serif">Mod+S</span>
+
+<span size="large" foreground="#50fa7b" face="serif">Hyprland Ecosystem</span>
+Hyprpicker 		<span foreground="#8be9fd" face="serif">Mod+CTRL+P</span>
+Hyprlock		<span foreground="#ff5555" face="serif">Mod+Shift+L</span>
+Wlogout			<span foreground="#ff5555" face="serif">Mod+TAB+W</span>
+
+<span size="large" foreground="#50fa7b" face="serif">Cliphist</span>
+Show Clipboard 		<span foreground="#8be9fd" face="serif">Mod+CTRL+V</span>
+Delete Clipboard Entry 	<span foreground="#8be9fd" face="serif">Mod+CTRL+D</span>
+Wipe Clipboard 		<span foreground="#8be9fd" face="serif">Mod+CTRL+E</span>
+
+<span size="x-large" foreground="#50fa7b" face="serif">HDmacs (Emacs)</span>
+Emacs	    		<span foreground="#8be9fd" face="serif">Mod+E</span>
+Org Babel Tangle	<span foreground="#8be9fd" face="serif">C-c C-v T</span>
+
+<span size="large" foreground="#50fa7b" face="serif">Kitty</span>
+Emoji picker	    <span foreground="#8be9fd" face="serif">CTRL+Shift+U</span>
+</span>
+</span>
