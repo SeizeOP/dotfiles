@@ -9,6 +9,13 @@
 // "width": 1280, // Waybar width
 "spacing": 4, // Gaps between modules (4px)
 
+"modules-left": [
+       "clock",
+       "tray",
+       "hyprland/workspaces",
+       "custom/media",
+   ],
+
 "modules-center": [
     "hyprland/window",
 ],
@@ -46,7 +53,8 @@
              "2": "",
              "3": "",
              "4": "",
-             "5": "",
+             "5": "󰙯",
+             "6": "",
              "urgent": "",
              "focused": "",
              "default": ""
@@ -108,8 +116,8 @@
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-	"on-click": "nmtui-connect"
+        //"format-alt": "{ifname}: {ipaddr}/{cidr}",
+	"on-click": "kitty -e nmtui"
     },
 
 "temperature": {

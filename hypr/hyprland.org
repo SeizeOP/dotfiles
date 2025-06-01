@@ -142,7 +142,7 @@ exec-once = /usr/bin/emacs --daemon &
 
 Start the Emacs client upon user login
 #+begin_src conf :tangle hyprland.conf
-exec-once = emacs
+exec-once = emacsclient -c -a ""
 #+end_src
 
 **** Firefox
@@ -237,7 +237,7 @@ These are keybindings which are critical for proper system functionality
 #+begin_src conf :tangle hyprland.conf
   bind = $mainMod, Q, exec, $terminal
   bind = $mainMod, C, killactive, 
-  bind = $mainMod, E, exec, emacsclient -c
+  bind = $mainMod, E, exec, emacsclient -c -a ""
   bind = $mainMod, M, exec, $fileManager
   bind = $mainMod, V, togglefloating, 
   bind = $mainMod, D, exec, $menu
@@ -626,6 +626,7 @@ gestures {
     workspace_swipe = on
 }
 #+end_src
+
 *** Window Rules
 **** Examples
 Example windowrule v1
