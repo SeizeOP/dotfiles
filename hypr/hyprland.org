@@ -451,10 +451,11 @@ monitor=HDMI-A-1, 3840x2160@30.00000, auto-right, 1.5, transform, 1
 *** General
 Enable rounding of window corners
 #+begin_src conf :tangle hyprland.conf
-decoration {
-    # See https://wiki.hyprland.org/Configuring/Variables/ for more
+  decoration {
+      # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-    rounding = 6
+      rounding = 6
+     #screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 Configure blur and drop shadow. These settings are currently disabled; though i am leaving them in (just commented out) so i can quickly re-enable in future if I desire.    
