@@ -135,14 +135,9 @@ exec-once = ~/.config/hypr/scripts/low_battery.sh
 
 *** User applications
 **** Emacs
-Start the Emacs Daemon
+Start the Emacs daemon, and Emacs client upon user login
 #+begin_src conf :tangle hyprland.conf
-exec-once = /usr/bin/emacs --daemon &
-#+end_src
-
-Start the Emacs client upon user login
-#+begin_src conf :tangle hyprland.conf
-exec-once = emacsclient -c -a ""
+exec-once = ~/.local/bin/serv-emacs
 #+end_src
 
 **** Firefox

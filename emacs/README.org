@@ -1,5 +1,6 @@
 * TABLE OF CONTENTS :toc:noexport:
-- [[#about-this-config][ABOUT THIS CONFIG]]
+- [[#imagesemacs-orgpng][[[./images/emacs-org.png]]]]
+  - [[#about-this-config][ABOUT THIS CONFIG]]
 - [[#important-programs-to-load-first][IMPORTANT PROGRAMS TO LOAD FIRST]]
   - [[#elpacs-package-manager][Elpacs Package Manager]]
   - [[#evil-mode][Evil Mode]]
@@ -54,16 +55,16 @@
 - [[#which-key][WHICH-KEY]]
 - [[#footnotes][FOOTNOTES]]
 
-* ABOUT THIS CONFIG
+* [[./images/emacs-org.png]] 
 
-[[./images/emacs-org.png]] 
-
+** ABOUT THIS CONFIG
 This is my personal /GNU Emacs/ literate configuration. I will do my best to clarify what external dependencies are required for this emacs config. However, the external dependency list may not be complete, and I may have made other undocumented changes to my system. Therefor I would *NOT* recommend blindly copying this config. Instead, i would suggest reading though this config, and copying/reimplimenting only those sections which are reivant to your own personal emacs config.
 
 My personal emacs config has been inspired by many factors, and it would be to difficult to enumerate all such factors. Therefor, I will Instead list bellow what i have deemed to be the foundational influences to my personal emacs config.
-- [[https://github.com/doomemacs/doomemacs][DOOM Emacs]]
-- [[https://systemcrafters.net/emacs-from-scratch/][System Crafters: Emacs from Scratch]]
-- [[https://www.youtube.com/playlist?list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX][DistroTube Cofiguring Emacs]]
+
+- System Crafters: [[https://systemcrafters.net/emacs-from-scratch/][Emacs from Scratch]]
+- Distrotube: [[https://www.youtube.com/playlist?list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX][Cofiguring Emacs]]
+- hlissner: [[https://github.com/doomemacs/doomemacs][DOOM Emacs]]
 
 * IMPORTANT PROGRAMS TO LOAD FIRST
 ** Elpacs Package Manager
@@ -160,18 +161,17 @@ Expands to: (elpaca evil (use-package evil :demand t))
 #+end_src
 
 #+begin_src emacs-lisp
-     (use-package evil-collection
-       :after evil
-       :config
-       (setq evil-collection-mode-list '(dashboard dired ibuffer))
-       (evil-collection-init))
-     (use-package evil-tutor)
+  (use-package evil-collection
+    :after evil
+    :config
+    (setq evil-collection-mode-list '(dashboard dired ibuffer))
+    (evil-collection-init))
+  (use-package evil-tutor)
 
-             ;;Turns off elpaca-use-package-mode current declaration
-             ;;Note this will cause the declaration to be interpreted immediately (not deferred).
-             ;;Useful for configuring built-in emacs features.
-             (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))
-
+          ;;Turns off elpaca-use-package-mode current declaration
+          ;;Note this will cause the declaration to be interpreted immediately (not deferred).
+          ;;Useful for configuring built-in emacs features.
+          (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))
 #+end_src
 
 ** General Keybindings
@@ -203,7 +203,8 @@ Set =SPC= as the global leader key, and make the global leader key available in 
     "b i" '(ibuffer :wk "Ibuffer")
     "b n" '(next-buffer :wk "Next buffer")
     "b p" '(previous-buffer :wk "Previous buffer")
-    "b r" '(revert-buffer :wk "Reload buffer"))
+    "b r" '(revert-buffer :wk "Reload buffer")
+    "b R" '(revert-buffer-quick :wk "Reload buffer WITHOUT conformation"))
 #+end_src
 
 *** Dired
@@ -276,7 +277,8 @@ Create a key binding for a simple orgmode export menu, like what is used in /DOO
   (hd/leader-keys
     "o" '(:ignore t :wk "Open")
     "o s" '(org-side-tree :wk "Org Side-Tree")
-    "o b" '(browse-url-xdg-open :wk "open a URL in the XDG default browser"))
+    "o l" '(browse-url-xdg-open :wk "open a URL in the XDG default browser")
+    "o b" '(browse-url-of-buffer :wk "open the current buffer in the XDG default browser"))
 #+end_src
 
 *** Toggles 
@@ -1022,7 +1024,15 @@ Visit /scratch/ buffer from custom startpage
 #+Author: Henry Davies (HD) 
 #+Description: HD's personal Emacs config.
 #+Startup: showeverything inlineimages
-#+Options: num:nil noexport
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-#+export_file_name: ~/Documents/html/system/emacs.html
 
+** Export Control                                                 :noexport:
+#+Options: num:nil noexport
+#+exclude_tags: noexport
+#+export_file_name: ~/Documents/html/system/emacs.html
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+- specify the background color, and font color fo source code blocks
+#+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
+
+- Specify the background color of code blocks. In my case these somewhat interchangable with regualar quotes, as most of the extensive code is placed in source code blocks. 
+#+HTML_HEAD: <style>code{background:#f8f8f2;color:#6272a4;} </style>
+#+HTML_HEAD: <style>ul{background:#f8f8f2;} </style>
