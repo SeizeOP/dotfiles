@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# kill current hyprsunset sesion
+killall -q hyprsunset
+
+# Fetch the current hour
+current_hour=$(date +"%H0000" | cut -c1-4)
+
+# If it is 1700 to 0900 set hyprsunset to 5000, otherwise set hyprsunset to 6500
+if [ "$current_hour" -ge 1700 ] || [ "$current_hour" -le 0900 ]; 
+	then notify-send -t 2500 'Hyprsunset' "Changing to night-time bluelight level" --icon=/home/user/Pictures/dev/Hyprland_Logo-black.png && hyprsunset -t 4500 & disown
+	else notify-send 'Hyprsunset' "Changing to day-time bluelight level" --icon=/home/user/Pictures/dev/Hyprland_Logo-black.png && hyprsunset -t 6500 & disown 
+fi
+
+# credit: https://old.reddit.com/r/hyprland/comments/1ho4bqo/how_does_hyprsunset_work/
