@@ -6,7 +6,8 @@
 | M-x       | [[elisp:(counsel-M-x)][counsel-M-x]]         | Prompt for Emacs programs          |
 | SPC .     | [[elisp:(counsel-find-file)][counsel-find-file]]   | Find a file                        |
 | SPC f r   | [[elisp:(counsel-recentf)][counsel-recentf]]     | Find a Recent file                 |
-| SPC f c   | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/emacs/README.org"))][README.org]]          | Open Emacs Personal [[./README.org][config]]         |
+| SPC f c   | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/emacs/README.org"))][README.org]]          | Open Personal /Emacs/ [[./README.org][config]]         |
+| SPC f h   | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/hypr/hyprland.org"))][Hyprland.org]]        | Open Personal /Hyprland/ [[../hypr/hyprland.org][config]]      |
 | SPC h r r | [[elisp:(doom/reload)][doom/reload]]         | Reload Emacs Config                |
 | SPC f u   | [[elisp:(doom/sudo-find-file nil)][doom/sudo-find-file]] | Find file and open as root         |
 | SPC f U   | /doom/sudo-this-file/ | Open current file as root          |

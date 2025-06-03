@@ -474,7 +474,7 @@ Enable rounding of window corners
 **** Shaders
 Enable a screen shader based on the provided shadder file. In this case the provided file is a shader file which enables a greyscale effect. 
 #+begin_src conf :tangle hyprland.conf
-     #screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+     ##screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 bellow is an example of this shader in action:
