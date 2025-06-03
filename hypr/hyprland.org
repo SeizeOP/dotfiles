@@ -133,6 +133,14 @@ Start a script to notify the user when the battery is low.
 exec-once = ~/.config/hypr/scripts/low_battery.sh
 #+end_src
 
+**** Bluelight Script
+Run my bluelight script which sets a =hyprsunset= value. 
+#+begin_src conf :tangle hyprland.conf
+exec-once = ~/dotfiles/hypr/scripts/blue-light
+#+end_src
+
+Normal this script would run once an hour via =cron=; however, at times I will login to my sistem inbetween one of these hourly checks. Therefor it is necessary to run the =bluelight= once upon login to proper set the =hyprsunset= value at /Hyprland/ startup.
+
 *** User applications
 **** Emacs
 Start the Emacs daemon, and Emacs client upon user login
@@ -455,7 +463,7 @@ Enable rounding of window corners
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
       rounding = 6
-     #screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+     ##screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 Configure blur and drop shadow. These settings are currently disabled; though i am leaving them in (just commented out) so i can quickly re-enable in future if I desire.    
