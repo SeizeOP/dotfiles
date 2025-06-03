@@ -4,7 +4,6 @@
 * TABLE OF CONTNTS :toc:noexport:
 - [[#backgroud][BACKGROUD]]
   - [[#what-is-hyprland][What is Hyprland?]]
-  - [[#how-do-i-use-hyprland][How do I use Hyprland?]]
   - [[#reloading-this-config][Reloading this config]]
 - [[#essential-program-configurations][ESSENTIAL PROGRAM CONFIGURATIONS]]
   - [[#hypr-idle][Hypr-Idle]]
@@ -30,7 +29,7 @@
 Hyprland is an independent tiling Wayland compositor written in C++. Noteworthy features of Hyprland include dynamic tiling, tabbed windows, a clean and readable C++ code-base, and a custom renderer that provides window animations, rounded corners, and Dual-Kawase Blur on transparent windows. General usage and configuration is thoroughly documented at Hyprland wiki. -- https://wiki.archlinux.org/title/Hyprland
 #+end_quote
 
-** How do I use Hyprland?
+ ti** How do I use Hyprland?
 *** Screenshots
 #+attr_html: :width 800px :align center
 #+attr_latex: :width 800px :align center
@@ -463,9 +462,20 @@ Enable rounding of window corners
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
       rounding = 6
-    # screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
+**** Shaders
+Enable a screen shader based on the provided shadder file. In this case the provided file is a shader file which enables a greyscale effect. 
+#+begin_src conf :tangle hyprland.conf
+     #screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+#+end_src
+
+bellow is an example of this shader in action:
+#+attr_html: :width 800px :align center
+#+attr_latex: :width 800px :align center
+[[file:./images/hypr-greyscale.png]]
+
+**** Blur
 Configure blur and drop shadow. These settings are currently disabled; though i am leaving them in (just commented out) so i can quickly re-enable in future if I desire.    
 #+begin_src conf :tangle hyprland.conf
     #blur {
@@ -484,7 +494,7 @@ Configure blur and drop shadow. These settings are currently disabled; though i 
 }
 #+end_src
 
-Group Decorations
+**** Group Decorations
 #+begin_src conf :tangle hyprland.conf
 group {
     groupbar {
@@ -494,7 +504,7 @@ group {
 }
 #+end_src
 
-***** Backup decoration settings 
+**** Backup decoration settings 
 this is a copy of the default decoration settings; copied here for reference. they are not copied to the running configuration. 
 
 #+begin_src conf

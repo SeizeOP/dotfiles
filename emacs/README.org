@@ -246,7 +246,8 @@ Elfeed-tube commands
 #+begin_src emacs-lisp
   (hd/leader-keys
     "." '(find-file :wk "Find file")
-    "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs/README.org")) :wk "Edit emacs config")
+    "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs/README.org")) :wk "Edit Emacs config")
+    "f h" '((lambda () (interactive) (find-file "~/dotfiles/hypr/hyprland.org")) :wk "Edit Hyprland config")
     "f r" '(counsel-recentf :wk "Find recent files")
 #+end_src
 
