@@ -4,8 +4,9 @@
 
 <span size="x-large" foreground="#50fa7b" face="serif">Hyprland</span>
 
-Web browser		<span foreground="#6699cc" face="serif">Mod+B</span>
-Toggle floating		<span foreground="#6699cc" face="serif">Mod+V</span>
+Web browser		<span foreground="#8be9fd" face="serif">Mod+B</span>
+Toggle Grouping		<span foreground="#8be9fd" face="serif">Mod+G</span>
+Toggle floating		<span foreground="#8be9fd" face="serif">Mod+V</span>
 
 <span size="large" foreground="#50fa7b" face="serif">Hyprland Ecosystem</span>
 Hyprpicker 		<span foreground="#8be9fd" face="serif">Mod+CTRL+P</span>
