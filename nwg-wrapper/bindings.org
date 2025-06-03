@@ -1,0 +1,96 @@
+
+
+* About
+/[[https://github.com/nwg-piotr/nwg-wrapper][NWG-Wrapper]]/ is a display script for Wayland compositors, similar to /[[https://github.com/brndnmtthws/conky][Conky]]/ for X11. NWG-Wrapper can be used with script, text, or markup files.  
+
+** My Configuration
+The main purpose of my NWG-Wrapper config is to provide an easily viewable cheatsheet of some of my less used key combinations for my [[../hypr/hyprland.org][Hyprland]] and [[../emacs/README.org][Emacs]] configurations.
+
+To achieve this simple cheatsheet I have configured NWG-Wrapper using Pango markup, and a simpe CSS style sheet.
+
+example screenshot:
+
+
+* Bindings
+** Heading
+This section includes the main heading to be displayed in NWG-Wrapper
+#+begin_src html :tangle ~/dotfiles/nwg-wrapper/bindings.pango
+<span face="monospace">
+<span size="x-large" foreground="#50fa7b" face="serif">Cheat sheet</span>
+<span foreground="#eeeeee">
+#+end_src
+
+** General
+#+begin_src html :tangle ~/dotfiles/nwg-wrapper/bindings.pango
+<span size="x-large" foreground="#50fa7b" face="serif">Hyprland</span>
+
+Web browser		<span foreground="#6699cc" face="serif">Mod+B</span>
+Toggle floating		<span foreground="#6699cc" face="serif">Mod+V</span>
+
+#+end_src
+
+** Hyprland Ecosystem
+this section includes keybindings related to programs in the "Hyprland ecosystem". In otherwords, these are programs intended to integrate with /Hyprland/. 
+#+begin_src html :tangle ~/dotfiles/nwg-wrapper/bindings.pango
+<span size="large" foreground="#50fa7b" face="serif">Hyprland Ecosystem</span>
+Hyprpicker 		<span foreground="#8be9fd" face="serif">Mod+CTRL+P</span>
+Hyprlock		<span foreground="#ff5555" face="serif">Mod+Shift+L</span>
+Wlogout			<span foreground="#ff5555" face="serif">Mod+TAB+W</span>
+
+#+end_src
+
+** Clipboard keybindings
+#+begin_src html :tangle ~/dotfiles/nwg-wrapper/bindings.pango
+<span size="large" foreground="#50fa7b" face="serif">Cliphist</span>
+Show Clipboard 		<span foreground="#8be9fd" face="serif">Mod+CTRL+V</span>
+Delete Clipboard Entry 	<span foreground="#8be9fd" face="serif">Mod+CTRL+D</span>
+Wipe Clipboard 		<span foreground="#8be9fd" face="serif">Mod+CTRL+E</span>
+
+#+end_src
+
+** Emacs keybindings 
+#+begin_src html :tangle ~/dotfiles/nwg-wrapper/bindings.pango
+<span size="x-large" foreground="#50fa7b" face="serif">HDmacs (Emacs)</span>
+Emacs	    		<span foreground="#8be9fd" face="serif">Mod+E</span>
+Org Babel Tangle	<span foreground="#8be9fd" face="serif">C-c C-v T</span>
+
+#+end_src
+
+** Kitty terminal keybindings 
+#+begin_src html :tangle ~/dotfiles/nwg-wrapper/bindings.pango
+<span size="large" foreground="#50fa7b" face="serif">Kitty</span>
+Emoji picker	    <span foreground="#8be9fd" face="serif">CTRL+Shift+U</span>
+</span>
+</span>
+#+end_src
+
+* Styling
+Simple CSS file to provide some extra styling to the markup file.
+#+begin_src css :tangle ~/dotfiles/nwg-wrapper/bindings.css
+window {
+        background-color: rgba (0, 0, 0, 0.0);
+}
+
+#box-outer {
+        /* Define attributes of the box surrounding icons here */
+        background-color: rgba (255, 255, 255, 0.0)
+}
+
+#box-inner {
+        background-color: rgb #282a36cc;
+	padding: 0 20px 0 20px
+}
+#+end_src
+
+* FOOTER
+#+author: Henry Davies
+#+title: NWG Wrapper Bindings Configuration
+#+Description: HD's personal NWG-Wrapper config.
+#+Startup: showeverything inlineimages
+
+** Export Control :noexport:
+#+export_file_name: ~/Documents/html/system/nwg_wrapper.html
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
+#+auto_tangle: t
+#+exclude_tags: noexport
