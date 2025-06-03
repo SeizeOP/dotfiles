@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Fetch the current hour
 current_hour=$(date +"%H0000" | cut -c1-4)
 

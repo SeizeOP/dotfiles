@@ -463,7 +463,7 @@ Enable rounding of window corners
       # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
       rounding = 6
-     ##screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+    # screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 Configure blur and drop shadow. These settings are currently disabled; though i am leaving them in (just commented out) so i can quickly re-enable in future if I desire.    
