@@ -60,11 +60,24 @@
 ** ABOUT THIS CONFIG
 This is my personal /GNU Emacs/ literate configuration. I will do my best to clarify what external dependencies are required for this emacs config. However, the external dependency list may not be complete, and I may have made other undocumented changes to my system. Therefor I would *NOT* recommend blindly copying this config. Instead, i would suggest reading though this config, and copying/reimplimenting only those sections which are reivant to your own personal emacs config.
 
+*** External Dependencies
+- CMake: Needed for compiling some things
+- JetBrains Mono
+- Org-roam dependencies (if not already installed):
+  1. dash
+  2. f
+  3. s
+  4. org 
+  5. emacsql
+  6. magit-selection
+
+*** Inspiration
 My personal emacs config has been inspired by many factors, and it would be to difficult to enumerate all such factors. Therefor, I will Instead list bellow what i have deemed to be the foundational influences to my personal emacs config.
 
 - System Crafters: [[https://systemcrafters.net/emacs-from-scratch/][Emacs from Scratch]]
 - Distrotube: [[https://www.youtube.com/playlist?list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX][Cofiguring Emacs]]
 - hlissner: [[https://github.com/doomemacs/doomemacs][DOOM Emacs]]
+
 
 * IMPORTANT PROGRAMS TO LOAD FIRST
 ** Elpacs Package Manager
@@ -951,11 +964,12 @@ The first of the two lines below designates the directory where we will place al
 (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
 #+end_src 
 
-=seize-the-night= is my custom theme for Emacs. Currently <2024-12-08 Sun> it is still a work in progress because i need to add some polish, and fix up the colors to better match the /Dracula/ theme. 
+=seize-the-night= is my custom theme for Emacs. Currently [2024-12-08 Sun] it is still a work in progress because i need to add some polish, and fix up the colors to better match the /Dracula/ theme. 
 #+begin_src emacs-lisp
 ;; (load-theme 'seize-the-night t)
 #+end_src 
 
+*Update:* As of [2025-06-03 Tue] I have fully switched away from using my custo =seize-the-night= theme, and I have moved back to using /Doom Dracula/ as my default theme. Some time in the future I may revisit this custom theme. For now though I will just leave this here for historical purposes.
 ** Doom Themes
 Until then i will use the /Doom Dracula/ theme instead.
 #+begin_src emacs-lisp
