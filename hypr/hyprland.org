@@ -143,7 +143,7 @@ Normaly this script would run once an hour via =cron=; however, at times I will 
 **** Greyscale Script 
 Run my greyscale script which enables/disables a shader for Hyprland.
  #+begin_src conf :tangle hyprland.conf
-exec-once = ~/dotfiles/hypr/scripts/schedule-shaders.sh
+exec-once = ~/.local/bin/greyscale
 #+end_src
 
 Normaly this script would run once an hour via =cron=; however, at times I will login to my sistem inbetween one of these hourly checks. Therefor it is necessary to run the =greyscale= script once upon login to properly set the shader values at /Hyprland/ startup.

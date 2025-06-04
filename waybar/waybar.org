@@ -41,6 +41,7 @@ Select the modules to show on the left portion of /Waybar/
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
   "modules-left": [
          "clock",
+         "custom/rofi",
          "tray",
          "hyprland/workspaces",
          "custom/media",
@@ -69,7 +70,7 @@ Select the modules to show on the right portion of /Waybar/
         "power-profiles-daemon",
         "battery"
     ],
-#+end_src
+#+end_src{
 
 ** Module Definition
 This section will include the module configuration for each module included in the /Module Declation/ section. 
@@ -82,6 +83,17 @@ Configuration for the clock module
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
       "format-alt": "{:%Y-%m-%d}"
   },
+#+end_src
+
+Configuration for the custom rofi module
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+    "custom/rofi": {
+        "format": "󱓟",
+        "on-click": "/home/user/dotfiles/waybar/scripts/rofi.sh",
+        "signal": 6,
+        "tooltip": false,
+        "return-type": "json"
+    },
 #+end_src
 
 Configuration for the tray module 

@@ -9,15 +9,9 @@ current_hour=$(date +"%H0000" | cut -c1-4)
 
 # If it is 1700 to 0900 set hyprsunset to 4500
 if [ "$current_hour" -ge 1700 ] || [ "$current_hour" -le 0900 ]; 
-	then hyprsunset -t 4500 & disown
-	     if [ -n "$DISPLAY" ]; then
-		 notify-send -t 2500 'Hyprsunset' "Changing to night-time bluelight level" --icon=/home/user/Pictures/dev/Hyprland_Logo-black.png
-	     fi
+	then hyprsunset -t 2500 & disown
 # otherwise set hyprsunset to 6500
 	else hyprsunset -t 6500 & disown 
-	     if [ -n "$DISPLAY" ]; then
-		 notify-send 'Hyprsunset' "Changing to day-time bluelight level" --icon=/home/user/Pictures/dev/Hyprland_Logo-black.png
-	     fi
 fi
 
 # credit: https://old.reddit.com/r/hyprland/comments/1ho4bqo/how_does_hyprsunset_work/

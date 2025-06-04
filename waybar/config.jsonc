@@ -11,6 +11,7 @@
 
 "modules-left": [
        "clock",
+       "custom/rofi",
        "tray",
        "hyprland/workspaces",
        "custom/media",
@@ -19,23 +20,29 @@
 "modules-center": [
     "hyprland/window",
 ],
-
 "modules-right": [
-    "idle_inhibitor",
-    "backlight",
-    "pulseaudio",
-    "network",
-    "temperature",
-    "memory",
-    "cpu",
-    "power-profiles-daemon",
-    "battery"
-],
-
+        "idle_inhibitor",
+        "backlight",
+        "pulseaudio",
+        "network",
+        "temperature",
+        "memory",
+        "cpu",
+        "power-profiles-daemon",
+        "battery"
+    ],
 "clock": {
     // "timezone": "America/New_York",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}"
+},
+
+"custom/rofi": {
+    "format": "󱓟",
+    "on-click": "/home/user/dotfiles/waybar/scripts/rofi.sh",
+    "signal": 6,
+    "tooltip": false,
+    "return-type": "json"
 },
 
 "tray": {
