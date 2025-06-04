@@ -262,6 +262,7 @@ Elfeed-tube commands
     "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs/README.org")) :wk "Edit Emacs config")
     "f h" '((lambda () (interactive) (find-file "~/dotfiles/hypr/hyprland.org")) :wk "Edit Hyprland config")
     "f r" '(counsel-recentf :wk "Find recent files")
+    "f q" '(qrencode-export-buffer-to-file :wk "Export qrcode buffers to a file")
 #+end_src
 
 #+begin_src emacs-lisp
@@ -292,7 +293,8 @@ Create a key binding for a simple orgmode export menu, like what is used in /DOO
     "o" '(:ignore t :wk "Open")
     "o s" '(org-side-tree :wk "Org Side-Tree")
     "o l" '(browse-url-xdg-open :wk "open a URL in the XDG default browser")
-    "o b" '(browse-url-of-buffer :wk "open the current buffer in the XDG default browser"))
+    "o b" '(browse-url-of-buffer :wk "open the current buffer in the XDG default browser")
+    "o q" '(qrencode-url-at-point :wk "Generate a qrcode from UR under cursor"))
 #+end_src
 
 *** Toggles 
