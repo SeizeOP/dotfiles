@@ -1,7 +1,6 @@
 // -*- mode: jsonc -*-
 
-[
-  {
+{
 
 "layer": "top", // Waybar at top layer
 "position": "top", // Waybar position (top|bottom|left|right)
@@ -20,17 +19,19 @@
 "modules-center": [
     "hyprland/window",
 ],
+
 "modules-right": [
-        "idle_inhibitor",
-        "backlight",
-        "pulseaudio",
-        "network",
-        "temperature",
-        "memory",
-        "cpu",
-        "power-profiles-daemon",
-        "battery"
-    ],
+    "idle_inhibitor",
+    "backlight",
+    "pulseaudio",
+    "network",
+    "temperature",
+    "memory",
+    "cpu",
+    "power-profiles-daemon",
+    "battery"
+],
+
 "clock": {
     // "timezone": "America/New_York",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
