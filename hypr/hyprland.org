@@ -50,7 +50,7 @@ This section includes links to the configuration files used by /non Hyprland/ pa
 ** [[~/.config/hypr/hyprlock.conf][Hypr-Lock]]
 ** [[~/.config/hypr/hyprpaper.conf][Hypr-Paper]]
 ** [[../nwg-wrapper/][NWG Wrapper]]
-** [[~/.config/rofi/config.rasi][Rofi]]
+** [[../rofi/config.rasi][Rofi]]
 ** SwayNC
 - [[~/.config/swaync/config.json][Config]]
 - [[~/.config/swaync/style.css][style.css]]
