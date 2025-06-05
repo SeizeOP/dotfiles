@@ -1043,10 +1043,10 @@ Visit /scratch/ buffer from custom startpage
 #+Author: Henry Davies (HD) 
 #+Description: HD's personal Emacs config.
 #+Startup: showeverything inlineimages
+#+exclude_tags: noexport
 
 ** Export Control                                                 :noexport:
 #+Options: num:nil noexport
-#+exclude_tags: noexport
 #+export_file_name: ~/Documents/html/system/emacs.html
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 - specify the background color, and font color fo source code blocks
