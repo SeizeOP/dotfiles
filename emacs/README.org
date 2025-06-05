@@ -1046,7 +1046,7 @@ Visit /scratch/ buffer from custom startpage
 #+exclude_tags: noexport
 #+Options: num:nil noexport
 
-** HTML Export Control                                            :noexport:
+* HTML Export Control :noexport:
 #+export_file_name: ~/Documents/html/system/emacs.html
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 specify the background color, and font color fo source code blocks
