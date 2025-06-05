@@ -1044,14 +1044,14 @@ Visit /scratch/ buffer from custom startpage
 #+Description: HD's personal Emacs config.
 #+Startup: showeverything inlineimages
 #+exclude_tags: noexport
-
-** Export Control                                                 :noexport:
 #+Options: num:nil noexport
+
+** HTML Export Control                                            :noexport:
 #+export_file_name: ~/Documents/html/system/emacs.html
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-- specify the background color, and font color fo source code blocks
+specify the background color, and font color fo source code blocks
 #+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
 
-- Specify the background color of code blocks. In my case these somewhat interchangable with regualar quotes, as most of the extensive code is placed in source code blocks. 
+Specify the background color of code blocks. In my case these somewhat interchangable with regualar quotes, as most of the extensive code is placed in source code blocks. 
 #+HTML_HEAD: <style>code{background:#f8f8f2;color:#6272a4;} </style>
 #+HTML_HEAD: <style>ul{background:#f8f8f2;} </style>
