@@ -1,6 +1,10 @@
+
+ [[./images/emacs-org.png]] 
+
 * TABLE OF CONTENTS :toc:noexport:
-- [[#imagesemacs-orgpng][[[./images/emacs-org.png]]]]
-  - [[#about-this-config][ABOUT THIS CONFIG]]
+- [[#about-this-config][ABOUT THIS CONFIG]]
+  - [[#external-dependencies][External Dependencies]]
+  - [[#inspiration][Inspiration]]
 - [[#important-programs-to-load-first][IMPORTANT PROGRAMS TO LOAD FIRST]]
   - [[#elpacs-package-manager][Elpacs Package Manager]]
   - [[#evil-mode][Evil Mode]]
@@ -55,12 +59,10 @@
 - [[#which-key][WHICH-KEY]]
 - [[#footnotes][FOOTNOTES]]
 
-* [[./images/emacs-org.png]] 
-
-** ABOUT THIS CONFIG
+* ABOUT THIS CONFIG
 This is my personal /GNU Emacs/ literate configuration. I will do my best to clarify what external dependencies are required for this emacs config. However, the external dependency list may not be complete, and I may have made other undocumented changes to my system. Therefor I would *NOT* recommend blindly copying this config. Instead, i would suggest reading though this config, and copying/reimplimenting only those sections which are reivant to your own personal emacs config.
 
-*** External Dependencies
+** External Dependencies
 - CMake: Needed for compiling some things
 - JetBrains Mono
 - Org-roam dependencies (if not already installed):
@@ -71,7 +73,7 @@ This is my personal /GNU Emacs/ literate configuration. I will do my best to cla
   5. emacsql
   6. magit-selection
 
-*** Inspiration
+** Inspiration
 My personal emacs config has been inspired by many factors, and it would be to difficult to enumerate all such factors. Therefor, I will Instead list bellow what i have deemed to be the foundational influences to my personal emacs config.
 
 - System Crafters: [[https://systemcrafters.net/emacs-from-scratch/][Emacs from Scratch]]
@@ -802,7 +804,7 @@ Org-roam is a plain-text knowledge management system. It brings some of [[https:
   (use-package org-roam 
     :ensure t
     :custom
-    (org-roam-directory (file-truename "~/org/org-roam"))
+    (org-roam-directory (file-truename "~/Documents/org/org-roam/"))
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
            ("C-c n i" . org-roam-node-insert)

@@ -8,10 +8,12 @@ if [ "$current_hour" -ge 2200 ] || [ "$current_hour" -le 0900 ];
 # Set night mode (greyscale)
 then sed -i -E '/screen_shader/s/^( *)#+(.*)/\1\2/' ~/dotfiles/hypr/hyprland.org && exec emacs --batch --eval "(progn (find-file \"~/dotfiles/hypr/hyprland.org\") (save-buffer) (org-babel-tangle))" 
 # reload hyprland
+sleep 5	
 hyprctl reload
 # Disable greyscale (daytime)
 else sed -i -E '/screen_shader/s/^( *)/\1#/' ~/dotfiles/hypr/hyprland.org && exec emacs --batch --eval "(progn (find-file \"~/dotfiles/hypr/hyprland.org\") (save-buffer) (org-babel-tangle))" 
 # reload hyprland
+sleep 5	
 hyprctl reload
 fi
 
