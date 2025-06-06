@@ -3,4 +3,10 @@
 
 Personal Configuration File (Dotfile) Repository. 
 
-Files which end in the =org= file extension are orgmode literate configs, and do not contain the actual config files for a given program. Rather these orgmode files contain source code blocks which are tangled or pushed to the proper config files on demand. 
+Files which end in the =org= file extension are orgmode literate configs, and do not contain the actual config files for a given program. Rather these orgmode files contain source code blocks which are tangled or pushed to the proper config files on demand. To reduce confusion, the =org= files in each subdirectory has been named according to the program it relates to. 
+
+For example:
+- the Hyprland config is named: [[./hypr/hyprland.org][hyprland.org]]
+- the Waybar config is named: [[./waybar/waybar.org][waybar.org]]
+  
+One notable exeption to this naming convention is, I have named my emacs config ~README.org~ instead of ~emacs.org~. The reason I have named the emacs this way is because Github only automatically expands orgmode or markdown files if they are named README, and given the complexity of my emacs config I wanted the orgmode document to auto expand for better readability.
