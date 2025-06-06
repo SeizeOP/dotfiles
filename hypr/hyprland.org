@@ -4,6 +4,7 @@
 * TABLE OF CONTNTS :toc:noexport:
 - [[#backgroud][BACKGROUD]]
   - [[#what-is-hyprland][What is Hyprland?]]
+  - [[#how-do-i-use-hyprland][How do I use Hyprland?]]
   - [[#reloading-this-config][Reloading this config]]
 - [[#essential-program-configurations][ESSENTIAL PROGRAM CONFIGURATIONS]]
   - [[#hypr-idle][Hypr-Idle]]
@@ -29,7 +30,7 @@
 Hyprland is an independent tiling Wayland compositor written in C++. Noteworthy features of Hyprland include dynamic tiling, tabbed windows, a clean and readable C++ code-base, and a custom renderer that provides window animations, rounded corners, and Dual-Kawase Blur on transparent windows. General usage and configuration is thoroughly documented at Hyprland wiki. -- https://wiki.archlinux.org/title/Hyprland
 #+end_quote
 
- ti** How do I use Hyprland?
+** How do I use Hyprland?
 *** Screenshots
 #+attr_html: :width 800px :align center
 #+attr_latex: :width 800px :align center
@@ -49,7 +50,7 @@ This section includes links to the configuration files used by /non Hyprland/ pa
 ** [[~/.config/hypr/hypridle.conf][Hypr-Idle]] 
 ** [[~/.config/hypr/hyprlock.conf][Hypr-Lock]]
 ** [[~/.config/hypr/hyprpaper.conf][Hypr-Paper]]
-** [[../nwg-wrapper/][NWG Wrapper]]
+** [[../nwg-wrapper/bindings.org][NWG Wrapper]]
 ** [[../rofi/config.rasi][Rofi]]
 ** SwayNC
 - [[~/.config/swaync/config.json][Config]]
