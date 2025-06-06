@@ -1,4 +1,4 @@
-* TABLE OF CONTENTS :TOC:noexport:
+ TABLE OF CONTENTS :TOC:noexport:
 - [[#about][About]]
 - [[#config][CONFIG]]
   - [[#waybar-position][Waybar Position]]
@@ -358,13 +358,13 @@ This file uses the colors from [[./colors.css][colors.css]] to style the modules
 
 *** Import colors from =colors.css=
 Before I can style anything in the [[./style.css][style.css]] file; I need to imprt the pre-difined colors from [[./colors.css][colors.css]]  
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
 @import url("./colors.css");
 #+end_src
 
 *** Global Styling
 Set the font, and font size globally
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
  * {
     font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
     font-size: 13px;
@@ -372,7 +372,7 @@ Set the font, and font size globally
 #+end_src
 
 **** Window
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
 window#waybar {
     background-color: @background-darker;
     border-bottom: 3px solid @background;
@@ -387,7 +387,7 @@ window#waybar.hidden {
 #+end_src
 
 **** Button
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
 button {
     /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
@@ -405,14 +405,15 @@ button:hover {
 
 *** Module Styling
 **** Hover Rules
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #pulseaudio:hover {
         background-color: @yellow;
+        padding: 1px 6px;
     }
 
     #network:hover {
         background-color: @yellow;
-        padding: 1px 3px;
+        padding: 1px 6px;
     }
     /* #workspaces button {
         padding: 0 5px;
@@ -424,7 +425,7 @@ button:hover {
 
 **** Mode 
 styling for submodes like window resizing or screenshot menus. I don't use this on Hyprland, but do on SwayWM.
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
 
 
     #mode {
@@ -448,7 +449,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Workspaces
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #workspaces {
         margin: 0 4px;
         color: @foreground;
@@ -487,7 +488,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Clock
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #clock {
         padding: 1px 8px;
         background-color: @background;
@@ -496,7 +497,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Battery
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
   #battery {
       background-color: @cyan;
       color: @background-darker;
@@ -551,7 +552,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** CPU
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #cpu {
         background-color: @background-darker;
         color: @green;
@@ -564,7 +565,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Memory
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #memory {
         background-color: @background-darker;
         color: @purple;
@@ -589,7 +590,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Backlight
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #backlight {
         color: @yellow;
         background-color: @background-darker;
@@ -604,31 +605,31 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Network
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #network {
         background-color: @purple;
         color: @background-darker; 
-        padding: 1px 3px;
+        padding: 1px 6px;
     }
 
     #network.disconnected {
         background-color: @red;
-        padding: 1px 3px;
+        padding: 1px 6px;
     }
 #+end_src
 
 **** Audio
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #pulseaudio {
         background-color: @comment;
         color: @background;
-        padding: 1px 3px;
+        padding: 1px 6px;
     }
 
     #pulseaudio.muted {
         background-color: @red;
         color: @background-darker;
-        padding: 1px 3px;
+        padding: 1px 6px;
     }
 
     #wireplumber {
@@ -643,7 +644,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 
 **** Custom Modules
 ***** Media
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #custom-media {
         background-color: @background-darker;
         color: #fff0f5;
@@ -670,7 +671,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 ***** Rofi
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
      #custom-rofi {
         background-color: @background;
         color: #fff0f5;
@@ -678,7 +679,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
     }
 #+end_src
 **** Temperature
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #temperature {
         color: @orange;
         background-color: @background-darker;
@@ -703,7 +704,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Tray 
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
   #tray {
       background-color: @background;
       padding: 1px 6px;
@@ -720,7 +721,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Idle Inhibitor
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #idle_inhibitor {
         background-color: @selection;
     }
@@ -733,7 +734,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Privacy
-#+begin_src css :tangle ~/dotfiles/waybar/style-test.css
+#+begin_src css :tangle ~/dotfiles/waybar/style.css
     #privacy {
         padding: 0;
     }

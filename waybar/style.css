@@ -33,11 +33,12 @@ button:hover {
 
 #pulseaudio:hover {
     background-color: @yellow;
+    padding: 1px 6px;
 }
 
 #network:hover {
     background-color: @yellow;
-    padding: 1px 3px;
+    padding: 1px 6px;
 }
 /* #workspaces button {
     padding: 0 5px;
@@ -204,24 +205,24 @@ label:focus {
 #network {
     background-color: @purple;
     color: @background-darker; 
-    padding: 1px 3px;
+    padding: 1px 6px;
 }
 
 #network.disconnected {
     background-color: @red;
-    padding: 1px 3px;
+    padding: 1px 6px;
 }
 
 #pulseaudio {
     background-color: @comment;
     color: @background;
-    padding: 1px 3px;
+    padding: 1px 6px;
 }
 
 #pulseaudio.muted {
     background-color: @red;
     color: @background-darker;
-    padding: 1px 3px;
+    padding: 1px 6px;
 }
 
 #wireplumber {

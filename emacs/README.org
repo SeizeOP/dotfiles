@@ -263,8 +263,9 @@ Elfeed-tube commands
     "." '(find-file :wk "Find file")
     "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs/README.org")) :wk "Edit Emacs config")
     "f h" '((lambda () (interactive) (find-file "~/dotfiles/hypr/hyprland.org")) :wk "Edit Hyprland config")
-    "f r" '(counsel-recentf :wk "Find recent files")
     "f q" '(qrencode-export-buffer-to-file :wk "Export qrcode buffers to a file")
+    "f r" '(counsel-recentf :wk "Find recent files")
+    "f w" '((lambda () (interactive) (find-file "~/dotfiles/waybar/waybar.org")) :wk "Edit Waybar config")
 #+end_src
 
 #+begin_src emacs-lisp
