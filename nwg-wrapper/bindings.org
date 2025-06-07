@@ -90,7 +90,7 @@ window {
 #+Startup: showeverything inlineimages
 
 ** Export Control :noexport:
-#+export_file_name: ~/Documents/html/system/nwg_wrapper.html
+#+export_file_name: ~/Documents/html/docs/nwg-wrapper-dracula.html
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
 #+auto_tangle: t

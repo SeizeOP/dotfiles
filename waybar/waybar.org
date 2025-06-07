@@ -765,5 +765,5 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+auto_tangle: t
 #+exclude_tags: noexport
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-#+export_file_name: ~/Documents/html/system/waybar.html
+#+export_file_name: ~/Documents/html/docs/waybar-dracula.html
 

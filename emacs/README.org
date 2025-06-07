@@ -1049,7 +1049,7 @@ Visit /scratch/ buffer from custom startpage
 
 ** HTML Export Control                                            :noexport:
 Section containing tags pertaining to how this document shoud be formatted when exporting to HTML. 
-#+export_file_name: ~/Documents/html/system/emacs.html
+#+export_file_name: ~/Documents/html/docs/gnu-emacs-dracula.html
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 1. specify the background color, and font color fo source code blocks
 #+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>

@@ -36,5 +36,4 @@
 | =2= | [[elisp:(find-file (concat (getenv "HOME") "/.config/waybar/style.css"))][style.css]]  | This is the /CSS/ style configuration file for Waybar |
 |---+------------+-----------------------------------------------------|
 
-
 #+STARTUP: inlineimages
