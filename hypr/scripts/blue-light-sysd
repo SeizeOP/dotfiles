@@ -1,6 +1,6 @@
-#!/bin/bash 
-export WAYLAND_DISPLAY=wayland-1
-export XDG_RNTIME_DIR="/run/user/$(id -u)"
+#!/usr/bin/env bash
+#export WAYLAND_DISPLAY=wayland-1
+#export XDG_RNTIME_DIR="/run/user/$(id -u)"
 # kill current hyprsunset sesion
 killall -q hyprsunset
 
@@ -12,13 +12,13 @@ if [ "$current_hour" -ge 1700 ] || [ "$current_hour" -le 0900 ];
 	then hyprsunset -t 4500 
 	    # if [ -n "$DISPLAY" ]; then
 		# notify-send -t 2500 'Hyprsunset' "Changing to night-time bluelight level" --icon=/home/user/Pictures/dev/Hyprland_Logo-black.png
-		echo Changing to night-time bluelight level 
+		#echo Changing to night-time bluelight level 
 	     #fi
 # otherwise set hyprsunset to 6500
 	else hyprsunset -t 6500 
 	     #if [ -n "$DISPLAY" ]; then
 		# notify-send 'Hyprsunset' "Changing to day-time bluelight level" --icon=/home/user/Pictures/dev/Hyprland_Logo-black.png
-		echo Changing to day-time bluelight level
+		#echo Changing to day-time bluelight level
 	     #fi
 fi
 

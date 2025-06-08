@@ -1,4 +1,4 @@
- TABLE OF CONTENTS :TOC:noexport:
+* TABLE OF CONTENTS                                            :TOC:noexport:
 - [[#about][About]]
 - [[#config][CONFIG]]
   - [[#waybar-position][Waybar Position]]
@@ -761,7 +761,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+title: Waybar Configuration
 #+author:Henry Davies (HD)
 #+Startup: showeverything inlineimages
-#+Options: num:nil
+#+Options: num:nil broken-links:mark
 #+auto_tangle: t
 #+exclude_tags: noexport
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
