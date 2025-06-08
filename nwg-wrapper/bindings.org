@@ -1,4 +1,15 @@
-
+* TABLE OF CONTENTS :noexport:toc:
+- [[#about][About]]
+  - [[#my-configuration][My Configuration]]
+- [[#bindings][Bindings]]
+  - [[#heading][Heading]]
+  - [[#general][General]]
+  - [[#hyprland-ecosystem][Hyprland Ecosystem]]
+  - [[#clipboard-keybindings][Clipboard keybindings]]
+  - [[#emacs-keybindings][Emacs keybindings]]
+  - [[#kitty-terminal-keybindings][Kitty terminal keybindings]]
+- [[#styling][Styling]]
+- [[#footer][FOOTER]]
 
 * About
 /[[https://github.com/nwg-piotr/nwg-wrapper][NWG-Wrapper]]/ is a display script for Wayland compositors, similar to /[[https://github.com/brndnmtthws/conky][Conky]]/ for X11. NWG-Wrapper can be used with script, text, or markup files.  
@@ -22,11 +33,12 @@ This section includes the main heading to be displayed in NWG-Wrapper
 
 ** General
 #+begin_src html :tangle ~/dotfiles/nwg-wrapper/bindings.pango
-<span size="x-large" foreground="#50fa7b" face="serif">Hyprland</span>
+  <span size="x-large" foreground="#50fa7b" face="serif">Hyprland</span>
 
-Web browser		<span foreground="#8be9fd" face="serif">Mod+B</span>
-Toggle Grouping		<span foreground="#8be9fd" face="serif">Mod+G</span>
-Toggle floating		<span foreground="#8be9fd" face="serif">Mod+V</span>
+  Web browser		<span foreground="#8be9fd" face="serif">Mod+B</span>
+  Modify default browser	<span foreground="#8be9fd" face="serif">CTRL+ALT+[B,F,M]</span>
+  Toggle Grouping		<span foreground="#8be9fd" face="serif">Mod+G</span>
+  Toggle floating		<span foreground="#8be9fd" face="serif">Mod+V</span>
 
 #+end_src
 

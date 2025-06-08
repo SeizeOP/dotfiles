@@ -5,6 +5,7 @@
 <span size="x-large" foreground="#50fa7b" face="serif">Hyprland</span>
 
 Web browser		<span foreground="#8be9fd" face="serif">Mod+B</span>
+Modify default browser	<span foreground="#8be9fd" face="serif">CTRL+ALT+[B,F,M]</span>
 Toggle Grouping		<span foreground="#8be9fd" face="serif">Mod+G</span>
 Toggle floating		<span foreground="#8be9fd" face="serif">Mod+V</span>
 

@@ -155,9 +155,9 @@ Start the Emacs daemon, and Emacs client upon user login
 exec-once = ~/.local/bin/serv-emacs
 #+end_src
 
-**** Firefox
+**** Browser
 #+begin_src conf :tangle hyprland.conf
-exec-once = firefox
+exec-once = $browser
 #+end_src
 
 **** NWG-Wrapper
@@ -198,13 +198,13 @@ permission = /usr/bin/hyprctl, plugin, deny
 ** Input Configuration
 
 #+begin_src conf :tangle hyprland.conf
-input {
-    kb_layout = us
-    kb_variant =
-    kb_model =
+  input {
+      kb_layout = us
+      kb_variant =
+      kb_model =
 #+end_src
 
-*Remap =Capslock= to =Escape= and turn =Numlock= on by default*
+*Remap =Capslock= to =CTRL= and turn =Numlock= on by default*
 #+begin_src conf :tangle hyprland.conf
     kb_options = caps:ctrl_modifier
     kb_rules =
@@ -475,7 +475,7 @@ Enable rounding of window corners
 **** Shaders
 Enable a screen shader based on the provided shadder file. In this case the provided file is a shader file which enables a greyscale effect. 
 #+begin_src conf :tangle hyprland.conf
-     #screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+     #####screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 bellow is an example of this shader in action:
