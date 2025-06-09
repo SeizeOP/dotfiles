@@ -40,7 +40,7 @@
 
 "custom/rofi": {
     "format": "󱓟",
-    "on-click": "/home/user/dotfiles/waybar/scripts/rofi.sh",
+    "on-click": "$HOME/dotfiles/waybar/scripts/rofi.sh",
     "signal": 6,
     "tooltip": false,
     "return-type": "json"

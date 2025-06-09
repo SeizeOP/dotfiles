@@ -88,7 +88,7 @@ Configuration for the custom rofi module
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
     "custom/rofi": {
         "format": "󱓟",
-        "on-click": "/home/user/dotfiles/waybar/scripts/rofi.sh",
+        "on-click": "$HOME/dotfiles/waybar/scripts/rofi.sh",
         "signal": 6,
         "tooltip": false,
         "return-type": "json"
