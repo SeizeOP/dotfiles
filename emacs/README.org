@@ -850,18 +850,19 @@ a better interface for Org-roam Graphs.
 ** Source Code Block Tag Expansion
 Org-tempo is not a seperate package but a module within org that can be enabled. Org-tempo allows for '<s' followed by TAB to expand to a begin_src teg. Other expansions available include:
 
-| Typing the below + TAB | Expands to ...                          |
-|------------------------+-----------------------------------------|
-| <a                     | '#+BEGIN_EXPORT ascii ... #+END_EXPORT' |
-| <c                     | '#+BEGIN_CENTER ... #+END_CENTER'       |
-| <C                     | '#+BEGIN_COMMENT ... #+END_COMMENT'     |
-| <e                     | '#+BEGIN_EXPAMPLE ... #+END_EXAMPLE'    |
-| <E                     | '#+BEGIN_EXPORT ... #+END_EXPORT'       |
-| <h                     | '#+BEGIN_EXPORT html ... #+END_EXPORT'  |
-| <l                     | '#+BEGIN_EXPORT latex ... #+END_EXPORT' |
-| <q                     | '#+BEGIN_QUOTE ... #+END_QUOTE'         |
-| <s                     | '#+BEGIN_SRC ... #+END_SRC'             |
-| <v                     | '#+BEGIN_VERSE ... #+END_VERSE'         |
+#+ATTR_HTML: :border 2 :rules all :frame border
+| Typing the below + TAB | Expands to ...                        |
+|------------------------+---------------------------------------|
+| <a                     | =#+BEGIN_EXPORT= ascii ... =#+END_EXPORT= |
+| <c                     | =#+BEGIN_CENTER= ... =#+END_CENTER=       |
+| <C                     | =#+BEGIN_COMMENT= ... =#+END_COMMENT=     |
+| <e                     | =#+BEGIN_EXPAMPLE= ... =#+END_EXAMPLE=    |
+| <E                     | =#+BEGIN_EXPORT= ... =#+END_EXPORT=       |
+| <h                     | =#+BEGIN_EXPORT= html ... =#+END_EXPORT=  |
+| <l                     | =#+BEGIN_EXPORT= latex ... =#+END_EXPORT= |
+| <q                     | =#+BEGIN_QUOTE= ... =#+END_QUOTE=         |
+| <s                     | =#+BEGIN_SRC= ... =#+END_SRC=             |
+| <v                     | =#+BEGIN_VERSE= ... =#+END_VERSE=         |
 
 #+begin_src emacs-lisp
 (require 'org-tempo)
