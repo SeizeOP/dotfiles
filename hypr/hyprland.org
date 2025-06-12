@@ -360,12 +360,12 @@ bindm = $mainMod, mouse:273, resizewindow
 Toggle window group (sway tabbed mode)
 #+begin_src conf :tangle hyprland.conf
 bind = $mainMod, G, togglegroup,
+bind = $mainMod, N, changegroupactive,
 #+end_src
 
 #+begin_src conf :tangle hyprland.conf
-bind = $mainMod ESC, G, movewindoworgroup,
-bind = $mainMod ESC, F, lockgroups,
-bind = $mainMod ESC, N, changegroupactive,
+bind = $mainMod $shiftmod, G, movewindoworgroup,
+bind = $mainMod $shiftmod, F, lockgroups,
 #+end_src
 
 *** =SUPER= + =CTRL= Keybindings
@@ -375,23 +375,58 @@ For this reason I will be leaving these as regular bindings until I have the tim
 
 **** Clipboard
 #+begin_src conf :tangle hyprland.conf
-bind=$mainMod CTRL,V,exec,cliphist list | rofi -dmenu | cliphist decode | wl-copy
-bind=$mainMod CTRL,D,exec,cliphist list | rofi -dmenu | cliphist delete
-bind=$mainMod CTRL,E,exec,cliphist list | rofi -dmenu | cliphist wipe 
+#bind=$mainMod CTRL,V,exec,cliphist list | rofi -dmenu | cliphist decode | wl-copy
+#bind=$mainMod CTRL,D,exec,cliphist list | rofi -dmenu | cliphist delete
+#bind=$mainMod CTRL,E,exec,cliphist list | rofi -dmenu | cliphist wipe 
+#+end_src
+***** Clipboard submap
+Switch to submap called /clipboard/
+#+begin_src conf :tangle hyprland.conf
+bind = ALT, C, submap, Clipboard
+submap = Clipboard
+#+end_src
+
+***** Define submap keybindings
+#+begin_src conf :tangle hyprland.conf
+  bind =, V,exec,cliphist list | rofi -dmenu | cliphist decode | wl-copy
+  bind =, D,exec,cliphist list | rofi -dmenu | cliphist delete
+  bind =, E,exec,cliphist list | rofi -dmenu | cliphist wipe 
+#+end_src
+
+***** Reset submap 
+#+begin_src conf :tangle hyprland.conf
+  bind =, delete, submap, reset 
+  submap = reset
+#+end_src
+*** Hyprshot
+similar to the =SUPER= + =CTRL= keybindings the below keybindings all use the =PRINT= key. Currently this is not the first key in all of the binds; however when i get around to implimenting submaps i will make the =PRINT= key the primary key.
+
+**** Define submap 
+#+begin_src conf :tangle hyprland.conf
+bind = ALT, P, submap, Screencopy
+submap = Screencopy
+#+end_src
+**** Hyprshot
+#+begin_src conf :tangle hyprland.conf
+ bind =, O, exec, hyprshot --freeze -m output -t 7500
+ bind =, W, exec, hyprshot --freeze -m window -t 7500
+ bind =, R, exec, hyprshot --freeze -m region -t 7500
 #+end_src
 
 **** Color Picker
 #+begin_src conf :tangle hyprland.conf
-bind=$mainMod CTRL,P,exec,hyprpicker -a -f hex
+bind=, P,exec,hyprpicker -a -f hex
 #+end_src
 
-*** Hyprshot
-similar to the =SUPER= + =CTRL= keybindings the below keybindings all use the =PRINT= key. Currently this is not the first key in all of the binds; however when i get around to implimenting submaps i will make the =PRINT= key the primary key.
-
+**** Reset Submap
 #+begin_src conf :tangle hyprland.conf
- bind =, PRINT, exec, hyprshot --freeze -m output -t 7500
- bind = $mainMod, PRINT, exec, hyprshot --freeze -m window -t 7500
- bind = $shiftMod, PRINT, exec, hyprshot --freeze -m region -t 7500
+ bind =, delete, submap, reset 
+ submap = reset
+#+end_src
+#+begin_src conf :tangle hyprland.conf
+# bind =, PRINT, exec, hyprshot --freeze -m output -t 7500
+ #bind = $mainMod, PRINT, exec, hyprshot --freeze -m window -t 7500
+ #bind = $shiftMod, PRINT, exec, hyprshot --freeze -m region -t 7500
 #+end_src
 
 *** Volume Control
@@ -477,7 +512,7 @@ Enable rounding of window corners
 **** Shaders
 Enable a screen shader based on the provided shadder file. In this case the provided file is a shader file which enables a greyscale effect. 
 #+begin_src conf :tangle hyprland.conf
-     ########screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+     #####screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 bellow is an example of this shader in action:

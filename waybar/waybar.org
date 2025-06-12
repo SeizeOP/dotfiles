@@ -44,6 +44,7 @@ Select the modules to show on the left portion of /Waybar/
          "tray",
          "hyprland/workspaces",
          "custom/media",
+      "hyprland/submap",
      ],
 #+end_src
 
@@ -58,17 +59,17 @@ Select the modules to show on the center portion of /Waybar/
 *** Modules Right
 Select the modules to show on the right portion of /Waybar/
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
-    "modules-right": [
-        "idle_inhibitor",
-        "backlight",
-        "pulseaudio",
-        "network",
-        "temperature",
-        "memory",
-        "cpu",
-        "power-profiles-daemon",
-        "battery"
-    ],
+  "modules-right": [
+      "idle_inhibitor",
+      "backlight",
+      "pulseaudio",
+      "network",
+      "temperature",
+      "memory",
+      "cpu",
+      "power-profiles-daemon",
+      "battery"
+  ],
 #+end_src
 
 ** Module Definition
@@ -129,14 +130,14 @@ Configuration for the "custom/media" module
 "custom/media": {
         "format": "{0} {1}",
         "return-type": "json",
-        "max-length": 40,
+        "max-length": 20,
         "format-icons": {
             "spotify": "",
             "default": "🎜",
         },
         "escape": true,
 	"on-click": "playerctl play-pause",	    
-        "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+        "exec": "$HOME/dotfiles/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
 #+end_src
@@ -145,6 +146,12 @@ Configuration for the "hyprland/window" module
 
 
 *** Modules Right
+**** Submap
+#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+"hyprland/submap": {
+  "format": "Submap: {}"
+},
+#+end_src
 **** I/O
 Configuration for the idle_inhibitor module
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
