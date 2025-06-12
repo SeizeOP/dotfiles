@@ -369,10 +369,11 @@ bind = $mainMod $shiftmod, F, lockgroups,
 #+end_src
 
 *** =SUPER= + =CTRL= Keybindings
-The below bindings all begin with the =$mainMod= (super) and =CTRL= keys. I intend to move these keybinds to a [[https://wiki.hyprland.org/Configuring/Binds/#submaps][submap]] at some point. Unfortunately, currently <2024-12-03 Tue> the submap configuration does not seem to actually execute the given commands. It also repeatedly broke other essential binds ex: =SUPER+Q=, =SUPER+D=
+The below bindings all begin with the =$mainMod= (super) and =CTRL= keys. +I intend to move these keybinds to a [[https://wiki.hyprland.org/Configuring/Binds/#submaps][submap]] at some point. Unfortunately, currently <2024-12-03 Tue> the submap configuration does not seem to actually execute the given commands. It also repeatedly broke other essential binds ex: =SUPER+Q=, =SUPER+D=+
 
-For this reason I will be leaving these as regular bindings until I have the time to figure out what was breaking the /submap/.
++For this reason I will be leaving these as regular bindings until I have the time to figure out what was breaking the /submap/.+
 
+*Update* [2025-06-12]: I Have now implimented submaps properly. See below for clipboard and screenshot submap bindings.
 **** Clipboard
 #+begin_src conf :tangle hyprland.conf
 #bind=$mainMod CTRL,V,exec,cliphist list | rofi -dmenu | cliphist decode | wl-copy
