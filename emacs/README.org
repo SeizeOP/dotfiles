@@ -824,7 +824,7 @@ llama is a dependency of org-roam, and must have the repository manually specifi
 #+begin_src emacs-lisp
   (use-package llama
     :ensure
-    (:host github :repo "yasuhirokimura/llama" :branch "main" :files ("*.el" "out")))
+    (:host github :repo "tarsius/llama" :branch "main" :files ("*.el" "out")))
 #+end_src
 
 *** Org-roam UI
