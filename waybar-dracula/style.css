@@ -1,0 +1,331 @@
+@import url("./colors.css");
+
+* {
+    font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: @background-darker;
+    border-bottom: 3px solid @background;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px @pink;
+}
+
+#pulseaudio:hover {
+    background-color: @yellow;
+    padding: 1px 6px;
+}
+
+#network:hover {
+    background-color: @yellow;
+    padding: 1px 6px;
+}
+/* #workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: @foreground;
+}*/
+
+#mode {
+    background-color: @comment;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+
+#cpu,
+#memory,
+#pulseaudio,
+#wireplumber,
+#idle_inhibitor,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 10px;
+    color: #ffffff;
+}
+
+#window,
+
+#workspaces {
+    margin: 0 4px;
+    color: @foreground;
+}
+
+#workspaces button.active {
+    background-color: @background;
+    color: @forground;
+    box-shadow: inset 0 -3px @purple;
+} 
+#workspaces button:hover {
+    background: @selection;
+    color: @forground;
+    box-shadow: inset 0 -3px @yellow
+}
+
+#workspaces button.focused {
+    background-color: @purple;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+
+#workspaces button.urgent {
+    background-color: @red;
+}
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    padding: 1px 8px;
+    background-color: @background;
+    color: @green;
+}
+
+#battery {
+    background-color: @cyan;
+    color: @background-darker;
+    padding: 1px 10px;
+}
+
+#battery.charging, #battery.plugged {
+    color: @background-darker;
+    background-color: @green;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: @red;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+    padding-right: 15px;
+}
+
+#power-profiles-daemon.performance {
+    background-color: @red;
+    color: @background-darker;
+}
+
+#power-profiles-daemon.balanced {
+    background-color: @comment;
+    color: #ffffff;
+}
+
+#power-profiles-daemon.power-saver {
+    background-color: @green;
+    color: @background-darker;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    background-color: @background-darker;
+    color: @green;
+}
+
+#cpu:hover {
+    background-color: @green;
+    color: @background-darker;
+}
+
+#memory {
+    background-color: @background-darker;
+    color: @purple;
+}
+
+#memory:hover {
+    background-color: @purple;
+    color: @background-darker;
+
+}
+
+#disk {
+    background-color: @background-color;
+    color: @purple;
+}
+
+#disk:hover {
+    background-color: @purple;
+    color: @background-darker;
+
+}
+
+#backlight {
+    color: @yellow;
+    background-color: @background-darker;
+    padding: 1px 3px;
+}
+
+#backlight:hover {
+    color: @background-darker;
+    background-color: @yellow;
+    padding: 1px 3px;
+}
+
+#network {
+    background-color: @purple;
+    color: @background-darker; 
+    padding: 1px 6px;
+}
+
+#network.disconnected {
+    background-color: @red;
+    padding: 1px 6px;
+}
+
+#pulseaudio {
+    background-color: @comment;
+    color: @background;
+    padding: 1px 6px;
+}
+
+#pulseaudio.muted {
+    background-color: @red;
+    color: @background-darker;
+    padding: 1px 6px;
+}
+
+#wireplumber {
+    background-color: #fff0f5;
+    color: #000000;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+
+#custom-media {
+    background-color: @background-darker;
+    color: #fff0f5;
+    min-width: 50px;
+    border-bottom: 3px solid @purple;
+    padding: 1px 3px;
+}
+
+#custom-media.custom-spotify {
+    background-color: @background;
+    color: @green;
+    padding: 1px 3px;
+}
+
+#custom-media.custom-vlc {
+    color: #ffa000;
+    padding: 1px 3px;
+}
+
+#custom-media.custom-mpv {
+    color: @purple;
+    padding: 1px 3px;
+}
+
+#custom-rofi {
+    background-color: @background;
+    color: #fff0f5;
+    padding: 1px 6px;
+}
+
+#temperature {
+    color: @orange;
+    background-color: @background-darker;
+    padding: 1px 3px;
+}
+#temperature:hover {
+    background-color: @orange;
+    color: @background-darker;
+    padding: 1px 3px;
+}
+
+#temperature.critical {
+    color: @red;
+    background-color: @background-darker;
+    padding: 1px 3px;
+}
+
+#temperature.critical:hover {
+    background-color: @red;
+    color: @background-darker;
+}
+
+#tray {
+    background-color: @background;
+    padding: 1px 6px;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
+}
+
+#idle_inhibitor {
+    background-color: @selection;
+}
+
+#idle_inhibitor.activated {
+    background-color: @foreground;
+    color: @selection;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+    background-color: #0069d4;
+}
