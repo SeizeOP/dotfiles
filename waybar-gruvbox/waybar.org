@@ -365,7 +365,7 @@ This file uses the colors from [[./colors.css][colors.css]] to style the modules
 
 *** Import colors from =colors.css=
 Before I can style anything in the [[./style.css][style.css]] file; I need to imprt the pre-difined colors from [[./colors.css][colors.css]]  
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
 @import url("./colors.css");
 #+end_src
 
