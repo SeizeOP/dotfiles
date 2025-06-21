@@ -14,11 +14,11 @@
        "tray",
        "hyprland/workspaces",
        "custom/media",
-    "hyprland/submap",
+    "hyprland/submap"
    ],
 
 "modules-center": [
-    "hyprland/window",
+    "hyprland/window"
 ],
 
 "modules-right": [
@@ -76,7 +76,7 @@
         "max-length": 20,
         "format-icons": {
             "spotify": "",
-            "default": "🎜",
+            "default": "🎜"
         },
         "escape": true,
 	"on-click": "playerctl play-pause",	    
@@ -165,7 +165,7 @@
 
 "battery": {
         "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -174,12 +174,13 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
+        //"format-good": "", // An empty format will hide the module
+        "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {
         "bat": "BAT2"
     }
 
-}
+}  
+//]

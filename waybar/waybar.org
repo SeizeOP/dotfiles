@@ -44,7 +44,7 @@ Select the modules to show on the left portion of /Waybar/
          "tray",
          "hyprland/workspaces",
          "custom/media",
-      "hyprland/submap",
+      "hyprland/submap"
      ],
 #+end_src
 
@@ -52,7 +52,7 @@ Select the modules to show on the left portion of /Waybar/
 Select the modules to show on the center portion of /Waybar/
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
     "modules-center": [
-        "hyprland/window",
+        "hyprland/window"
     ],
 #+end_src
 
@@ -133,7 +133,7 @@ Configuration for the "custom/media" module
         "max-length": 20,
         "format-icons": {
             "spotify": "",
-            "default": "🎜",
+            "default": "🎜"
         },
         "escape": true,
 	"on-click": "playerctl play-pause",	    
@@ -257,7 +257,7 @@ Configuration for the battery module
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "battery": {
         "states": {
-            // "good": 95,
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
@@ -266,8 +266,8 @@ Configuration for the battery module
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
+        //"format-good": "", // An empty format will hide the module
+        "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
     "battery#bat2": {
@@ -276,7 +276,8 @@ Configuration for the battery module
 #+end_src
 
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
-  }
+  }  
+//]
 #+end_src
 *** Un-used Modules
 This section includes modules from the default /Waybar/ configuration file which I do not use. These modules are placed here for reference only, and are not used in my running configuration.
@@ -436,7 +437,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 
     #mode {
         background-color: @comment;
-        box-shadow: inset 0 -3px #ffffff;
+        box-shadow: inset 0 -3px @foreground;
     }
 
 
@@ -448,7 +449,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
     #power-profiles-daemon,
     #mpd {
         padding: 0 10px;
-        color: #ffffff;
+        color: @foreground;
     }
 
     #window,
@@ -474,7 +475,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 
     #workspaces button.focused {
         background-color: @purple;
-        box-shadow: inset 0 -3px #ffffff;
+        box-shadow: inset 0 -3px @foreground;
     }
 
 
@@ -525,7 +526,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
   /* Using steps() instead of linear as a timing function to limit cpu usage */
   #battery.critical:not(.charging) {
       background-color: @red;
-      color: #ffffff;
+      color: @foreground;
       animation-name: blink;
       animation-duration: 0.5s;
       animation-timing-function: steps(12);
@@ -544,7 +545,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 
   #power-profiles-daemon.balanced {
       background-color: @comment;
-      color: #ffffff;
+      color: @foreground;
   }
 
   #power-profiles-daemon.power-saver {
@@ -639,7 +640,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
     }
 
     #wireplumber {
-        background-color: #fff0f5;
+        background-color: @foreground;
         color: #000000;
     }
 
@@ -653,7 +654,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+begin_src css :tangle ~/dotfiles/waybar/style.css
     #custom-media {
         background-color: @background-darker;
-        color: #fff0f5;
+        color: @foreground;
         min-width: 50px;
         border-bottom: 3px solid @purple;
         padding: 1px 3px;
@@ -680,7 +681,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+begin_src css :tangle ~/dotfiles/waybar/style.css
      #custom-rofi {
         background-color: @background;
-        color: #fff0f5;
+        color: @foreground;
         padding: 1px 6px;
     }
 #+end_src
