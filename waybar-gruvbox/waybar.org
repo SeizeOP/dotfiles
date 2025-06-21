@@ -11,7 +11,7 @@
 
 * About 
 #+attr_html: :width 800px :align center
-Personal Dracula theme for /Waybar/.  
+Personal Gruvbox theme for /Waybar/.  
 [[file:./images/bar-demo.png]]
 * CONFIG
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
@@ -19,12 +19,12 @@ Personal Dracula theme for /Waybar/.
 #+end_src
 
 
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 {
 #+end_src
 ** Waybar Position
 Define the location, width, and hieght of /Waybar/
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
@@ -37,7 +37,7 @@ This section will name each module I want included on my /Waybar/; along with th
 
 *** Modules Left
 Select the modules to show on the left portion of /Waybar/
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
   "modules-left": [
          "clock",
          "custom/rofi",
@@ -50,7 +50,7 @@ Select the modules to show on the left portion of /Waybar/
 
 *** Modules Center
 Select the modules to show on the center portion of /Waybar/
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
     "modules-center": [
         "hyprland/window",
     ],
@@ -58,7 +58,7 @@ Select the modules to show on the center portion of /Waybar/
 
 *** Modules Right
 Select the modules to show on the right portion of /Waybar/
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
   "modules-right": [
       "idle_inhibitor",
       "backlight",
@@ -77,7 +77,7 @@ This section will include the module configuration for each module included in t
 
 *** Modules Left 
 Configuration for the clock module 
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
   "clock": {
       // "timezone": "America/New_York",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
@@ -86,7 +86,7 @@ Configuration for the clock module
 #+end_src
 
 Configuration for the custom rofi module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
     "custom/rofi": {
         "format": "󱓟",
         "on-click": "$HOME/dotfiles/waybar/scripts/rofi.sh",
@@ -97,7 +97,7 @@ Configuration for the custom rofi module
 #+end_src
 
 Configuration for the tray module 
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "tray": {
         // "icon-size": 21,
         "spacing": 10
@@ -105,7 +105,7 @@ Configuration for the tray module
 #+end_src
 
 Configuration for the "hyprland/workspaces" module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
   "hyprland/workspaces": {
            "disable-scroll": false,
            "all-outputs": true,
@@ -126,7 +126,7 @@ Configuration for the "hyprland/workspaces" module
 #+end_src
 
 Configuration for the "custom/media" module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "custom/media": {
         "format": "{0} {1}",
         "return-type": "json",
@@ -147,14 +147,14 @@ Configuration for the "hyprland/window" module
 
 *** Modules Right
 **** Submap
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "hyprland/submap": {
   "format": "Submap: {}"
 },
 #+end_src
 **** I/O
 Configuration for the idle_inhibitor module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -165,7 +165,7 @@ Configuration for the idle_inhibitor module
 #+end_src
 
 Configuration for the backlight module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "backlight": {
         // "device": "acpi_video1",
         "format": "{percent}% {icon}",
@@ -174,7 +174,7 @@ Configuration for the backlight module
 #+end_src
 
 Configuration for the pulseaudio module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon} {format_source}",
@@ -197,7 +197,7 @@ Configuration for the pulseaudio module
 #+end_src
 
 Configuration for the network module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
         "format-wifi": "{essid} ({signalStrength}%) ",
@@ -212,7 +212,7 @@ Configuration for the network module
 
 **** Monitoring
 Configuration for the temperature module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
     "temperature": {
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
@@ -224,14 +224,14 @@ Configuration for the temperature module
 #+end_src
 
 Configuration for the memory module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "memory": {
         "format": "{}% "
     },
 #+end_src
 
 Configuration for the cpu module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
  "cpu": {
         "format": "{usage}% ",
         "tooltip": false
@@ -239,7 +239,7 @@ Configuration for the cpu module
 #+end_src
 
 Configuration for the power profiles daemon module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "power-profiles-daemon": {
       "format": "{icon}",
       "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
@@ -254,7 +254,7 @@ Configuration for the power profiles daemon module
 #+end_src
 
 Configuration for the battery module
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
 "battery": {
         "states": {
             // "good": 95,
@@ -275,9 +275,9 @@ Configuration for the battery module
     }
 #+end_src
 
-#+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
+#+begin_src jsonc :tangle ~/dotfiles/waybar-gruvbox/config.jsonc
   }
-]
+//]
 #+end_src
 *** Un-used Modules
 This section includes modules from the default /Waybar/ configuration file which I do not use. These modules are placed here for reference only, and are not used in my running configuration.
@@ -371,7 +371,7 @@ Before I can style anything in the [[./style.css][style.css]] file; I need to im
 
 *** Global Styling
 Set the font, and font size globally
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
  * {
     font-family: 'Noto Sans Mono', 'Font Awesome 6 Free', 'Font Awesome 6 Brands', monospace;
     font-size: 13px;
@@ -379,7 +379,7 @@ Set the font, and font size globally
 #+end_src
 
 **** Window
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
 window#waybar {
     background-color: @background-darker;
     border-bottom: 3px solid @background;
@@ -394,7 +394,7 @@ window#waybar.hidden {
 #+end_src
 
 **** Button
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
 button {
     /* Use box-shadow instead of border so the text isn't offset */
     box-shadow: inset 0 -3px transparent;
@@ -412,7 +412,7 @@ button:hover {
 
 *** Module Styling
 **** Hover Rules
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #pulseaudio:hover {
         background-color: @yellow;
         padding: 1px 6px;
@@ -432,7 +432,7 @@ button:hover {
 
 **** Mode 
 styling for submodes like window resizing or screenshot menus. I don't use this on Hyprland, but do on SwayWM.
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
 
 
     #mode {
@@ -456,7 +456,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Workspaces
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #workspaces {
         margin: 0 4px;
         color: @foreground;
@@ -495,7 +495,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Clock
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #clock {
         padding: 1px 8px;
         background-color: @background;
@@ -504,7 +504,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Battery
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
   #battery {
       background-color: @cyan;
       color: @background-darker;
@@ -559,7 +559,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** CPU
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #cpu {
         background-color: @background-darker;
         color: @green;
@@ -572,7 +572,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Memory
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #memory {
         background-color: @background-darker;
         color: @purple;
@@ -597,7 +597,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Backlight
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #backlight {
         color: @yellow;
         background-color: @background-darker;
@@ -612,7 +612,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Network
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #network {
         background-color: @purple;
         color: @background-darker; 
@@ -626,7 +626,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Audio
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #pulseaudio {
         background-color: @comment;
         color: @background;
@@ -651,7 +651,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 
 **** Custom Modules
 ***** Media
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #custom-media {
         background-color: @background-darker;
         color: #fff0f5;
@@ -678,7 +678,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 ***** Rofi
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
      #custom-rofi {
         background-color: @background;
         color: #fff0f5;
@@ -686,7 +686,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
     }
 #+end_src
 **** Temperature
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #temperature {
         color: @orange;
         background-color: @background-darker;
@@ -711,7 +711,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Tray 
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
   #tray {
       background-color: @background;
       padding: 1px 6px;
@@ -728,7 +728,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Idle Inhibitor
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #idle_inhibitor {
         background-color: @selection;
     }
@@ -741,7 +741,7 @@ styling for submodes like window resizing or screenshot menus. I don't use this 
 #+end_src
 
 **** Privacy
-#+begin_src css :tangle ~/dotfiles/waybar/style.css
+#+begin_src css :tangle ~/dotfiles/waybar-gruvbox/style.css
     #privacy {
         padding: 0;
     }

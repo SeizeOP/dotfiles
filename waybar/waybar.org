@@ -15,7 +15,7 @@ Personal Dracula theme for /Waybar/.
 [[file:./images/bar-demo.png]]
 * CONFIG
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
-// -*- mode: jsonc -*-
+ //-*- mode: jsonc -*-
 #+end_src
 
 
@@ -277,7 +277,6 @@ Configuration for the battery module
 
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
   }
-]
 #+end_src
 *** Un-used Modules
 This section includes modules from the default /Waybar/ configuration file which I do not use. These modules are placed here for reference only, and are not used in my running configuration.
