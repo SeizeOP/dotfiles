@@ -524,58 +524,26 @@ bellow is an example of this shader in action:
 **** Blur
 Configure blur and drop shadow. These settings are currently disabled; though i am leaving them in (just commented out) so i can quickly re-enable in future if I desire.    
 #+begin_src conf :tangle hyprland.conf
-    #blur {
-    #    enabled = true
-    #    size = 3
-    #    passes = 1
-    #}
-
-#    drop_shadow = yes
-#    shadow_range = 4
-#    shadow_render_power = 3
-#    col.shadow = rgba(1a1a1aee)
-#+end_src
-
-#+begin_src conf :tangle hyprland.conf
-}
-#+end_src
-
-**** Group Decorations
-Decorations for when windows are grouped together.
-#+begin_src conf :tangle hyprland.conf
-  group {
-        #col.border_active = rgba(bd93f9ff) rgba(ff79c6ff) rgba(ffb86caa) rgba(8be9fdaa) 45deg
-        col.border_active = rgba(bd93f9ff) rgba(8be9fdaa) 45deg
-      groupbar {
+      blur {
           enabled = true
-          gradients = true
-          font_size = 16
-          font_family = JetBrains Mono
-          height = 24
-          text_color = rgba(f8f8f2ff) #white
-          col.active = rgb(bd93f9) rgb(44475a) 90deg
-          col.inactive = rgba(282a36dd)
+          size = 8
+  	ignore_opacity = true
+  	new_optimizations = true
+          passes = 1
       }
-  }
+
+  #    drop_shadow = yes
+  #    shadow_range = 4
+  #    shadow_render_power = 3
+  #    col.shadow = rgba(1a1a1aee)
 #+end_src
 
-**** Backup decoration settings 
-this is a copy of the default decoration settings; copied here for reference. they are not copied to the running configuration. 
-
-#+begin_src conf
-decoration {
-#    col.shadow = rgba(1E202966)
-
-    # suggested shadow setting
-    #drop_shadow = yes
-    #shadow_range = 60
-    #shadow_offset = 1 2
-    #shadow_render_power = 3
-    #shadow_scale = 0.97
+#+begin_src conf :tangle hyprland.conf
 }
 #+end_src
 
-**** Dracula Theme
+**** Border Decorations
+***** Dracula Theme
 #+begin_src conf :tangle hyprland.conf
 general {
     col.active_border = rgb(44475a) rgb(bd93f9) 90deg
@@ -603,6 +571,91 @@ col.group_border_active = rgb(44475a) # or rgb(6272a4)
 #+end_src
 
 #+begin_src conf :tangle hyprland.conf
+}
+#+end_src
+
+***** Gruvbox Theme
+#+begin_src conf 
+general {
+    col.active_border = rgba(fabd2fff) rgba(8ec07caa) 90deg
+    col.inactive_border = rgba(44475aaa)
+    col.nogroup_border = rgba(3c3836cc)
+    col.nogroup_border_active = rgba(fabd2fff) rgba(8ec07caa) 90deg
+    no_border_on_floating = false
+    border_size = 2
+#+end_src
+
+non-gradient alternative
+#+begin_src conf 
+col.active_border = rgb(bd93f9)
+col.inactive_border = rgba(44475aaa)
+col.group_border = rgba(282a36dd)
+col.group_border_active = rgb(bd93f9)
+#+end_src
+
+darker alternative
+#+begin_src conf 
+col.active_border = rgb(44475a) # or rgb(6272a4)
+col.inactive_border = rgb(282a36)
+col.group_border = rgb(bd93f9)
+col.group_border_active = rgb(44475a) # or rgb(6272a4)
+#+end_src
+
+#+begin_src conf 
+}
+#+end_src
+
+**** Group Decorations
+Decorations for when windows are grouped together.
+
+***** Dracula theme
+#+begin_src conf :tangle hyprland.conf
+  group {
+        #col.border_active = rgba(bd93f9ff) rgba(ff79c6ff) rgba(ffb86caa) rgba(8be9fdaa) 45deg
+        col.border_active = rgba(bd93f9ff) rgba(8be9fdaa) 45deg
+      groupbar {
+          enabled = true
+          gradients = true
+          font_size = 16
+          font_family = JetBrains Mono
+          height = 24
+          text_color = rgba(f8f8f2ff) #white
+          col.active = rgb(bd93f9) rgb(44475a) 90deg
+          col.inactive = rgba(282a36dd)
+      }
+  }
+#+end_src
+
+***** Gruvbox theme
+#+begin_src conf 
+  group {
+        col.border_active = rgba(fabd2fff) rgba(8ec07caa) 45deg
+      groupbar {
+          enabled = true
+          gradients = true
+          font_size = 16
+          font_family = JetBrains Mono
+          height = 24
+          text_color = rgba(1E1F29ff)
+          col.active = rgba(fabd2fff) rgba(d79921cc) rgba(ebdbb2aa) 90deg
+          col.inactive = rgba(ebdbb2aa)
+
+      }
+  }
+#+end_src
+**** Backup decoration settings 
+this is a copy of the default decoration settings; copied here for reference. they are not copied to the running configuration. 
+
+#+begin_src conf
+decoration {
+#    col.shadow = rgba(1E202966)
+
+    # suggested shadow setting
+    #drop_shadow = yes
+    #shadow_range = 60
+    #shadow_offset = 1 2
+    #shadow_render_power = 3
+    #shadow_scale = 0.97
 }
 #+end_src
 

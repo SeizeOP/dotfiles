@@ -72,6 +72,8 @@ This is my personal /GNU Emacs/ literate configuration. I will do my best to cla
   4. org 
   5. emacsql
   6. magit-selection
+- treemacs 
+- org-sidetree
 
 ** Inspiration
 My personal emacs config has been inspired by many factors, and it would be to difficult to enumerate all such factors. Therefor, I will Instead list bellow what i have deemed to be the foundational influences to my personal emacs config.
