@@ -13,6 +13,7 @@ else
 	# load non custom configurations
 	nwg-wrapper & disown
 	waybar & disown
+	hyprctl reload
 fi
 
 # Send notification that configurations have been reoaded

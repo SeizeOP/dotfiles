@@ -70,7 +70,7 @@ This section includes links to the configuration files used by /non Hyprland/ pa
 
 /Less/ essential environment variables
 #+begin_src conf :tangle hyprland.conf
-$fileManager = dolphin
+$fileManager = thunar
 $browser = xdg-open about:profiles
 #+end_src
 
@@ -513,7 +513,7 @@ Enable rounding of window corners
 **** Shaders
 Enable a screen shader based on the provided shadder file. In this case the provided file is a shader file which enables a greyscale effect. 
 #+begin_src conf :tangle hyprland.conf
-     #screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+     #######screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 bellow is an example of this shader in action:
@@ -627,7 +627,7 @@ Decorations for when windows are grouped together.
 #+end_src
 
 ***** Gruvbox theme
-#+begin_src conf 
+#+begin_src conf
   group {
         col.border_active = rgba(fabd2fff) rgba(8ec07caa) 45deg
       groupbar {
