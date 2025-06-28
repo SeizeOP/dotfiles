@@ -132,7 +132,8 @@
         "tooltip-format-disconnected": "Disconnected ⚠",
         //"format-alt": "{ifname}: {ipaddr}/{cidr}",
 	"on-click": "nmcli radio on & kitty -e nmtui",
-	"on-click-right": "nmcli radio wifi off"
+	"on-click-middle": "nmcli radio wifi off",
+	"on-click-right": "firewall-config"
     },
 
 "temperature": {
