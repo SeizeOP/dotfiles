@@ -129,8 +129,10 @@
         "tooltip-format": "{ifname} via {gwaddr} ",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
+        "tooltip-format-disconnected": "Disconnected ⚠",
         //"format-alt": "{ifname}: {ipaddr}/{cidr}",
-	"on-click": "kitty -e nmtui"
+	"on-click": "nmcli radio on & kitty -e nmtui",
+	"on-click-right": "nmcli radio wifi off"
     },
 
 "temperature": {
