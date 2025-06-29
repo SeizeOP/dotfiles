@@ -1,7 +1,6 @@
 precision mediump float;
 varying vec2 v_texcoord;
 uniform sampler2D tex;
-vsync = 1;
 
 void main() {
   vec4 this_colour = texture2D(tex, v_texcoord);
