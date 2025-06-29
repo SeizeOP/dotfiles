@@ -66,6 +66,7 @@ This section includes links to the configuration files used by /non Hyprland/ pa
   $terminal = kitty
   $menu = rofi -show combi -combi-modi drun,run,recursivebrowser 
   $filemenu = rofi -show combi -combi-modi window,recursivebrowser,ssh 
+  $editor = emacsclient -ca ""
 #+end_src
 
 /Less/ essential environment variables
@@ -248,7 +249,7 @@ These are keybindings which are critical for proper system functionality
 #+begin_src conf :tangle hyprland.conf
   bind = $mainMod, Q, exec, $terminal
   bind = $mainMod, C, killactive, 
-  bind = $mainMod, E, exec, emacsclient -c -a ""
+  bind = $mainMod, E, exec, $editor
   bind = $mainMod, M, exec, $fileManager
   bind = $mainMod, V, togglefloating, 
   bind = $mainMod, D, exec, $menu
@@ -513,7 +514,7 @@ Enable rounding of window corners
 **** Shaders
 Enable a screen shader based on the provided shadder file. In this case the provided file is a shader file which enables a greyscale effect. 
 #+begin_src conf :tangle hyprland.conf
-     #screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+     ##############screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 bellow is an example of this shader in action:

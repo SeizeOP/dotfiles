@@ -198,19 +198,20 @@ Configuration for the pulseaudio module
 
 Configuration for the network module
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
-"network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "tooltip-format-disconnected": "Disconnected ⚠",
-        //"format-alt": "{ifname}: {ipaddr}/{cidr}",
-	"on-click": "nmcli radio on & kitty -e nmtui",
-	"on-click-middle": "nmcli radio wifi off",
-	"on-click-right": "firewall-config"
-    },
+  "network": {
+          // "interface": "wlp2*", // (Optional) To force the use of this interface
+          "family": "ipv4",
+          "format-wifi": "{essid} ({signalStrength}%) ",
+          "format-ethernet": "{ipaddr}/{cidr} ",
+          "tooltip-format-wifi": "Interface: {ifname} \nIp address: {ipaddr} \nVia: {gwaddr} ",
+          "format-linked": "{ifname} (No IP) ",
+          "format-disconnected": "Disconnected ⚠",
+          "tooltip-format-disconnected": "Disconnected ⚠",
+          //"format-alt": "{ifname}: {ipaddr}/{cidr}",
+  	"on-click": "nmcli radio on & kitty -e nmtui",
+  	"on-click-middle": "nmcli radio wifi off",
+  	"on-click-right": "firewall-config"
+      },
 #+end_src
 
 **** Monitoring

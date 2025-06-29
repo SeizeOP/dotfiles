@@ -48,7 +48,7 @@ button:hover {
 
 #mode {
     background-color: @comment;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px @foreground;
 }
 
 
@@ -60,7 +60,7 @@ button:hover {
 #power-profiles-daemon,
 #mpd {
     padding: 0 10px;
-    color: #ffffff;
+    color: @foreground;
 }
 
 #window,
@@ -83,7 +83,7 @@ button:hover {
 
 #workspaces button.focused {
     background-color: @purple;
-    box-shadow: inset 0 -3px #ffffff;
+    box-shadow: inset 0 -3px @foreground;
 }
 
 
@@ -127,7 +127,7 @@ button:hover {
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
     background-color: @red;
-    color: #ffffff;
+    color: @foreground;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(12);
@@ -146,7 +146,7 @@ button:hover {
 
 #power-profiles-daemon.balanced {
     background-color: @comment;
-    color: #ffffff;
+    color: @foreground;
 }
 
 #power-profiles-daemon.power-saver {
@@ -226,7 +226,7 @@ label:focus {
 }
 
 #wireplumber {
-    background-color: #fff0f5;
+    background-color: @foreground;
     color: #000000;
 }
 
@@ -236,7 +236,7 @@ label:focus {
 
 #custom-media {
     background-color: @background-darker;
-    color: #fff0f5;
+    color: @foreground;
     min-width: 50px;
     border-bottom: 3px solid @purple;
     padding: 1px 3px;
@@ -260,7 +260,7 @@ label:focus {
 
 #custom-rofi {
     background-color: @background;
-    color: #fff0f5;
+    color: @foreground;
     padding: 1px 6px;
 }
 

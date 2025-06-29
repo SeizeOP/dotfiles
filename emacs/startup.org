@@ -2,38 +2,39 @@
   [[file:./images/emacs-start-page.png]]
 
 * IMPORTANT KEYBINDINGS [[file:./images/emacs-start-page-urgent.png]] 
-|-----------+-----------------------+------------------------------------|
-| M-x       | [[elisp:(counsel-M-x)][counsel-M-x]]           | Prompt for Emacs programs          |
-| SPC .     | [[elisp:(counsel-find-file)][counsel-find-file]]     | Find a file                        |
-| SPC f r   | [[elisp:(counsel-recentf)][counsel-recentf]]       | Find a Recent file                 |
-| SPC f c   | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/emacs/README.org"))][README.org]]            | Open Personal /Emacs/ [[./README.org][config]]       |
-| SPC f h   | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/hypr/hyprland.org"))][Hyprland.org]]          | Open Personal /Hyprland/ [[../hypr/hyprland.org][config]]    |
-| SPC h r r | [[elisp:(doom/reload)][doom/reload]]           | Reload Emacs Config                |
-| SPC f u   | [[elisp:(doom/sudo-find-file nil)][doom/sudo-find-file]]   | Find file and open as root         |
+|-----------+---------------------+------------------------------------|
+| M-x       | [[elisp:(counsel-M-x)][counsel-M-x]]         | Prompt for Emacs programs          |
+| SPC .     | [[elisp:(counsel-find-file)][counsel-find-file]]   | Find a file                        |
+| SPC f r   | [[elisp:(counsel-recentf)][counsel-recentf]]     | Find a Recent file                 |
+| SPC f c   | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/emacs/README.org"))][README.org]]          | Open Personal /Emacs/ [[./README.org][config]]         |
+| SPC f h   | [[elisp:(find-file (concat (getenv "HOME") "/.config/waybar/waybar.org"))][Waybar.org]]          | Open Personal /Waybar/ [[../waybar/waybar.org][config]]        |
+| SPC f w   | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/hypr/hyprland.org"))][Hyprland.org]]        | Open Personal /Hyprland/ [[../hypr/hyprland.org][config]]      |
+| SPC h r r | [[elisp:(doom/reload)][doom/reload]]         | Reload Emacs Config                |
+| SPC f u   | [[elisp:(doom/sudo-find-file nil)][doom/sudo-find-file]] | Find file and open as root         |
 | SPC f U   | /doom/sudo-this-file/ | Open current file as root          |
-| SPC v t   | [[elisp:(vterm-toggle)][vterm/toggle]]          | Toggle the vterm terminal emulator |
-|-----------+-----------------------+------------------------------------|
+| SPC v t   | [[elisp:(vterm-toggle)][vterm/toggle]]        | Toggle the vterm terminal emulator |
+|-----------+---------------------+------------------------------------|
 
 * EMACS CONFIG FILES  [[file:./images/emacs-start-page-urgent.png]] 
-|-----+--------------------------+--------------------------------------------------------|
+|---+--------------------------+--------------------------------------------------------|
 | =1= | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/emacs/README.org"))][README.org]]               | This is the main user configuration file for Emacs.    |
 | =2= | [[elisp:(find-file (concat (getenv "HOME") "/.config/emacs/init.el"))][init.el]]                  | Emacs initializtion file.                              |
 | =3= | [[elisp:(find-file (concat (getenv "HOME") "/.config/emacs/themes/seize-the-night-theme.el"))][seize-the-night-theme.el]] | Custom theme for Emacs.                                |
 | =4= | [[elisp:(find-file (concat (getenv "HOME") "/.config/emacs/elfeed.org"))][elfeed.org]]               | Orgmode configuration file for Emacs Elfeed RSS reader |
-|-----+--------------------------+--------------------------------------------------------|
+|---+--------------------------+--------------------------------------------------------|
 
 * COMMON FILES
 ** Hyprland Configs
-|-----+----------------+---------------------------------------------------------------------------|
+|---+----------------+-------------------------------------------------------------------------|
 | =1= | [[elisp:(find-file (concat (getenv "HOME") "/dotfiles/hypr/hyprland.org"))][hyprland.org]]   | This is the *main user configuration* file for Hyprland                   |
 | =2= | [[elisp:(find-file (concat (getenv "HOME") "/.config/hypr/hyprlock.conf"))][hyprlock.conf]]  | User configuration file for =Hyprlock=; a screenlocker for Hyprland       |
 | =3= | [[elisp:(find-file (concat (getenv "HOME") "/.config/hypr/hypridle.conf"))][hypridle.conf]]  | This is the user configuration file for =Hypridle=                        |
 | =4= | [[elisp:(find-file (concat (getenv "HOME") "/.config/hypr/hyprpaper.conf"))][hyprpaper.conf]] | User configuration file for =Hyprpaper=; a wallpaper utility for Hyprland |
-|-----+----------------+---------------------------------------------------------------------------|
+|---+----------------+-------------------------------------------------------------------------|
 ** Waybar Configs
-|-----+------------+-------------------------------------------------------|
+|---+------------+-----------------------------------------------------|
 | =1= | [[elisp:(find-file (concat (getenv "HOME") "/.config/waybar/waybar.org"))][waybar.org]] | This is the *main user configuration* file for Waybar |
 | =2= | [[elisp:(find-file (concat (getenv "HOME") "/.config/waybar/style.css"))][style.css]]  | This is the /CSS/ style configuration file for Waybar |
-|-----+------------+-------------------------------------------------------|
+|---+------------+-----------------------------------------------------|
 
 #+STARTUP: inlineimages
