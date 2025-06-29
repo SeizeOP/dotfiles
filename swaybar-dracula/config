@@ -1,0 +1,118 @@
+[
+  {
+    "position": "top",
+	"all-outputs": true,
+	"name": "top",
+	"height": 30,
+	"spacing": 4,
+	"modules-left": ["sway/workspaces"],
+	"modules-center": ["sway/window", "sway/scratchpad"],
+	"modules-right": ["sway/mode", "backlight", "pulseaudio"],
+	"sway/workspaces": {
+		"disable-scroll": false,
+           "format": "{name} {icon}",
+           "format-icons": {
+              "1": "",
+              "2": "",
+              "3": "",
+              "4": "󰙯",
+              "5": "󰓓",
+              "6": "󰕃",
+          "urgent": "",
+              "focused": "",
+              "default": ""
+ 	}
+  },
+     "sway/scratchpad": {
+          "format": "{icon} {count}",   
+          "show-empty": false,          
+          "format-icons": ["", ""],   
+          "tooltip": true,
+          "tooltip-format": "{app}: {title}"    
+      },
+  "sway/window": {
+         "max-length": 100
+     },
+     "pulseaudio": {
+           "scroll-step": 1, // %, can be a float
+          "format": "{volume}% {icon} {format_source}",
+          "format-bluetooth": "{volume}% {icon} {format_source}",
+          "format-bluetooth-muted": " {icon} {format_source}",
+          "format-muted": " {format_source}",
+          "format-source": "{volume}% ",
+          "format-source-muted": "",
+          "format-icons": {
+              "headphone": "",
+              "hands-free": "",
+              "headset": "",
+              "phone": "",
+              "portable": "",
+              "car": "",
+              "default": ["", "", ""]
+          },  
+          "on-click": "pavucontrol"
+	},
+},
+{
+    "position": "bottom",
+    "spacing": 4,
+    "height": 30,
+    "name": "bottom",
+    "layer": "top",
+    "position": "bottom",
+    "modules-left": ["clock", "custom/media"],
+	"modules-right": ["tray", "network", "battery"],
+      "custom/media": {
+          "format": "{icon} {}",
+          "escape": true,
+          "return-type": "json",
+          "max-length": 100,
+          "on-click": "playerctl play-pause",
+          "on-click-right": "playerctl stop",
+          "smooth-scrolling-threshold": 10,           
+		  "on-scroll-up": "playerctl next",
+          "on-scroll-down": "playerctl previous",
+          "format-icons": {
+              "spotify": "",
+              "default": "🎜"
+          },
+          "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+          // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based     on name
+      },
+
+      "clock": {        
+           "timezone": "America/New_York",
+          "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+          "format-alt": "{:%Y-%m-%d}"
+      },
+     "tray": {          
+          "icon-size": 20,
+          "spacing": 10  
+      },
+
+	  "battery": {
+          "states": {
+               "good": 95,
+              "warning": 30,
+              "critical": 15
+          },
+          "format": "{capacity}% {icon}",
+          "format-charging": "{capacity}% ",
+          "format-plugged": "{capacity}% ",
+          // "format-good": "", // An empty format will hide the module
+          // "format-full": "",
+          "format-icons": ["", "", "", "", ""]
+      },
+        "network": {
+         // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "format-wifi": "{essid} ({signalStrength}%) ",
+          "format-ethernet": "{ipaddr}/{cidr} ",
+          "tooltip-format": "{ifname} via {gwaddr} ",
+          "format-linked": "{ifname} (No IP) ",
+          "format-disconnected": "Disconnected ⚠",
+         // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+          "on-click": "nm-connection-editor"
+      },
+
+  }
+]

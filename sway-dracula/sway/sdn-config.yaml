@@ -1,0 +1,23 @@
+clients:
+  brave: chrome
+  cmus: music
+  emacs: code-branch
+  firefox: firefox
+  newsboat: rss
+  jetbrains-(.*):
+    icon: terminal
+    extra: "{0}"
+  x-terminal-emulator: terminal
+  kitty: terminal
+  thunderbird: envelope
+  nautilus: folder-open
+  pcmanfm: folder-open
+  clementine: music
+  mpv: play
+  signal: comment
+  steam: steam
+  code-oss: code
+deliminator: " "
+default_icon: dot-circle
+default:
+  new_desktop: true

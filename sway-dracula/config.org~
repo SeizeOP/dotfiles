@@ -1,0 +1,475 @@
+#+title: Sway Config
+#+description: This is an org-mode document intended to make my SwayWM Configuration more legible.
+#+author: Henry Davies (HD)
+#+options: toc:2:
+#+exclude_tags: noexport
+#+auto_tangle: t
+#+export_file_name: ~/Documents/html/docs/sway-dracula.html
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
+#+HTML_HEAD: <style>code{background:#f8f8f2;color:#6272a4;} </style>
+
+* Table of contents :TOC:noexport:
+- [[#about-this-config][About This Config]]
+- [[#personal-config][Personal Config]]
+  - [[#variables][Variables]]
+  - [[#input-configuration][Input Configuration]]
+  - [[#output-configuration][Output Configuration]]
+  - [[#power-configuration][Power Configuration]]
+  - [[#auto-starts][Auto-starts]]
+  - [[#styling][Styling]]
+  - [[#includes][Includes]]
+- [[#deprecated-configs][Deprecated Configs]]
+
+* About This Config
+SwayWM Official Website (https://swaywm.org)
+Read `man 5 sway` for a complete reference.
+* Personal Config
+
+*Set mod variable*
+- Mod1=Alt
+- Mod4=Super
+#+begin_src conf :tangle config
+set $mod Mod4
+#+end_src
+
+*To do an in place reload of the configuration file use* ~$mod+Ctrl+r~
+#+begin_src conf :tangle config
+#Reload the configuration file
+bindsym $mod+Ctrl+r reload
+#+end_src
+** Variables
+Set various variables for use later in this config
+
+*Home row direction keys, like vim*
+#+begin_src conf :tangle config
+set $left h
+set $down j
+set $up k
+set $right l
+#+end_src
+
+*Set browser, term, menu, lock, and fm variables*
+#+begin_src conf :tangle config
+set $browser qutebrowser
+set $fm pcmanfm
+set $term kitty
+set $lock swaylock
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+#set $menu fuzzel | swaymsg exec --
+set $menu rofi -show combi -combi-modi drun,run,recursivebrowser | swaymsg exec --
+#+end_src
+** Input Configuration
+*** Touchpad
+*touchpad configuration*
+    You can get the names of your inputs by running: ~swaymsg -t get_inputs~. Read `man 5 sway-input` for more information about this section.
+#+begin_src conf :tangle config
+   input "1267:40:Elan_Touchpad" {
+       dwt enabled
+       tap enabled
+       natural_scroll enabled
+       middle_emulation enabled
+   }
+#+end_src
+*** Keybindings
+**** Functions
+*Resize Mode*
+Resize a container (window) with keyboard instead of mouse
+    - left will shrink the containers width
+    - right will grow the containers width
+    - up will shrink the containers height
+    - down will grow the containers height
+#+begin_src conf :tangle config
+ mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+#+end_src
+
+*Kill Focused Window*
+#+begin_src conf :tangle config
+bindsym $mod+Shift+q kill , exec --no-startup-id mpv /usr/share/sounds/Oxygen-Window-Close.ogg
+#+end_src
+
+*Alt Tab*
+#+begin_src conf :tangle config
+bindsym Alt+Tab workspace back_and_forth
+#+end_src
+
+**** Scratchpad
+Sway has a "scratchpad", which is a bag of holding for windows. You can send windows there and get them back later.
+#+begin_src conf :tangle config
+    # Move the currently focused window to the scratchpad
+    bindsym $mod+Shift+minus move scratchpad , exec --no-startup-id mpv /usr/share/sounds/Oxygen-Window-Minimize.ogg
+
+    # Show the next scratchpad window or hide the focused scratchpad window.
+    # If there are multiple scratchpad windows, this command cycles through them.
+    bindsym $mod+minus scratchpad show , exec --no-startup-id mpv /usr/share/sounds/Oxygen-Window-Maximize.ogg
+#+end_src
+
+Drag floating windows by holding down $mod and left mouse button. Resize them with right mouse button + $mod follow. Despite the name, also works for non-floating windows. Change normal to inverse to use left mouse button for resizing and right mouse button for dragging.
+#+begin_src conf :tangle config
+floating_modifier $mod normal
+#+end_src
+
+**** Applications
+*Open a Terminal*
+#+begin_src conf :tangle config
+bindsym $mod+Return exec $term
+#+end_src
+
+*Open Run Launcher*
+#+begin_src conf :tangle config
+#bindsym $mod+d exec $menu , exec --no-startup-id mpv /usr/share/sounds/freedesktop/stereo/bell.oga
+bindsym $mod+d exec $menu
+#+end_src
+
+*Open Emacs*
+#+begin_src conf :tangle config
+bindsym $mod+e exec emacs
+#+end_src
+
+*Open File Manager*
+#+begin_src conf :tangle config
+bindsym $mod+m exec $fm
+#+end_src
+
+*Open Internet Browser*
+#+begin_src conf :tangle config
+bindsym $mod+b exec $browser
+#+end_src
+
+*** Movement
+**** Focus
+*Move your focus around using HJKL*
+#+begin_src conf :tangle config
+    bindsym $mod+$left focus left
+    bindsym $mod+$down focus down
+    bindsym $mod+$up focus up
+    bindsym $mod+$right focus right
+#+end_src
+
+*Move your focus around using arrow keys*
+#+begin_src conf :tangle config
+    bindsym $mod+Left focus left
+    bindsym $mod+Down focus down
+    bindsym $mod+Up focus up
+    bindsym $mod+Right focus right
+#+end_src
+
+*Move the focused window with same keys, just add Shift*
+
+#+begin_src conf :tangle config
+    bindsym $mod+Shift+$left move left
+    bindsym $mod+Shift+$down move down
+    bindsym $mod+Shift+$up move up
+    bindsym $mod+Shift+$right move right
+    # Ditto, with arrow keys
+    bindsym $mod+Shift+Left move left
+    bindsym $mod+Shift+Down move down
+    bindsym $mod+Shift+Up move up
+    bindsym $mod+Shift+Right move right
+#+end_src
+
+*Move focus to the parent container*
+#+begin_src conf :tangle config
+bindsym $mod+a focus parent
+#+end_src
+
+*Switch focus to workspace with urgent window automatically*
+#+begin_src conf :tangle config
+for_window [urgent=latest] focus
+#+end_src
+
+**** Workspaces
+can have more than 10 workspaces
+note: workspaces can have any name you want, not just numbers.
+we just use 1-10 as the default.
+#+begin_src conf :tangle config
+    bindsym $mod+1 workspace 1
+    bindsym $mod+2 workspace 2
+    bindsym $mod+3 workspace 3
+    bindsym $mod+4 workspace 4
+    bindsym $mod+5 workspace 5
+    bindsym $mod+6 workspace 6
+    bindsym $mod+7 workspace 7
+    bindsym $mod+8 workspace 8
+    bindsym $mod+9 workspace 9
+    bindsym $mod+0 workspace 10
+#+end_src
+
+*move focused container to workspace*
+#+begin_src conf :tangle config
+    bindsym $mod+shift+1 move container to workspace 1
+    bindsym $mod+shift+2 move container to workspace 2
+    bindsym $mod+shift+3 move container to workspace 3
+    bindsym $mod+shift+4 move container to workspace 4
+    bindsym $mod+shift+5 move container to workspace 5
+    bindsym $mod+shift+6 move container to workspace 6
+    bindsym $mod+shift+7 move container to workspace 7
+    bindsym $mod+shift+8 move container to workspace 8
+    bindsym $mod+shift+9 move container to workspace 9
+    bindsym $mod+shift+0 move container to workspace 10
+#+end_src
+
+*Assigning apps to specific Workspaces*
+- I would like to automatically separate Twitch and Discord tabs to workspaces 4 and 6 respectively. However this does not seem feasible at the moment, so I've just sent my browser i use for these sites to workspace 4.
+#+begin_src conf :tangle config
+    assign [app_id="qutebrowser"] "1"
+    assign [app_id="firefox"] "1"
+    assign [title="newsboat"] "2"
+    assign [title="cmus"] "2"
+    assign [class="Emacs"] "3"
+    assign [app_id="brave-browser"] "4"
+    assign [class="steam"] "5"
+#+end_src
+**** Layout stuff
+You can "split" the current object of focus with $mod+y or mod+x for horizontal and vertical splits respectively.
+#+begin_src conf :tangle config
+bindsym $mod+y splith
+bindsym $mod+x splitv
+#+end_src
+toggle fullscreen for the current focus
+#+begin_src conf :tangle config
+bindsym $mod+f fullscreen
+#+end_src
+Toggle current container between tiling and floating Mode and swap focus between tiling and floating areas
+#+begin_src conf :tangle config
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+#+end_src
+
+Switch the current container between different layout styles
+#+begin_src conf :tangle config
+bindsym $mod+c layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+#+end_src
+
+** Output Configuration
+*** Brightness Control
+*Bind brightness controls to laptop brightness keys F5 and F6 (non func lock action)*
+#+begin_src conf :tangle config
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+#+end_src
+*** Display
+You can get the names of your outputs by running: swaymsg -t get_outputs
+
+*Display settings for laptop display*
+#+begin_src conf :tangle config
+  #output eDP-1 resolution 3840x2160 position 1920,1920 bg /usr/share/wallpapers/deepin/Sunset_of_the_Lake_Nam_by_Wang_Jinyu.jpg fill
+  #output eDP-1 resolution 3840x2160 position 0,0 bg /usr/share/wallpapers/DarkestHour/contents/images/1920x1080.jpg fill
+  output eDP-1 resolution 3840x2160 position 0,0 bg /home/user/Pictures/wallpapers/wallpapers/Lofi_Cat.png fill
+  #output eDP-2 resolution 3840x2160 position 1920,1920 bg /usr/share/wallpapers/deepin/Sunset_of_the_Lake_Nam_by_Wang_Jinyu.jpg fill
+#+end_src
+
+*Display settings for external HDMI monitor*
+#+begin_src conf :tangle config
+output HDMI-A-1 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
+output HDMI-A-2 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
+output HDMI-A-3 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
+output HDMI-A-4 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
+#+end_src
+
+*Display settings for external Display Port monitor*
+#+begin_src conf :tangle config
+output DP-1 resolution 1920x1200 position 0,1920 bg /usr/share/wallpapers/Cluster/contents/images/3840x2160.png fill
+output DP-2 resolution 1920x1200 position 0,1920 bg /usr/share/wallpapers/Cluster/contents/images/3840x2160.png fill
+output DP-3 resolution 1920x1200 position 0,1920 bg /usr/share/wallpapers/Cluster/contents/images/3840x2160.png fill
+#+end_src
+
+*** Screen Capture
+*Screenshot tool*
+a simple screen shot mode using grim and slurp commands
+#+begin_src conf :tangle config
+set $screenshot 1 selected, 2 whole, 3 selected clipboard, 4 whole clipboard, 5 swappy
+mode "$screenshot" {
+    bindsym 1 exec 'grim -g "$(slurp)" ~/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym 2 exec 'grim ~/ps_$(date +"%Y%m%d%H%M%S").png', mode "default" , exec --no-startup-id mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga
+    bindsym 3 exec 'grim -g "$(slurp)" - | wl-copy', mode "default"
+    bindsym 4 exec 'grim - | wl-copy', mode "default"
+    bindsym 5 exec 'grim -g "$(slurp)" - | swappy -f -', mode "default"
+
+# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Print mode "default"
+}
+
+bindsym $mod+Print mode "$screenshot"
+#+end_src
+
+*Color Picker tool*
+a simple mode to find the hex value of any colored pixel on your display
+#+begin_src conf :tangle config
+# define color picker command
+bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
+#+end_src
+
+*** Sound Control
+Bind audio controls to keyboard media keys
+#+begin_src conf :tangle config
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+#+end_src
+** Power Configuration
+*** Exit Mode
+#+begin_src conf :tangle config
+# exit mode
+set $exit "exit: [s]leep, [p]oweroff, [r]eboot, [l]ogout"
+#, [w]indows"
+mode $exit {
+    bindsym --to-code {
+        s exec systemctl suspend, mode "default"
+        p exec systemctl poweroff
+        r exec systemctl reboot
+        l exec swaymsg exit
+       # w exec reboot-to-windows-somehow-lol.sh
+
+        Return mode "default"
+        Escape mode "default"
+        $mod+x mode "default"
+    }
+}
+
+bindsym --to-code $mod+p mode $exit
+#+end_src
+
+*** Swayidle
+This will lock your screen after 300 seconds of inactivity, then turn off your displays after another 270 seconds, and turn your screens back on when resumed. It will also lock your screen before your computer goes to sleep.d
+#+begin_src conf :tangle config
+ exec_always swayidle -w \
+    timeout 300 '$lock' \
+    timeout 570 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep '$lock'
+#+end_src
+
+*** Swaylock
+Bind $lock to ~$mod+Ctrl+l~ and cause $lock to execute upon laptop lid close
+#+begin_src conf :tangle config
+# Screen lock
+bindsym $mod+Ctrl+l exec $lock
+
+## Swaylock on lid closed
+bindswitch --reload --locked lid:on exec $lock
+#+end_src
+
+** Auto-starts
+Selected programs which execute upon the start of SwayWM
+
+*Programs which will execute upon SwayWM startup, and every time SwayWM config file is reloaded*
+#+begin_src conf :tangle config
+exec_always /usr/libexec/polkit-gnome-authentication-agent-1
+
+exec_always mako
+exec_always pcmanfm --daemon-mode
+
+exec_always nwg-wrapper -t bindings.pango -c bindings.css -p right -mr 50 -mt 150 -o eDP-1
+exec_always nwg-wrapper -s date-wttr.sh -r 1800000 -c date-wttr.css -p right -a start -mr 50 -mt 50 -o eDP-1
+#+end_src
+
+*Programs which will only execute upon SwayWM startup (not upon config reload)*
+#+begin_src conf :tangle config
+exec ckb-next -b
+
+# Enable Master/Stack layout
+# Default with splitting 50:50
+exec /home/user/.local/bin/stacki3 45
+#+end_src
+
+** Styling
+*** Status Bar
+Set [[https://github.com/Alexays/waybar][Waybar]] as the default status bar for sway
+#+begin_src conf :tangle config
+bar {
+swaybar_command waybar
+}
+#+end_src
+*** Sway gaps
+*Global Sway Gaps Settings*
+set inner/outer gaps
+#+begin_src conf :tangle config
+gaps inner 10
+gaps outer 5
+#+end_src
+Additionally you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+    ~gaps inner|outer current|all set|plus|minus <px>~
+    ~gaps inner all set 10~
+    ~gaps outer all plus 5~
+
+*Smart gaps*
+gaps used if only more than one container on the workspace)
+- ~smart_gaps on~ smart borders (draw borders around container only if it is not the only container on the workspace).
+- ~on|no_gaps~ (on=always active and no_gaps=only active if the gap size to the edge of the screen is 0)
+#+begin_src conf :tangle config
+smart_gaps on
+#+end_src
+
+*Smart Borders*
+Same as smart gaps, but for borders
+#+begin_src conf :tangle config
+smart_borders on
+default_border pixel 2
+#+end_src
+
+*Custom window borders + per app customization*
+#+begin_src conf :tangle config
+client.focused "#5f5faf" "#5f5faf" "#ffffff" "#5f5faf"
+for_window [class="balena-etcher"] border pixel 2
+for_window [class="steam"] border pixel 2
+for_window [app_id="nm-applet"] border pixel 2
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="system-config-printer"] border pixel 2
+#+end_src
+
+*** GTK Themes
+Set my preferred [[https://gtk.org][GTK]] theme
+#+begin_src conf :tangle config
+exec_always {
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set $gnome-schema gtk-theme 'Dracula'
+}
+#+end_src
+** Includes
+#+begin_src conf :tangle config
+include /etc/sway/config.d/*
+#+end_src
+* Deprecated Configs
+A collection of settings recently removed from my sway config. Keeping them here incase a reversion is desired/needed.
+
+Previous autotiling script. Uses dwindle layout opposed to master stack layout of current autotiling script
+~exec_always /home/user/.local/bin/autotiling -w 1 3 5 7 9~
+
+Program for night mode functionality. schedule functionality didn't work properly. may look into alternatives in future.
+~exec_always /usr/bin/gammastep~
+~exec_always /usr/bin/gammastep-indicator~
+#
+Enable network-manager-applet on startup. found this to be unnecessary for my current config. Keeping here for future reference, if i want to use it.
+~exec_always nm-applet --indicator~
+Enable blueman-applet on startup. same story as nm-applet
+~exec blueman-applet~
+
+Previous value for menu variable. Now using fuzzel. but keeping this incase of reversion to rofi
+~set $menu rofi -show combi -modes combi -combi-modes "drun,run,ssh,filebrowser" -hide-scrollbar true | swaymsg exec --~
+
+Start KDE Connect on startup. I Was Using KDE along side Sway for a time and experimented using kdeconnect to sync stuff between my laptop and my Android phone. I've since moved away from KDE and kdeconnect as I found i wasn't really using the provided features. Leaving this here incase I decide to tryout kdeconnect again in the future.
+~exec_always kdeconnect-cli -l~

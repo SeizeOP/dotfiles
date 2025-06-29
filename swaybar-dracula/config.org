@@ -1,0 +1,489 @@
+#+title: Waybar Config
+#+author: SeizeOP
+#+description: An org-mode document indented to make my Waybar configuration more legible
+#+options: :toc2:
+
+* TABLE OF CONTENTS :TOC:
+- [[#about-this-config][ABOUT THIS CONFIG]]
+- [[#personal-config][PERSONAL CONFIG]]
+  - [[#modules][Modules]]
+  - [[#css-styling][CSS Styling]]
+
+* ABOUT THIS CONFIG
+* PERSONAL CONFIG
+** Modules
+*** TOP BAR
+
+#+begin_src java :tangle config
+[
+#+end_src
+
+*Define Top Bar Modules*
+#+begin_src java :tangle config
+  {
+    "position": "top",
+	"all-outputs": true,
+	"name": "top",
+	"height": 30,
+	"spacing": 4,
+	"modules-left": ["sway/workspaces"],
+	"modules-center": ["sway/window", "sway/scratchpad"],
+	"modules-right": ["sway/mode", "backlight", "pulseaudio"],
+#+end_src
+
+*Sway Workspaces*
+#+begin_src java :tangle config
+	"sway/workspaces": {
+		"disable-scroll": false,
+           "format": "{name} {icon}",
+           "format-icons": {
+              "1": "",
+              "2": "",
+              "3": "",
+              "4": "󰙯",
+              "5": "󰓓",
+              "6": "󰕃",
+          "urgent": "",
+              "focused": "",
+              "default": ""
+ 	}
+  },
+#+end_src
+
+*Sway Scratchpad*
+#+begin_src java :tangle config
+     "sway/scratchpad": {
+          "format": "{icon} {count}",
+          "show-empty": false,
+          "format-icons": ["", ""],
+          "tooltip": true,
+          "tooltip-format": "{app}: {title}"
+      },
+#+end_src
+
+*Sway Window*
+#+begin_src java :tangle config
+  "sway/window": {
+         "max-length": 100
+     },
+#+end_src
+
+*Pulse Audio*
+#+begin_src java :tangle config
+     "pulseaudio": {
+           "scroll-step": 1, // %, can be a float
+          "format": "{volume}% {icon} {format_source}",
+          "format-bluetooth": "{volume}% {icon} {format_source}",
+          "format-bluetooth-muted": " {icon} {format_source}",
+          "format-muted": " {format_source}",
+          "format-source": "{volume}% ",
+          "format-source-muted": "",
+          "format-icons": {
+              "headphone": "",
+              "hands-free": "",
+              "headset": "",
+              "phone": "",
+              "portable": "",
+              "car": "",
+              "default": ["", "", ""]
+          },
+          "on-click": "pavucontrol"
+	},
+},
+#+end_src
+
+*** BOTTOM BAR
+*Define Bottom Bar Modules*
+#+begin_src java :tangle config
+{
+    "position": "bottom",
+    "spacing": 4,
+    "height": 30,
+    "name": "bottom",
+    "layer": "top",
+    "position": "bottom",
+    "modules-left": ["clock", "custom/media"],
+    "modules-right": ["tray", "network", "battery"],
+#+end_src
+
+*Custom Media*
+A module to display song/media metadata from MPRIS enabled players.
+    - ex: ~cmus, Brave, mpv~
+
+- Have yet to get MPV support to work will look into  this.
+#+begin_src java :tangle config
+      "custom/media": {
+          "format": "{icon} {}",
+          "escape": true,
+          "return-type": "json",
+          "max-length": 100,
+          "on-click": "playerctl play-pause",
+          "on-click-right": "playerctl stop",
+          "smooth-scrolling-threshold": 10,
+		  "on-scroll-up": "playerctl next",
+          "on-scroll-down": "playerctl previous",
+          "format-icons": {
+              "mpv": "",
+              "default": "🎜"
+          },
+          "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+          //"exec": "$HOME/.config/waybar/mediaplayer.py --player mpv 2> /dev/null" // Filter player based     on name
+      },
+#+end_src
+
+*Clock Module*
+#+begin_src java :tangle config
+  "clock": {
+           "timezone": "America/New_York",
+          "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+          "format-alt": "{:%Y-%m-%d}"
+      },
+#+end_src
+
+*Tray Module*
+#+begin_src java :tangle config
+     "tray": {
+          "icon-size": 20,
+          "spacing": 10
+      },
+#+end_src
+
+*Battery Module*
+#+begin_src java :tangle config
+	  "battery": {
+          "states": {
+               "good": 95,
+              "warning": 30,
+              "critical": 15
+          },
+          "format": "{capacity}% {icon}",
+          "format-charging": "{capacity}% ",
+          "format-plugged": "{capacity}% ",
+          // "format-good": "", // An empty format will hide the module
+          // "format-full": "",
+          "format-icons": ["", "", "", "", ""]
+      },
+#+end_src
+
+*Network Module*
+#+begin_src java :tangle config
+ "network": {
+         // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "format-wifi": "{essid} ({signalStrength}%) ",
+          "format-ethernet": "{ipaddr}/{cidr} ",
+          "tooltip-format": "{ifname} via {gwaddr} ",
+          "format-linked": "{ifname} (No IP) ",
+          "format-disconnected": "Disconnected ⚠",
+         // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+          "on-click": "nm-connection-editor"
+      },
+#+end_src
+
+#+begin_src java :tangle config
+    }
+]
+#+end_src
+** CSS Styling
+*** Global Styling
+*Define global styling settings*
+#+begin_src css :tangle style.css
+ * { border: none;
+border-radius: 0px;
+padding: 0px;
+/* `otf-font-awesome` is required to be installed for icons */
+ font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+ font-size: 20px;
+}
+#+end_src
+
+*** Module Styling
+**** Top Bar
+*Define Styling For the window module*
+#+begin_src css :tangle style.css
+#window {
+    color: #50fa7b;
+    box-shadow: inset 0 -3px #282A36;
+    background-color: #282A36;
+}
+
+window#waybar {
+    background-color: #282A36;
+    color: #50fa7b;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+#+end_src
+
+*Define Styling for button module*
+#+begin_src css :tangle style.css
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px #5f5faf;
+}
+#+end_src
+
+*Define workspace module styling*
+#+begin_src css :tangle style.css
+#workspaces {
+    margin: 0 4px;
+}
+
+#workspaces button {
+    padding: 0 0.4em;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+#workspaces button:hover {
+    background: #282A36;
+}
+
+#workspaces button.focused {
+    background-color: #282A36;
+    color: #74b3d2;
+    box-shadow: inset 0 -3px #ff87d7;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+#+end_src
+
+*If workspaces is the leftmost module, omit left margin*
+#+begin_src css :tangle style.css
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+#+end_src
+
+*If workspaces is the rightmost module, omit right margin*
+#+begin_src css :tangle style.css
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#+end_src
+
+*Define Scratchpad module styling*
+#+begin_src css :tangle style.css
+#scratchpad {
+    background-color: #282A36;
+    color: #50fa7b;
+}
+#scratchpad.empty {
+	background-color: transparent;
+}
+#+end_src
+
+*Define Pulse Audio module styling*
+#+begin_src css :tangle style.css
+#pulseaudio {
+    background-color: #282A36;
+    color: #74b3d2;
+    box-shadow: inset 0 -3px #ff87d7;
+}
+
+#pulseaudio.muted {
+    color: #ff0000;
+    background-color: #282A36;
+    box-shadow: inset 0 -3px #ff0000;
+}
+#+end_src
+
+*Define Wireplumber Audio module styling*
+#+begin_src css :tangle style.css
+#wireplumber {
+    background-color: #fff0f5;
+    color: #000000;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+#+end_src
+
+*Define mode module styling*
+#+begin_src css :tangle style.css
+#mode {
+    background-color: #282A36;
+    border-top: 3px solid #ff87d7;
+    border-bottom: 3px solid #ff87d7;
+}
+#+end_src
+
+**** Bottom Bar
+*Define clock module styling*
+#+begin_src css :tangle style.css
+#clock {
+    background-color: #282A36;
+    color: #74b3d2;
+    box-shadow: inset 0 -3px #ff87d7;
+}
+#+end_src
+
+*Define clock module styling*
+#+begin_src css :tangle style.css
+#custom-media {
+    background-color: #282A36;
+    color: #5f5faf;
+}
+#custom-media.active {
+    background-color: #282A36;
+    color: #5f5faf;
+}
+#+end_src
+
+*Define Network module styling*
+#+begin_src css :tangle style.css
+#network {
+    background-color: #282A36;
+    color: #50fa7b;
+    box-shadow: inset 0 -3px #ff87d7;
+}
+
+#network.disconnected {
+    background-color: #282A36;
+    color: #ff0000;
+    box-shadow: inset 0 -3px #ff0000;
+}
+#+end_src
+
+*Define battery module styling*
+#+begin_src css :tangle style.css
+#battery {
+    color: #74b3d2;
+    background-color: #282A36;
+    box-shadow: inset 0 -3px #ff87d7;
+}
+
+#battery.charging, #battery.plugged {
+    color: #282A36;
+    background-color: rgba(80, 250, 123, 1.00);
+    box-shadow: inset 0 -3px rgba(80, 250, 123, 1.00);
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #282A36;
+    background-color: rgba(255, 0, 0, 1.00);
+    box-shadow: inset 0 -3px rgba(255, 0, 0, 1.00);
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#+end_src
+
+*Define Styling for Tray module*
+#+begin_src css :tangle style.css
+#tray {
+    background-color: #282A36;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #282A36;
+    box-shadow: inset 0 -3px #ff0000;
+}
+#+end_src
+
+*Define Styling for Backlight module*
+#+begin_src css :tangle style.css
+
+#backlight {
+    background-color: #282A36;
+    color: #f1fa8c;
+    box-shadow: inset 0 -3px #f1fa8c;
+}
+#+end_src
+**** Unused Modules
+This is a collection of additional modules that are currently unused in my Waybar configuration. I'm Leaving these here in case I want/need to add any of these modules in future.
+
+These configurations are not tangled to ~style.css~ at this time. If I decide to use any of the following modules in future, i will move them to thier own place in the *modules* section of this document.
+
+#+begin_src css
+#idle_inhibitor {
+    background-color: #282A36;
+    color: #ff0000;
+}
+
+#idle_inhibitor.activated {
+    background-color: #282A36;
+    color: #50fa7b;
+}
+
+#mpd {
+    background-color: #66cc99;
+    color: #2a5c45;
+}
+
+#mpd.disconnected {
+    background-color: #f53c3c;
+}
+
+#mpd.stopped {
+    background-color: #90b1b1;
+}
+
+#mpd.paused {
+    background-color: #51a37a;
+}
+
+#language {
+    background: #00b093;
+    color: #333333;
+    padding: 0 5px;
+    margin: 6px 3px;
+    min-width: 3px;
+}
+
+#keyboard-state {
+    background: #97e1ad;
+    color: #000000;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+    background-color: #bbccdd;
+    color: #2d3436;
+}
+
+#keyboard-state > label.locked {
+    background-color: #bbccdd;
+    color: #2d3436;
+}
+#+end_src

@@ -1,0 +1,246 @@
+set $mod Mod4
+
+#Reload the configuration file
+bindsym $mod+Ctrl+r reload
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $browser qutebrowser
+set $fm pcmanfm
+set $term kitty
+set $lock swaylock
+# Note: pass the final command to swaymsg so that the resulting window can be opened
+# on the original workspace that the command was run on.
+#set $menu fuzzel | swaymsg exec --
+set $menu rofi -show combi -combi-modi drun,run,recursivebrowser | swaymsg exec --
+
+input "1267:40:Elan_Touchpad" {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
+
+mode "resize" {
+    bindsym $left resize shrink width 10px
+    bindsym $down resize grow height 10px
+    bindsym $up resize shrink height 10px
+    bindsym $right resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Left resize shrink width 10px
+    bindsym Down resize grow height 10px
+    bindsym Up resize shrink height 10px
+    bindsym Right resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bindsym $mod+Shift+q kill , exec --no-startup-id mpv /usr/share/sounds/Oxygen-Window-Close.ogg
+
+bindsym Alt+Tab workspace back_and_forth
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad , exec --no-startup-id mpv /usr/share/sounds/Oxygen-Window-Minimize.ogg
+
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+minus scratchpad show , exec --no-startup-id mpv /usr/share/sounds/Oxygen-Window-Maximize.ogg
+
+floating_modifier $mod normal
+
+bindsym $mod+Return exec $term
+
+#bindsym $mod+d exec $menu , exec --no-startup-id mpv /usr/share/sounds/freedesktop/stereo/bell.oga
+bindsym $mod+d exec $menu
+
+bindsym $mod+e exec emacs
+
+bindsym $mod+m exec $fm
+
+bindsym $mod+b exec $browser
+
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+a focus parent
+
+for_window [urgent=latest] focus
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+bindsym $mod+shift+1 move container to workspace 1
+bindsym $mod+shift+2 move container to workspace 2
+bindsym $mod+shift+3 move container to workspace 3
+bindsym $mod+shift+4 move container to workspace 4
+bindsym $mod+shift+5 move container to workspace 5
+bindsym $mod+shift+6 move container to workspace 6
+bindsym $mod+shift+7 move container to workspace 7
+bindsym $mod+shift+8 move container to workspace 8
+bindsym $mod+shift+9 move container to workspace 9
+bindsym $mod+shift+0 move container to workspace 10
+
+assign [app_id="qutebrowser"] "1"
+assign [app_id="firefox"] "1"
+assign [title="newsboat"] "2"
+assign [title="cmus"] "2"
+assign [class="Emacs"] "3"
+assign [app_id="brave-browser"] "4"
+assign [class="steam"] "5"
+
+bindsym $mod+y splith
+bindsym $mod+x splitv
+
+bindsym $mod+f fullscreen
+
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+c layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+
+bindsym XF86MonBrightnessUp exec light -A 10
+bindsym XF86MonBrightnessDown exec light -U 10
+
+#output eDP-1 resolution 3840x2160 position 1920,1920 bg /usr/share/wallpapers/deepin/Sunset_of_the_Lake_Nam_by_Wang_Jinyu.jpg fill
+#output eDP-1 resolution 3840x2160 position 0,0 bg /usr/share/wallpapers/DarkestHour/contents/images/1920x1080.jpg fill
+output eDP-1 resolution 3840x2160 position 0,0 bg /home/user/Pictures/wallpapers/wallpapers/Lofi_Cat.png fill
+#output eDP-2 resolution 3840x2160 position 1920,1920 bg /usr/share/wallpapers/deepin/Sunset_of_the_Lake_Nam_by_Wang_Jinyu.jpg fill
+
+output HDMI-A-1 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
+output HDMI-A-2 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
+output HDMI-A-3 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
+output HDMI-A-4 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
+
+output DP-1 resolution 1920x1200 position 0,1920 bg /usr/share/wallpapers/Cluster/contents/images/3840x2160.png fill
+output DP-2 resolution 1920x1200 position 0,1920 bg /usr/share/wallpapers/Cluster/contents/images/3840x2160.png fill
+output DP-3 resolution 1920x1200 position 0,1920 bg /usr/share/wallpapers/Cluster/contents/images/3840x2160.png fill
+
+set $screenshot 1 selected, 2 whole, 3 selected clipboard, 4 whole clipboard, 5 swappy
+mode "$screenshot" {
+    bindsym 1 exec 'grim -g "$(slurp)" ~/ps_$(date +"%Y%m%d%H%M%S").png', mode "default"
+    bindsym 2 exec 'grim ~/ps_$(date +"%Y%m%d%H%M%S").png', mode "default" , exec --no-startup-id mpv /usr/share/sounds/freedesktop/stereo/camera-shutter.oga
+    bindsym 3 exec 'grim -g "$(slurp)" - | wl-copy', mode "default"
+    bindsym 4 exec 'grim - | wl-copy', mode "default"
+    bindsym 5 exec 'grim -g "$(slurp)" - | swappy -f -', mode "default"
+
+# back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+Print mode "default"
+}
+
+bindsym $mod+Print mode "$screenshot"
+
+# define color picker command
+bindsym $mod+Shift+p exec grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | tail -n 1 | cut -d ' ' -f 4 | wl-copy
+
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# exit mode
+set $exit "exit: [s]leep, [p]oweroff, [r]eboot, [l]ogout"
+#, [w]indows"
+mode $exit {
+    bindsym --to-code {
+        s exec systemctl suspend, mode "default"
+        p exec systemctl poweroff
+        r exec systemctl reboot
+        l exec swaymsg exit
+       # w exec reboot-to-windows-somehow-lol.sh
+
+        Return mode "default"
+        Escape mode "default"
+        $mod+x mode "default"
+    }
+}
+
+bindsym --to-code $mod+p mode $exit
+
+exec_always swayidle -w \
+   timeout 300 '$lock' \
+   timeout 570 'swaymsg "output * dpms off"' \
+   resume 'swaymsg "output * dpms on"' \
+   before-sleep '$lock'
+
+# Screen lock
+bindsym $mod+Ctrl+l exec $lock
+
+## Swaylock on lid closed
+bindswitch --reload --locked lid:on exec $lock
+
+exec_always /usr/libexec/polkit-gnome-authentication-agent-1
+
+exec_always mako
+exec_always pcmanfm --daemon-mode
+
+exec_always nwg-wrapper -t bindings.pango -c bindings.css -p right -mr 50 -mt 150 -o eDP-1
+exec_always nwg-wrapper -s date-wttr.sh -r 1800000 -c date-wttr.css -p right -a start -mr 50 -mt 50 -o eDP-1
+
+exec ckb-next -b
+
+# Enable Master/Stack layout
+# Default with splitting 50:50
+exec /home/user/.local/bin/stacki3 45
+
+bar {
+swaybar_command waybar
+}
+
+gaps inner 10
+gaps outer 5
+
+smart_gaps on
+
+smart_borders on
+default_border pixel 2
+
+client.focused "#5f5faf" "#5f5faf" "#ffffff" "#5f5faf"
+for_window [class="balena-etcher"] border pixel 2
+for_window [class="steam"] border pixel 2
+for_window [app_id="nm-applet"] border pixel 2
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="system-config-printer"] border pixel 2
+
+exec_always {
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+gsettings set $gnome-schema gtk-theme 'Dracula'
+}
+
+include /etc/sway/config.d/*
