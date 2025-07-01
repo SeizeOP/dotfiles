@@ -127,7 +127,7 @@
         "family": "ipv4",
         "format-wifi": "{essid} ({signalStrength}%) ",
         "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format-wifi": "Interface: {ifname} \nIp address: {ipaddr} \nVia: {gwaddr} ",
+    "tooltip-format-wifi": "Interface: {ifname} \nIp address: {ipaddr} \nVia: {gwaddr} ", 
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "tooltip-format-disconnected": "Disconnected ⚠",

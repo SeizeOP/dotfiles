@@ -197,13 +197,15 @@ Configuration for the pulseaudio module
 #+end_src
 
 Configuration for the network module
+
+Note: =ipaddr= seems to be broken currently. It will report the current IPv6 address instead of the current IPv4 address, even when IPv6 is disabled.
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
   "network": {
           // "interface": "wlp2*", // (Optional) To force the use of this interface
           "family": "ipv4",
           "format-wifi": "{essid} ({signalStrength}%) ",
           "format-ethernet": "{ipaddr}/{cidr} ",
-          "tooltip-format-wifi": "Interface: {ifname} \nIp address: {ipaddr} \nVia: {gwaddr} ",
+      "tooltip-format-wifi": "Interface: {ifname} \nIp address: {ipaddr} \nVia: {gwaddr} ", 
           "format-linked": "{ifname} (No IP) ",
           "format-disconnected": "Disconnected ⚠",
           "tooltip-format-disconnected": "Disconnected ⚠",
