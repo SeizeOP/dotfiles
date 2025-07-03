@@ -380,7 +380,7 @@ Selected programs which execute upon the start of SwayWM
 #+begin_src conf :tangle config
 exec_always /usr/libexec/polkit-gnome-authentication-agent-1
 
-exec_always swyanc
+exec_always swaync
 
 exec_always nwg-wrapper -t bindings.pango -c bindings.css -p right -mr 50 -mt 150 -o eDP-1
 exec_always nwg-wrapper -s date-wttr.sh -r 1800000 -c date-wttr.css -p right -a start -mr 50 -mt 50 -o eDP-1
