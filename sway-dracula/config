@@ -9,9 +9,11 @@ set $up k
 set $right l
 
 set $browser qutebrowser
-set $fm pcmanfm
+set $fm thunar
 set $term kitty
-set $lock swaylock
+#set $lock swaylock
+
+set $lock hyprlock 
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu fuzzel | swaymsg exec --
@@ -136,10 +138,11 @@ bindsym $mod+s layout toggle split
 bindsym XF86MonBrightnessUp exec light -A 10
 bindsym XF86MonBrightnessDown exec light -U 10
 
-#output eDP-1 resolution 3840x2160 position 1920,1920 bg /usr/share/wallpapers/deepin/Sunset_of_the_Lake_Nam_by_Wang_Jinyu.jpg fill
-#output eDP-1 resolution 3840x2160 position 0,0 bg /usr/share/wallpapers/DarkestHour/contents/images/1920x1080.jpg fill
-output eDP-1 resolution 3840x2160 position 0,0 bg /home/user/Pictures/wallpapers/wallpapers/Lofi_Cat.png fill
-#output eDP-2 resolution 3840x2160 position 1920,1920 bg /usr/share/wallpapers/deepin/Sunset_of_the_Lake_Nam_by_Wang_Jinyu.jpg fill
+# Laptop Output
+output eDP-1 resolution 3840x2160 position 0,0 bg /home/user/.local/share/wallpapers/Lofi_Cat.png fill
+
+# virtual Wlroots output (used for testing)
+output WL-1 resolution 3840x2160 position 0,0 bg /home/user/.local/share/wallpapers/testing.jpg fill
 
 output HDMI-A-1 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
 output HDMI-A-2 resolution 3840x2160 position 3840,1920  bg /usr/share/wallpapers/summer_1am/contents/images/2560x1600.jpg fill scale 2.0
@@ -212,6 +215,8 @@ exec_always swaync
 exec_always nwg-wrapper -t bindings.pango -c bindings.css -p right -mr 50 -mt 150 -o eDP-1
 exec_always nwg-wrapper -s date-wttr.sh -r 1800000 -c date-wttr.css -p right -a start -mr 50 -mt 50 -o eDP-1
 
+# force reload of waybar at the Sway load.
+exec swaymsg "workspace 1; exec ~/.local/bin/launch-waybar"
 exec ckb-next -b
 
 # Enable Master/Stack layout
@@ -219,7 +224,7 @@ exec ckb-next -b
 exec /home/user/.local/bin/stacki3 45
 
 bar {
-swaybar_command launch-waybar
+swaybar_command waybar
 }
 
 gaps inner 10

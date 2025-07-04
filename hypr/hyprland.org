@@ -1,3 +1,5 @@
+#+title: HD's Hyprland Config
+#+author: Henry Davies (HD)
 
  [[file:./images/hyprland-org.png]]
 
@@ -514,7 +516,7 @@ Enable rounding of window corners
 **** Shaders
 Enable a screen shader based on the provided shadder file. In this case the provided file is a shader file which enables a greyscale effect. 
 #+begin_src conf :tangle hyprland.conf
-  ########screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
+  screen_shader = ~/.config/hypr/scripts/greyscale-shader.glsl
 #+end_src
 
 bellow is an example of this shader in action:
@@ -790,12 +792,7 @@ This example is not synced to my runnning config.
 #+options: num:nil noexport
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+export_file_name: ~/Documents/html/docs/hyprland-dracula.html
-1. specify the background color, and font color fo source code blocks
 #+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
-
-2. Specify the background color of code blocks. In my case these somewhat interchangable with regualar quotes, as most of the extensive code is placed in source code blocks. 
 #+HTML_HEAD: <style>code{background:#f8f8f2;color:#6272a4;} </style>
 #+HTML_HEAD: <style>ul{background:#f8f8f2;} </style>
 
-#+title: HD's Hyprland Config
-#+author: Henry Davies (HD)

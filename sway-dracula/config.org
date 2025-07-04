@@ -1,13 +1,8 @@
-#+title: Sway Config
-#+description: This is an org-mode document intended to make my SwayWM Configuration more legible.
+#+title: SwayWM Dracula Config
 #+author: Henry Davies (HD)
-#+options: toc:2:
-#+exclude_tags: noexport
-#+auto_tangle: t
-#+export_file_name: ~/Documents/html/docs/sway-dracula.html
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-#+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
-#+HTML_HEAD: <style>code{background:#f8f8f2;color:#6272a4;} </style>
+#+description: This is an org-mode document intended to make my SwayWM Configuration more legible.
+
+  [[file:./~/Pictures/dev/sway-logo.png]]
 
 * Table of contents :TOC:noexport:
 - [[#about-this-config][About This Config]]
@@ -27,8 +22,8 @@ Read `man 5 sway` for a complete reference.
 * Personal Config
 
 *Set mod variable*
-- Mod1=Alt
-- Mod4=Super
+- Mod1 = =ALT=
+- Mod4 = =SUPER=
 #+begin_src conf :tangle config
 set $mod Mod4
 #+end_src
@@ -51,14 +46,19 @@ set $right l
 
 *Set browser, term, menu, lock, and fm variables*
 #+begin_src conf :tangle config
-set $browser qutebrowser
-set $fm pcmanfm
-set $term kitty
-set $lock swaylock
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-#set $menu fuzzel | swaymsg exec --
-set $menu rofi -show combi -combi-modi drun,run,recursivebrowser | swaymsg exec --
+  set $browser qutebrowser
+  set $fm thunar
+  set $term kitty
+  #set $lock swaylock
+#+end_src
+
+*Note:* Using swaylock may make more sense on a system which does not have Hyprland installed. Unfortunately regular swaylock (as opposed to swaylock-effects) has limited customization potential.
+#+begin_src conf :tangle config
+  set $lock hyprlock 
+  # Note: pass the final command to swaymsg so that the resulting window can be opened
+  # on the original workspace that the command was run on.
+  #set $menu fuzzel | swaymsg exec --
+  set $menu rofi -show combi -combi-modi drun,run,recursivebrowser | swaymsg exec --
 #+end_src
 ** Input Configuration
 *** Touchpad
@@ -273,10 +273,11 @@ You can get the names of your outputs by running: swaymsg -t get_outputs
 
 *Display settings for laptop display*
 #+begin_src conf :tangle config
-  #output eDP-1 resolution 3840x2160 position 1920,1920 bg /usr/share/wallpapers/deepin/Sunset_of_the_Lake_Nam_by_Wang_Jinyu.jpg fill
-  #output eDP-1 resolution 3840x2160 position 0,0 bg /usr/share/wallpapers/DarkestHour/contents/images/1920x1080.jpg fill
-  output eDP-1 resolution 3840x2160 position 0,0 bg /home/user/Pictures/wallpapers/wallpapers/Lofi_Cat.png fill
-  #output eDP-2 resolution 3840x2160 position 1920,1920 bg /usr/share/wallpapers/deepin/Sunset_of_the_Lake_Nam_by_Wang_Jinyu.jpg fill
+  # Laptop Output
+  output eDP-1 resolution 3840x2160 position 0,0 bg /home/user/.local/share/wallpapers/Lofi_Cat.png fill
+
+  # virtual Wlroots output (used for testing)
+  output WL-1 resolution 3840x2160 position 0,0 bg /home/user/.local/share/wallpapers/testing.jpg fill
 #+end_src
 
 *Display settings for external HDMI monitor*
@@ -388,11 +389,13 @@ exec_always nwg-wrapper -s date-wttr.sh -r 1800000 -c date-wttr.css -p right -a 
 
 *Programs which will only execute upon SwayWM startup (not upon config reload)*
 #+begin_src conf :tangle config
-exec ckb-next -b
+  # force reload of waybar at the Sway load.
+  exec swaymsg "workspace 1; exec ~/.local/bin/launch-waybar"
+  exec ckb-next -b
 
-# Enable Master/Stack layout
-# Default with splitting 50:50
-exec /home/user/.local/bin/stacki3 45
+  # Enable Master/Stack layout
+  # Default with splitting 50:50
+  exec /home/user/.local/bin/stacki3 45
 #+end_src
 
 ** Styling
@@ -400,7 +403,7 @@ exec /home/user/.local/bin/stacki3 45
 Set [[https://github.com/Alexays/waybar][Waybar]] as the default status bar for sway
 #+begin_src conf :tangle config
 bar {
-swaybar_command launch-waybar
+swaybar_command waybar
 }
 #+end_src
 *** Sway gaps
@@ -472,3 +475,12 @@ Previous value for menu variable. Now using fuzzel. but keeping this incase of r
 
 Start KDE Connect on startup. I Was Using KDE along side Sway for a time and experimented using kdeconnect to sync stuff between my laptop and my Android phone. I've since moved away from KDE and kdeconnect as I found i wasn't really using the provided features. Leaving this here incase I decide to tryout kdeconnect again in the future.
 ~exec_always kdeconnect-cli -l~
+
+* Export Control :noexport:
+#+options: toc:2:
+#+exclude_tags: noexport
+#+auto_tangle: t
+#+export_file_name: ~/Documents/html/docs/sway-dracula.html
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
+#+HTML_HEAD: <style>code{background:#f8f8f2;color:#6272a4;} </style>
