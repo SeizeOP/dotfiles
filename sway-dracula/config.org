@@ -2,7 +2,7 @@
 #+author: Henry Davies (HD)
 #+description: This is an org-mode document intended to make my SwayWM Configuration more legible.
 
-  [[file:./~/Pictures/dev/sway-logo.png]]
+[[file:./images/sway-dracula-logo.png]]
 
 * Table of contents :TOC:noexport:
 - [[#about-this-config][About This Config]]
