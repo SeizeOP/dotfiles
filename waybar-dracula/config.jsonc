@@ -147,12 +147,14 @@
 },
 
 "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+        "on-click": "kitty -e btop"
     },
 
 "cpu": {
        "format": "{usage}% ",
-       "tooltip": false
+       "tooltip": false,
+       "on-click": "kitty -e btop"
    },
 
 "power-profiles-daemon": {

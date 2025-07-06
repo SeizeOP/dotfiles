@@ -232,7 +232,8 @@ Configuration for the temperature module
 Configuration for the memory module
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
 "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+        "on-click": "kitty -e btop"
     },
 #+end_src
 
@@ -240,7 +241,8 @@ Configuration for the cpu module
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
  "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "kitty -e btop"
     },
 #+end_src
 
