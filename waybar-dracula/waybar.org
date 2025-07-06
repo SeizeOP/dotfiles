@@ -79,9 +79,9 @@ This section will include the module configuration for each module included in t
 Configuration for the clock module 
 #+begin_src jsonc :tangle ~/dotfiles/waybar/config.jsonc
   "clock": {
-      // "timezone": "America/New_York",
       "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-      "format-alt": "{:%Y-%m-%d}"
+      //"format-alt": "{:%Y-%m-%d}",
+      "on-click": "$HOME/dotfiles/waybar/scripts/time-notif.sh"
   },
 #+end_src
 
