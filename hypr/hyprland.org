@@ -775,11 +775,26 @@ You'll probably like this.
 windowrulev2 = suppressevent maximize, class:.* 
 #+end_src
 
-Force YAD windows to float
+***** Floats
+Force YAD windows to float 
 #+begin_src conf :tangle hyprland.conf
-windowrulev2 = float,class:^(yad)$ 
+windowrulev2 = float,class:^(yad)$  
 #+end_src
 
+***** Workspace assignments
+Assign Yad windows to workspace 1
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = workspace 1,class:^(yad)$  
+#+end_src
+
+Assign steam to workspace 7
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = workspace 7,class:^(steam)$  
+#+end_src
+
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = workspace 8,class:^(librewolf)$  
+#+end_src
 * FOOTNOTES :noexport:
 for multi-file configurations, a second file can be "sourced" like so:
 #+begin_src conf
