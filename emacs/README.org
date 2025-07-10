@@ -285,12 +285,24 @@ Elfeed-tube commands
 #+end_src
 
 *** Menus
+**** Exporting
+**** Export Markdown to PDF
+Create a custom funtion to directly export Markdown files to PDFs.
+#+begin_src emacs-lisp
+ (defun export-with-pandoc ()
+  	    (interactive) 
+  	    (when buffer-file-name 
+  	      (shell-command (concat "pandoc -f markdown -t pdf -o ~/Documents/output.pdf " (shell-quote-argument buffer-file-name)))))
+#+end_src
+
 **** Org Export Dispatch
 Create a key binding for a simple orgmode export menu, like what is used in /DOOM Emacs/. 
 
+Additionally define the keybinding to be used with the custom markdown to PDF export fuction.
 #+begin_src emacs-lisp
   (hd/leader-keys
-    "m e" '(org-export-dispatch :wk "Export dispatcher for orgmode."))
+    "m e" '(org-export-dispatch :wk "Export dispatcher for orgmode.")
+    "m p" '(export-with-pandoc :wk "Export Markdown directly to PDF"))
 #+end_src
 *** Open
 #+begin_src emacs-lisp
