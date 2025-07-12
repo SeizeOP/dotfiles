@@ -46,7 +46,7 @@ set $right l
 
 *Set browser, term, menu, lock, and fm variables*
 #+begin_src conf :tangle config
-  set $browser qutebrowser
+  set $browser xdg-open about:profiles
   set $fm thunar
   set $term kitty
   #set $lock swaylock
@@ -402,9 +402,9 @@ exec_always nwg-wrapper -s date-wttr.sh -r 1800000 -c date-wttr.css -p right -a 
 *** Status Bar
 Set [[https://github.com/Alexays/waybar][Waybar]] as the default status bar for sway
 #+begin_src conf :tangle config
-bar {
-swaybar_command waybar
-}
+  bar {
+  swaybar_command waybar -c ~/dotfiles/swaybar-dracula/config.json -s ~/dotfiles/swaybar-dracula/style.css
+  }
 #+end_src
 *** Sway gaps
 *Global Sway Gaps Settings*

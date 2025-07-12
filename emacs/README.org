@@ -87,7 +87,7 @@ My personal emacs config has been inspired by many factors, and it would be to d
 ** Elpacs Package Manager
 *** SETUP Elpaca
 #+begin_src emacs-lisp
-  (defvar elpaca-installer-version 0.7)
+  (defvar elpaca-installer-version 0.11)
   (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
   (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
   (defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
@@ -264,6 +264,7 @@ Elfeed-tube commands
   (hd/leader-keys
     "." '(find-file :wk "Find file")
     "f c" '((lambda () (interactive) (find-file "~/dotfiles/emacs/README.org")) :wk "Edit Emacs config")
+    "f f" '(query-replace-regexp :wk "Edit Emacs config")
     "f h" '((lambda () (interactive) (find-file "~/dotfiles/hypr/hyprland.org")) :wk "Edit Hyprland config")
     "f q" '(qrencode-export-buffer-to-file :wk "Export qrcode buffers to a file")
     "f r" '(counsel-recentf :wk "Find recent files")

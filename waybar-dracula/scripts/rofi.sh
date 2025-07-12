@@ -1,2 +1,2 @@
 #!/bin/bash
-rofi -show run drun combi
+rofi -show combi -combi-modi drun,run,recursivebrowser

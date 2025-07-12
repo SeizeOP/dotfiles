@@ -8,7 +8,7 @@ set $down j
 set $up k
 set $right l
 
-set $browser qutebrowser
+set $browser xdg-open about:profiles
 set $fm thunar
 set $term kitty
 #set $lock swaylock
@@ -224,7 +224,7 @@ exec ckb-next -b
 exec /home/user/.local/bin/stacki3 45
 
 bar {
-swaybar_command waybar
+swaybar_command waybar -c ~/dotfiles/swaybar-dracula/config.json -s ~/dotfiles/swaybar-dracula/style.css
 }
 
 gaps inner 10

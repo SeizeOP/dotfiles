@@ -5,11 +5,18 @@
     "keybind" : "l"
 }
 {
-    "label" : "logout",
+    "label" : "hypr-logout",
     "action" : "sleep 1; hyprctl dispatch exit",
-    "text" : "Logout",
+    "text" : "Hypr Logout",
+    "keybind" : "h"
+}
+{
+    "label" : "logout",
+    "action" : "sleep 1; loginctl terminate-user $USER",
+    "text" : "TTY Logout",
     "keybind" : "e"
 }
+
 {
     "label" : "shutdown",
     "action" : "systemctl poweroff",
