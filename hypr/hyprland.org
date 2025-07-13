@@ -797,6 +797,7 @@ Assign steam to workspace 7
 windowrulev2 = workspace 7,class:^(steam)$  
 #+end_src
 
+Assign librewolf to workspace 8
 #+begin_src conf :tangle hyprland.conf
 windowrulev2 = workspace 8,class:^(librewolf)$  
 #+end_src
