@@ -51,6 +51,7 @@
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
   - [[#ctrl-c-fix][CTRL-C Fix]]
   - [[#eshell][Eshell]]
+  - [[#treemacs][Treemacs]]
   - [[#vterm][Vterm]]
 - [[#sudo-edit][SUDO EDIT]]
 - [[#theme][THEME]]
@@ -935,12 +936,22 @@ Make all eshell appear in a popup buffer. The /elisp/ below is a combination of 
         eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
 #+end_src
 
+** Treemacs 
+Start treemacs in /Evil/ insert mode, and provide local keybind overrides for next and previous lines.
+#+begin_src emacs-lisp
+  (evil-set-initial-state 'treemacs-mode 'insert)
+  (eval-after-load 'treemacs-mode
+            '(define-key treemacs-mode-map (kbd "j") 'treemacs-next-line))
+  (eval-after-load 'treemacs-mode
+            '(define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line))
+#+end_src
 ** Vterm
 #+begin_src emacs-lisp
-    (use-package vterm
+  (use-package vterm
     :config
-    (setq shell-file-name "/bin/bash"
-          vterm-max-scrollback 5000))
+  (setq shell-file-name "/bin/bash" 
+        vterm-max-scrollback 5000))
+  (evil-set-initial-state 'vterm-mode 'insert)
 #+end_src
 
 *** Vterm-Toggle
@@ -1025,9 +1036,7 @@ Make initial buffer read-only and disable line numbers
   (add-hook 'emacs-startup-hook 
             (lambda () 
               (read-only-mode 1)
-              (display-line-numbers-mode -1)
-            )
-  )
+              (display-line-numbers-mode -1)))
 #+end_src
 
 Visit /scratch/ buffer from custom startpage
