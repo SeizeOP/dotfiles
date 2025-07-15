@@ -269,7 +269,7 @@ Elfeed-tube commands
     "f h" '((lambda () (interactive) (find-file "~/dotfiles/hypr/hyprland.org")) :wk "Edit Hyprland config")
     "f q" '(qrencode-export-buffer-to-file :wk "Export qrcode buffers to a file")
     "f r" '(counsel-recentf :wk "Find recent files")
-    "f w" '((lambda () (interactive) (find-file "~/.config/waybar/waybar.org")) :wk "Edit Waybar config")
+    "f w" '((lambda () (interactive) (find-file "~/dotfiles/waybar/waybar.org")) :wk "Edit Waybar config")
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1079,17 +1079,13 @@ Visit /scratch/ buffer from custom startpage
 #+Title: HD's GNU Emacs Config
 #+Author: Henry Davies (HD) 
 #+Description: HD's personal Emacs config.
-#+Startup: showeverything inlineimages
+#+Startup: fold inlineimages
 #+exclude_tags: noexport
 #+Options: num:nil noexport
 
 ** HTML Export Control                                            :noexport:
-Section containing tags pertaining to how this document shoud be formatted when exporting to HTML. 
 #+export_file_name: ~/Documents/html/docs/gnu-emacs-dracula.html
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-1. specify the background color, and font color fo source code blocks
 #+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
-
-2. Specify the background color of code blocks. In my case these somewhat interchangable with regualar quotes, as most of the extensive code is placed in source code blocks. 
 #+HTML_HEAD: <style>code{background:#f8f8f2;color:#6272a4;} </style>
 #+HTML_HEAD: <style>ul{background:#f8f8f2;} </style>
