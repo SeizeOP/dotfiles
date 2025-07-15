@@ -937,14 +937,25 @@ Make all eshell appear in a popup buffer. The /elisp/ below is a combination of 
 #+end_src
 
 ** Treemacs 
-Start treemacs in /Evil/ insert mode, and provide local keybind overrides for next and previous lines.
+Start =treemacs-mode= in /Evil/ insert mode 
 #+begin_src emacs-lisp
   (evil-set-initial-state 'treemacs-mode 'insert)
+#+end_src
+
+Start =treemacs-mode= with line numbers disabled
+#+begin_src emacs-lisp
+  (add-hook 'treemacs-mode
+  	  (display-line-numbers-mode -1))
+#+end_src
+
+Provide local keybind overrides for next and previous line movement in =treemacs-mode=.
+#+begin_src emacs-lisp
   (eval-after-load 'treemacs-mode
             '(define-key treemacs-mode-map (kbd "j") 'treemacs-next-line))
   (eval-after-load 'treemacs-mode
             '(define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line))
 #+end_src
+
 ** Vterm
 #+begin_src emacs-lisp
   (use-package vterm
