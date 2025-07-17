@@ -34,6 +34,8 @@
   - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
   - [[#disable-line-numbers-for-selected-modes][Disable Line Numbers for Selected Modes]]
   - [[#disable-symlink-to-git-directory-popup-dialog][Disable Symlink to Git directory popup dialog]]
+  - [[#treemacs-confirguration][Treemacs confirguration]]
+  - [[#vterm][Vterm]]
 - [[#ivy-counsel][IVY (COUNSEL)]]
 - [[#multiple-cursors][Multiple Cursors]]
 - [[#org-mode][ORG MODE]]
@@ -51,14 +53,10 @@
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
   - [[#ctrl-c-fix][CTRL-C Fix]]
   - [[#eshell][Eshell]]
-  - [[#treemacs][Treemacs]]
-  - [[#vterm][Vterm]]
 - [[#sudo-edit][SUDO EDIT]]
 - [[#theme][THEME]]
   - [[#doom-themes][Doom Themes]]
   - [[#initial-buffer-choice--options][Initial Buffer Choice & Options]]
-- [[#which-key][WHICH-KEY]]
-- [[#footnotes][FOOTNOTES]]
 
 * ABOUT THIS CONFIG
 This is my personal /GNU Emacs/ literate configuration. I will do my best to clarify what external dependencies are required for this emacs config. However, the external dependency list may not be complete, and I may have made other undocumented changes to my system. Therefor I would *NOT* recommend blindly copying this config. Instead, i would suggest reading though this config, and copying/reimplimenting only those sections which are reivant to your own personal emacs config.
@@ -310,9 +308,10 @@ Additionally define the keybinding to be used with the custom markdown to PDF ex
 #+begin_src emacs-lisp
   (hd/leader-keys
     "o" '(:ignore t :wk "Open")
+    "o b" '(browse-url-of-buffer :wk "Open the current buffer in the XDG default browser")
+    "o l" '(browse-url-xdg-open :wk "Open a URL in the XDG default browser")
     "o s" '(org-side-tree :wk "Org Side-Tree")
-    "o l" '(browse-url-xdg-open :wk "open a URL in the XDG default browser")
-    "o b" '(browse-url-of-buffer :wk "open the current buffer in the XDG default browser")
+    "o t" '(vterm-toggle :wk "Open Vterm")
     "o q" '(qrencode-url-at-point :wk "Generate a qrcode from UR under cursor"))
 #+end_src
 
@@ -683,6 +682,62 @@ credit: https://zzamboni.org/post/beautifying-org-mode-in-emacs/
 #+begin_src emacs-lisp
 (setq vc-follow-symlinks t)
 #+end_src
+
+** [[https://github.com/Alexander-Miller/treemacs][Treemacs]] confirguration 
+Treemacs provides a simple graphical tree style file view for emacs. Below are the configurations used to more completely integrate Treemacs with the rest of this custom emacs configuration.
+ 
+Start =treemacs-mode= in /Evil/ insert mode
+#+begin_src emacs-lisp
+  (evil-set-initial-state 'treemacs-mode 'insert)
+#+end_src
+
+Start =treemacs-mode= with line numbers disabled
+#+begin_src emacs-lisp
+  (add-hook 'treemacs-mode
+  	  (display-line-numbers-mode -1))
+#+end_src
+
+Provide local keybind overrides for next and previous line movement in =treemacs-mode=.
+#+begin_src emacs-lisp
+  (eval-after-load 'treemacs-mode
+            '(define-key treemacs-mode-map (kbd "j") 'treemacs-next-line))
+  (eval-after-load 'treemacs-mode
+            '(define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line))
+#+end_src
+
+** Vterm
+#+begin_src emacs-lisp
+  (use-package vterm
+    :config
+  (setq shell-file-name "/bin/bash" 
+        vterm-max-scrollback 5000))
+  (evil-set-initial-state 'vterm-mode 'insert)
+#+end_src
+
+*** Vterm-Toggle
+vterm-toggle toggles between the vterm buffer and whatever buffer you are editing.
+
+#+begin_src emacs-lisp
+  (use-package vterm-toggle
+    :after vterm
+    :config
+    (setq vterm-toggle-fullscreen-p nil)
+    (setq vterm-toggle-scope 'project)
+    (add-to-list 'display-buffer-alist
+                 '((lambda (buffer-or-name _)
+                     (let ((buffer (get-buffer buffer-or-name)))
+                       (with-current-buffer buffer
+                         (or (equal major-mode 'vterm-mode)
+                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                   (display-buffer-reuse-window display-buffer-at-bottom)
+                   ;;(display-buffer-reuse-window display-buffer-in-direction)
+                   ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                   (direction . bottom)
+                   (dedicated . t) ;dedicated is supported in emacs27
+                   (reusable-frames . visible)
+                   (window-height . 0.3))))
+#+end_src
+
 * IVY (COUNSEL)
 - Counsel, a collection of Ivy-enhanced versions of common Emacs commands.
 #+begin_src emacs-lisp
@@ -936,59 +991,6 @@ Make all eshell appear in a popup buffer. The /elisp/ below is a combination of 
         eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
 #+end_src
 
-** Treemacs 
-Start =treemacs-mode= in /Evil/ insert mode 
-#+begin_src emacs-lisp
-  (evil-set-initial-state 'treemacs-mode 'insert)
-#+end_src
-
-Start =treemacs-mode= with line numbers disabled
-#+begin_src emacs-lisp
-  (add-hook 'treemacs-mode
-  	  (display-line-numbers-mode -1))
-#+end_src
-
-Provide local keybind overrides for next and previous line movement in =treemacs-mode=.
-#+begin_src emacs-lisp
-  (eval-after-load 'treemacs-mode
-            '(define-key treemacs-mode-map (kbd "j") 'treemacs-next-line))
-  (eval-after-load 'treemacs-mode
-            '(define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line))
-#+end_src
-
-** Vterm
-#+begin_src emacs-lisp
-  (use-package vterm
-    :config
-  (setq shell-file-name "/bin/bash" 
-        vterm-max-scrollback 5000))
-  (evil-set-initial-state 'vterm-mode 'insert)
-#+end_src
-
-*** Vterm-Toggle
-vterm-toggle toggles between the vterm buffer and whatever buffer you are editing.
-
-#+begin_src emacs-lisp
-  (use-package vterm-toggle
-    :after vterm
-    :config
-    (setq vterm-toggle-fullscreen-p nil)
-    (setq vterm-toggle-scope 'project)
-    (add-to-list 'display-buffer-alist
-                 '((lambda (buffer-or-name _)
-                     (let ((buffer (get-buffer buffer-or-name)))
-                       (with-current-buffer buffer
-                         (or (equal major-mode 'vterm-mode)
-                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                   (display-buffer-reuse-window display-buffer-at-bottom)
-                   ;;(display-buffer-reuse-window display-buffer-in-direction)
-                   ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                   ;;(direction . bottom)
-                   ;;(dedicated . t) ;dedicated is supported in emacs27
-                   (reusable-frames . visible)
-                   (window-height . 0.3))))
-#+end_src
-
 * SUDO EDIT
 [[https://melpa.org/#/sudo-edit][sudo-edit]] gives us the ability to open files with sudo privileges or switch over to editing with sudo privileges if we intentionally opened a file without such privileges.
 
@@ -1043,49 +1045,42 @@ Disable the built-in /Emacs/ splash screen and set custom initial buffer
 #+end_src 
 
 Make initial buffer read-only and disable line numbers
-#+begin_src emacs-lisp
-  (add-hook 'emacs-startup-hook 
-            (lambda () 
-              (read-only-mode 1)
-              (display-line-numbers-mode -1)))
-#+end_src
+Welcome to fish, the friendly interactive shell
+Type help for instructions on how to use fish
+user@ywagurgu ~/d/emacs (main)> 
 
-Visit /scratch/ buffer from custom startpage
-#+begin_src emacs-lisp
-;;(switch-to-buffer "*scratch*")
-#+end_src
-* WHICH-KEY
-#+begin_src emacs-lisp
-  (use-package which-key
-    :init
-      (which-key-mode 1)
-    :config
-       (setq which-key-side-window-location 'bottom
-	     which-key-sort-order #'which-key-key-order-alpha
-	     which-key-sort-uppercase-first nil
-	     which-key-add-column-padding 1
-	     which-key-max-display-columns nil
-	     which-key-min-display-lines 6
-	     which-key-side-window-slot -10
-	     which-key-side-window-max-height 0.25
-	     which-key-idle-delay 0.3
-	     which-key-max-description-length 25
-	     which-key-allow-imprecise-window-fit 1
-	     which-key-separator " → "))
 
-#+end_src
 
-* FOOTNOTES
-#+Title: HD's GNU Emacs Config
-#+Author: Henry Davies (HD) 
-#+Description: HD's personal Emacs config.
-#+Startup: fold inlineimages
-#+exclude_tags: noexport
-#+Options: num:nil noexport
 
-** HTML Export Control                                            :noexport:
-#+export_file_name: ~/Documents/html/docs/gnu-emacs-dracula.html
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-#+HTML_HEAD: <style>pre.src{background:#282a36;color:white;} </style>
-#+HTML_HEAD: <style>code{background:#f8f8f2;color:#6272a4;} </style>
-#+HTML_HEAD: <style>ul{background:#f8f8f2;} </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
