@@ -490,7 +490,7 @@ monitor=,preferred,auto,auto
 
 Specify configuration for built in Laptop Display
 #+begin_src conf :tangle hyprland.conf
-monitor=eDP-1, 3840x2160@60.0020, 0x0, 2 
+monitor=eDP-1, 3840x2160@60.0020, 0x0, 1.5 
 #+end_src
 
 Specify configuration for /HP DislayPort Monitor/
@@ -801,6 +801,12 @@ windowrulev2 = workspace 7,class:^(steam)$
 Assign librewolf to workspace 8
 #+begin_src conf :tangle hyprland.conf
 windowrulev2 = workspace 8,class:^(librewolf)$  
+#+end_src
+
+***** Screensharing privacy
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = noscreenshare, class:^(org.keepassxc.KeePassXC)
+windowrulev2 = noscreenshare, class:^(com.belmoussaoui.Authenticator)
 #+end_src
 * FOOTNOTES :noexport:
 for multi-file configurations, a second file can be "sourced" like so:
