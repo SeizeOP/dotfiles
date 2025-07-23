@@ -56,6 +56,7 @@
 - [[#theme][THEME]]
   - [[#doom-themes][Doom Themes]]
   - [[#initial-buffer-choice--options][Initial Buffer Choice & Options]]
+- [[#footnotes][Footnotes]]
 
 * ABOUT THIS CONFIG
 This is my personal /GNU Emacs/ literate configuration. I will do my best to clarify what external dependencies are required for this emacs config. However, the external dependency list may not be complete, and I may have made other undocumented changes to my system. Therefor I would *NOT* recommend blindly copying this config. Instead, i would suggest reading though this config, and copying/reimplimenting only those sections which are reivant to your own personal emacs config.
@@ -686,7 +687,6 @@ Org-side-tree provides a simple graphical tree style view for navigation of org-
 #+begin_src emacs-lisp
   (use-package org-side-tree
     :ensure t)
-  (require 'org-side-tree)
 #+end_src
 
 *** Treemacs
@@ -1090,37 +1090,10 @@ Make initial buffer read-only and disable line numbers
   	    (display-line-numbers-mode -1)))
 #+end_src 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* Footnotes
+#+author: Henry Davies
+** Export control :noexport:
+#+options: num:nil toc:2
+#+exclude_tags: noexport
+#+export_file_name: ~/Documents/html/docs/hd-gnu-emacs.html
+#+startup: inlineimages fold
