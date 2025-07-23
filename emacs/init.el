@@ -11,14 +11,14 @@
  '(org-cycle-inline-images-display nil)
  '(org-hide-emphasis-markers t)
  '(org-safe-remote-resources
-   '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)" "\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
- '(package-selected-packages
-   '(lsp-ltex empv org-mpv-notes org-pdftools pdf-tools writeroom-mode writegood-mode org-side-tree yaml-mode elfeed-tube-mpv elfeed-tube treemacs-evil treemacs elfeed-goodies emms-player-spotify elfeed-org elfeed-web elfeed markdown-mode doom-themes doom-modeline-now-playing doom-modeline company auto-complete qrencode org-superstar org-inline-pdf seize-the-night-theme))
+   '("\\`https://fniessen\\.github\\.io\\(?:/\\|\\'\\)"
+     "\\`https://fniessen\\.github\\.io/org-html-themes/org/theme-readtheorg\\.setup\\'"))
+ '(package-selected-packages nil)
  '(safe-local-variable-values
-   '((eval face-remap-add-relative 'default
-	   '(:family "Times New Roman" :height 120))
-     (eval face-remap-add-relative 'default
-	   '(:family "OpenDyslexic" :height 120))
+   '(eval face-remap-add-relative 'default
+	  '(:family "Times New Roman" :height 120)
+	  '(eval face-remap-add-relative 'default
+		 '(:family "OpenDyslexic" :height 120)))))
 ;; org-roam-db locations are not included in this copy of the init.el hoever these can be added back later.
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

@@ -9,6 +9,7 @@
   - [[#elpacs-package-manager][Elpacs Package Manager]]
   - [[#evil-mode][Evil Mode]]
   - [[#general-keybindings][General Keybindings]]
+- [[#which-key][WHICH KEY]]
 - [[#all-the-icons][ALL THE ICONS]]
   - [[#dired-support][Dired support]]
 - [[#auto-compete][AUTO-COMPETE]]
@@ -30,12 +31,9 @@
   - [[#zooming-inout][Zooming In/Out]]
 - [[#graphical-user-interface-tweaks][GRAPHICAL USER INTERFACE TWEAKS]]
   - [[#better-list-bullets][Better List Bullets]]
-  - [[#disable-menubar-toolbars-and-scrollbars][Disable Menubar, Toolbars and Scrollbars]]
-  - [[#display-line-numbers-and-truncated-lines][Display Line Numbers and Truncated Lines]]
-  - [[#disable-line-numbers-for-selected-modes][Disable Line Numbers for Selected Modes]]
+  - [[#file-trees-and-menus][File trees and menus]]
+  - [[#line-numbers][Line Numbers]]
   - [[#disable-symlink-to-git-directory-popup-dialog][Disable Symlink to Git directory popup dialog]]
-  - [[#treemacs-confirguration][Treemacs confirguration]]
-  - [[#vterm][Vterm]]
 - [[#ivy-counsel][IVY (COUNSEL)]]
 - [[#multiple-cursors][Multiple Cursors]]
 - [[#org-mode][ORG MODE]]
@@ -53,6 +51,7 @@
 - [[#shells-and-terminals][SHELLS AND TERMINALS]]
   - [[#ctrl-c-fix][CTRL-C Fix]]
   - [[#eshell][Eshell]]
+  - [[#vterm][Vterm]]
 - [[#sudo-edit][SUDO EDIT]]
 - [[#theme][THEME]]
   - [[#doom-themes][Doom Themes]]
@@ -355,6 +354,26 @@ Additionally define the keybinding to be used with the custom markdown to PDF ex
       )
 #+end_src
     
+* WHICH KEY
+Provied hints for "which" key combination does what action.
+#+begin_src emacs-lisp
+(use-package which-key
+  :init
+    (which-key-mode 1)
+  :config
+     (setq which-key-side-window-location 'bottom
+             which-key-sort-order #'which-key-key-order-alpha
+             which-key-sort-uppercase-first nil
+             which-key-add-column-padding 1
+             which-key-max-display-columns nil
+             which-key-min-display-lines 6
+             which-key-side-window-slot -10
+             which-key-side-window-max-height 0.25
+             which-key-idle-delay 0.3
+             which-key-max-description-length 25
+             which-key-allow-imprecise-window-fit 1
+             which-key-separator " → "))
+#+end_src
 * ALL THE ICONS
 This is an icon set that can be used with dashoard, dired, ibuffer and other Emacs programs.
 #+begin_src emacs-lisp 
@@ -652,40 +671,34 @@ credit: https://zzamboni.org/post/beautifying-org-mode-in-emacs/
                         '(("^ *\\([-]\\) "
                            (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 #+end_src
-** Disable Menubar, Toolbars and Scrollbars
+** File trees and menus
+*** Disable Menubar, Toolbars and Scrollbars
 #+begin_src emacs-lisp
   (menu-bar-mode -1)
   (tool-bar-mode -1)
   (scroll-bar-mode -1)
 #+end_src
 
-** Display Line Numbers and Truncated Lines
-#+begin_src emacs-lisp
-  (global-display-line-numbers-mode 1)
-  (global-visual-line-mode 1)
+*** Org-side-tree
+Org-side-tree provides a simple graphical tree style view for navigation of org-mode headers. Below are the configurations used to more completely integrate =org-side-tree= with the rest of this custom emacs configuration.
 
-  (setq display-line-numbers-type 'relative)
+**** Install Org-side-tree
+#+begin_src emacs-lisp
+  (use-package org-side-tree
+    :ensure t)
+  (require 'org-side-tree)
 #+end_src
 
-** Disable Line Numbers for Selected Modes
-#+begin_src emacs-lisp
-  (dolist (mode '(term-mode-hook
-                   vterm-mode-hook
-                   shell-mode-hook
-                  treemacs-mode-hook
-                   eshell-mode-hook
-                   org-side-tree-mode-hook))
-     (add-hook mode (lambda() (display-line-numbers-mode 0))))
-#+end_src
-
-** Disable Symlink to Git directory popup dialog
-#+begin_src emacs-lisp
-(setq vc-follow-symlinks t)
-#+end_src
-
-** [[https://github.com/Alexander-Miller/treemacs][Treemacs]] confirguration 
+*** Treemacs
 Treemacs provides a simple graphical tree style file view for emacs. Below are the configurations used to more completely integrate Treemacs with the rest of this custom emacs configuration.
- 
+
+**** Install Treemacs 
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :ensure t)
+#+end_src
+
+*** Confiure Treemacs
 Start =treemacs-mode= in /Evil/ insert mode
 #+begin_src emacs-lisp
   (evil-set-initial-state 'treemacs-mode 'insert)
@@ -705,37 +718,29 @@ Provide local keybind overrides for next and previous line movement in =treemacs
             '(define-key treemacs-mode-map (kbd "k") 'treemacs-previous-line))
 #+end_src
 
-** Vterm
+** Line Numbers
+*** Display Line Numbers and Truncated Lines
 #+begin_src emacs-lisp
-  (use-package vterm
-    :config
-  (setq shell-file-name "/bin/bash" 
-        vterm-max-scrollback 5000))
-  (evil-set-initial-state 'vterm-mode 'insert)
+  (global-display-line-numbers-mode 1)
+  (global-visual-line-mode 1)
+
+  (setq display-line-numbers-type 'relative)
 #+end_src
 
-*** Vterm-Toggle
-vterm-toggle toggles between the vterm buffer and whatever buffer you are editing.
-
+*** Disable Line Numbers for Selected Modes
 #+begin_src emacs-lisp
-  (use-package vterm-toggle
-    :after vterm
-    :config
-    (setq vterm-toggle-fullscreen-p nil)
-    (setq vterm-toggle-scope 'project)
-    (add-to-list 'display-buffer-alist
-                 '((lambda (buffer-or-name _)
-                     (let ((buffer (get-buffer buffer-or-name)))
-                       (with-current-buffer buffer
-                         (or (equal major-mode 'vterm-mode)
-                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
-                   (display-buffer-reuse-window display-buffer-at-bottom)
-                   ;;(display-buffer-reuse-window display-buffer-in-direction)
-                   ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                   (direction . bottom)
-                   (dedicated . t) ;dedicated is supported in emacs27
-                   (reusable-frames . visible)
-                   (window-height . 0.3))))
+  (dolist (mode '(term-mode-hook
+                   vterm-mode-hook
+                   shell-mode-hook
+                  treemacs-mode-hook
+                   eshell-mode-hook
+                   org-side-tree-mode-hook))
+     (add-hook mode (lambda() (display-line-numbers-mode 0))))
+#+end_src
+
+** Disable Symlink to Git directory popup dialog
+#+begin_src emacs-lisp
+(setq vc-follow-symlinks t)
 #+end_src
 
 * IVY (COUNSEL)
@@ -991,6 +996,39 @@ Make all eshell appear in a popup buffer. The /elisp/ below is a combination of 
         eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
 #+end_src
 
+** Vterm
+#+begin_src emacs-lisp
+  (use-package vterm
+    :config
+  (setq shell-file-name "/bin/bash" 
+        vterm-max-scrollback 5000))
+  (evil-set-initial-state 'vterm-mode 'insert)
+#+end_src
+
+*** Vterm-Toggle
+vterm-toggle toggles between the vterm buffer and whatever buffer you are editing.
+
+#+begin_src emacs-lisp
+  (use-package vterm-toggle
+    :after vterm
+    :config
+    (setq vterm-toggle-fullscreen-p nil)
+    (setq vterm-toggle-scope 'project)
+    (add-to-list 'display-buffer-alist
+                 '((lambda (buffer-or-name _)
+                     (let ((buffer (get-buffer buffer-or-name)))
+                       (with-current-buffer buffer
+                         (or (equal major-mode 'vterm-mode)
+                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                   (display-buffer-reuse-window display-buffer-at-bottom)
+                   ;;(display-buffer-reuse-window display-buffer-in-direction)
+                   ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                   (direction . bottom)
+                   (dedicated . t) ;dedicated is supported in emacs27
+                   (reusable-frames . visible)
+                   (window-height . 0.3))))
+#+end_src
+
 * SUDO EDIT
 [[https://melpa.org/#/sudo-edit][sudo-edit]] gives us the ability to open files with sudo privileges or switch over to editing with sudo privileges if we intentionally opened a file without such privileges.
 
@@ -1045,10 +1083,12 @@ Disable the built-in /Emacs/ splash screen and set custom initial buffer
 #+end_src 
 
 Make initial buffer read-only and disable line numbers
-Welcome to fish, the friendly interactive shell
-Type help for instructions on how to use fish
-user@ywagurgu ~/d/emacs (main)> 
-
+#+begin_src emacs-lisp
+  (add-hook 'emacs-startup-hook
+  	  (lambda () 
+  	    (read-only-mode 1)
+  	    (display-line-numbers-mode -1)))
+#+end_src 
 
 
 
