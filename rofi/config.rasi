@@ -1,4 +1,6 @@
 
 //@theme "/home/user/.config/rofi/themes/dracula.rasi"
 
-@theme "/home/henryd/.config/rofi/themes/dracula.rasi"
+//@theme "/home/henryd/.config/rofi/themes/dracula.rasi"
+
+@theme "/home/user/.config/rofi/themes/dracula.rasi"

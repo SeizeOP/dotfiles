@@ -64,12 +64,13 @@ This section includes links to the configuration files used by /non Hyprland/ pa
 
 *Essential* environment variables
 #+begin_src conf :tangle hyprland.conf
-  env = WLR_NO_HARDWARE_CURSORS, 1
+  env = WLR_NO_HARDWARE_CURSORS,1
   $mainMod = SUPER
   $terminal = kitty
   $menu = rofi -show combi -combi-modi drun,run,recursivebrowser 
   $filemenu = rofi -show combi -combi-modi window,recursivebrowser,ssh 
   $editor = emacsclient -ca ""
+  $controlpanel = ~/.local/bin/overrides-gui
 #+end_src
 
 /Less/ essential environment variables
@@ -190,6 +191,7 @@ ecosystem:enforce_permissions = true
 #+begin_src conf :tangle hyprland.conf
 permission = /usr/bin/grim, screencopy, allow
 permission = /usr/bin/hyprshot, screencopy, allow
+permission = /usr/bin/hyprlock, screencopy, allow
 permission = /usr/bin/hyprpicker, screencopy, allow
 permission = /usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland, screencopy, ask
 #+end_src
@@ -256,6 +258,7 @@ These are keybindings which are critical for proper system functionality
   bind = $mainMod, M, exec, $fileManager
   bind = $mainMod, V, togglefloating, 
   bind = $mainMod, D, exec, $menu
+  bind = $mainMod, O, exec, $controlpanel
   bind = ALT, TAB, exec, $filemenu
   bind = $mainMod $shiftmod, C, exec, ~/dotfiles/hypr/scripts/reloads.sh
 #+end_src
@@ -517,7 +520,7 @@ Enable rounding of window corners
 **** Shaders
 Enable a screen shader based on the provided shadder file. In this case the provided file is a shader file which enables a greyscale effect. 
 #+begin_src conf :tangle hyprland.conf
-#screen_shader = ~/dotfiles/hypr/shaders/greyscale-shader.glsl
+##########screen_shader = ~/dotfiles/hypr/shaders/greyscale-shader.glsl
 #+end_src
 
 bellow is an example of this shader in action:
@@ -788,9 +791,24 @@ Assign Yad windows to workspace 1
 windowrulev2 = workspace 1,class:^(yad)$  
 #+end_src
 
+Assign personal website to workspace 1
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = workspace 2,title:^(HD's Personal Documentation)$  
+#+end_src
 Assign Emacs windows to workspace 3
 #+begin_src conf :tangle hyprland.conf
 windowrulev2 = workspace 3,class:^(emacs)$  
+#+end_src
+
+Assign Github windows to workspace 3
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = workspace 3,title:^(GitHub)$  
+#+end_src
+
+Assign Jellyfin and Spotify windows to workspace 4
+#+begin_src conf :tangle hyprland.conf
+windowrulev2 = workspace 4,class:^(com.github.iwalton3.jellyfin-media-player)$  
+windowrulev2 = workspace 4,title:^(Spotify)$  
 #+end_src
 
 Assign steam to workspace 7

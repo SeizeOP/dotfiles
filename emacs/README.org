@@ -1078,16 +1078,16 @@ Until then i will use the /Doom Dracula/ theme instead.
 ** Initial Buffer Choice & Options 
 Disable the built-in /Emacs/ splash screen and set custom initial buffer
 #+begin_src emacs-lisp
-(setq inhibit-startup-screen 1)
-(setq initial-buffer-choice "~/.config/emacs/startup.org")
+  (setq inhibit-startup-screen 1)
+  (setq initial-buffer-choice "~/.config/emacs/startup.org")
 #+end_src 
 
 Make initial buffer read-only and disable line numbers
 #+begin_src emacs-lisp
-  (add-hook 'emacs-startup-hook
-  	  (lambda () 
-  	    (read-only-mode 1)
-  	    (display-line-numbers-mode -1)))
+;;  (add-hook 'emacs-startup-hook
+;;  (setq inhibit-startup-screen 1)
+;;        (setq read-only-mode 1)
+;;        (setq display-line-numbers -1))
 #+end_src 
 
 * Footnotes
